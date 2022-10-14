@@ -1,5 +1,5 @@
-Jogo RPG desenvolvido a partir de recursos nativos do navegador.<br/><br/>
-Observaçõess:A história e as mecanicas ainda estão completas.<br/><br/>
-Como o google crome bloqueia áudios reproduzidos automaticamente com a propriedade autplay,peço que para uma melhor experiência ouça esta playlist medieval para acessar o jogo:)<br/><br/>
-[Clique aqui para acessar a lista de reprodução: ](https://www.youtube.com/watch?v=ALeNmKjrM6Y&t=2402s&ab_channel=Lamejorm%C3%BAsicainstrumental)<br/><br/>
-[Clique aqui para acessar o jogo: ](https://marinsantos.github.io/Jogo-RPG-/)
+RPG game developed from the browser's native resources.<br/><br/>
+Notes: The story and mechanics are still complete.<br/><br/>
+Since google crome blocks autoplay audios with autplay property, I ask for a better experience to listen to this medieval playlist to access the game:<br/><br/>
+[Click here to access the playlist: ](https://www.youtube.com/watch?v=ALeNmKjrM6Y&t=2402s&ab_channel=Lamejorm%C3%BAsicainstrumental)<br/><br/>
+[Click here to access the game: ](https://marinsantos.github.io/Jogo-RPG-/)

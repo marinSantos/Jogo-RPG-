@@ -432,7 +432,7 @@ do {
             case '3':
                 danoCausado = abilidade3['dano'] + (guerreiro['dano'] / 2)
                 if (guerreiro['class'] == 'Assasino ladrão') {
-                    guerreiro['hp'] = assasinoLadrao(guerreiro['hp'])
+                    guerreiro['hp'] = ladraoBuff(guerreiro['hp'])
                 }
                 break
             case '4':

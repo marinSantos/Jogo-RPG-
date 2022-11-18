@@ -51,8 +51,8 @@ while (subClasse != '1' && subClasse != '2') {
                 guerreiro = { class: 'Assasino ninja', arma: 'Katana', dano: 200, hp: 350, defesa: 50 }
                 abilidade1 = { nome: 'konoha senpuu', dano: 50, quantidade: 100, area: false, des: 'Golpea o inimigo com aquela clássica voadora do Rock Lee ! "Referencia de Naruto"' }
                 abilidade2 = { nome: 'Corte das sombras', dano: 100, quantidade: 20, area: false, des: 'Usa um jutsu para cegar o inimigo temporariamente, depois executa um corte rápido e preciso onde ele menos espera . ' }
-                abilidade3 = { nome: 'Shurikens', dano: 50, quantidade: 20, area: true, des: " " }
-                abilidade4 = { nome: 'Assasinato silencioso', dano: 250, quantidade: 1, area: false, des: 'Cria uma área em que o tempo passa mais devagar para inimigo, além do mesmo não poder ouvir ou enchergar absolutamentenada, e assim acertando todos os pontos vitais do inimigo ! Quem apagou a luz ?!' }
+                abilidade3 = { nome: 'Shurikens', dano: 50, quantidade: 20, area: true, des: "Lança shurikens e diversos inimigos !" }
+                abilidade4 = { nome: 'Assasinato silencioso', dano: 300, quantidade: 1, area: false, des: 'Cria uma área em que o tempo passa mais devagar para inimigo, além do mesmo não poder ouvir ou enchergar absolutamentenada, e assim acertando todos os pontos vitais do inimigo ! Quem apagou a luz ?!' }
             } else if (subClasse == 2) {
 
                 alert('Guarda do coliseu:\n\n Certo ! Pegue esta arma...\n\n\nVocê recebeu duas Adagas vampíricas !')
@@ -128,731 +128,788 @@ do {
 
 } while (opçaoEscolhida1 != '4' && opçaoEscolhida1 != '3')
 
-    let lobo1 = { dano: 5, hp: 150, defesa: 0 }
-    let lobo2 = { dano: 5, hp: 150, defesa: 0 }
-    let lobo3 = { dano: 5, hp: 150, defesa: 0 }
-    let lobo4 = { dano: 5, hp: 150, defesa: 0 }
-    let lobo5 = { dano: 5, hp: 150, defesa: 0 }
-    let lobo6 = { dano: 5, hp: 150, defesa: 0 }
-    let lobo7 = { dano: 5, hp: 150, defesa: 0 }
-    let lobo8 = { dano: 5, hp: 150, defesa: 0 }
-    let lobo9 = { dano: 5, hp: 150, defesa: 0 }
-    let lobo10 = { dano: 5, hp: 50, defesa: 0 }
-    let lobos = lobo1['dano'] + lobo2['dano'] + lobo3['dano'] + lobo4['dano'] + lobo5['dano'] + lobo6['dano'] + lobo7['dano'] + lobo8['dano'] + lobo9['dano'] + lobo10['dano']
+let lobo1 = { dano: 5, hp: 200, defesa: 0 }
+let lobo2 = { dano: 5, hp: 200, defesa: 0 }
+let lobo3 = { dano: 5, hp: 200, defesa: 0 }
+let lobo4 = { dano: 5, hp: 200, defesa: 0 }
+let lobo5 = { dano: 5, hp: 200, defesa: 0 }
+let lobo6 = { dano: 5, hp: 200, defesa: 0 }
+let lobo7 = { dano: 5, hp: 200, defesa: 0 }
+let lobo8 = { dano: 5, hp: 200, defesa: 0 }
+let lobo9 = { dano: 5, hp: 200, defesa: 0 }
+let lobo10 = { dano: 5, hp: 200, defesa: 0 }
+let lb1at = lobo1['dano']
+let lb2at = lobo2['dano']
+let lb3at = lobo3['dano']
+let lb4at = lobo4['dano']
+let lb5at = lobo5['dano']
+let lb6at = lobo6['dano']
+let lb7at = lobo7['dano']
+let lb8at = lobo8['dano']
+let lb9at = lobo9['dano']
+let lb10at = lobo10['dano']
 
-    let lobosDef = 0
-
-
-    let skillEscolhida
-
-    let danoCausado
-
-    let opçaoEscolhida
-
-    alert('Ao entrar no coliseu, ' + nomeGuerreiro + ' se depara com uma grande multidão, bradando em alta voz pelo o espetáculo que iria ter...')
-    alert('Até que....Do outro lado do coliseu, foram abertos 3 grandes portões...\n\nDos portões saiam em torno de 10 lobos\n\n Mas não eram lobos comuns, eram lobos gigantes com garras de ferro !')
-    alert('Eles te atacam !\n\n Que comecem os jogos !')
+// através deste código, pretendo fazer com que o dano causado pelos lobos diminua de acordo com o estado dele, se ele estiver morto vai dar dano 0 por razões obvias e enquanto estiver vivo vai cotinuar dando 5 de dano, porém ainda não implementei de fato esta ideia pois tem muita coisa a ser editada no código que já escrevi, mas esta é a ideia que tive para resolver o problema.
 
 
+let skillEscolhida
 
-    function skill() {
-        let skill
-        skill = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n Escolha uma skill:\n1- ' + abilidade1['nome'] + ' dano: ' + abilidade1['dano'] + '\n' + abilidade1['des'] + '\n2- ' + abilidade2['nome'] + ' dano: ' + abilidade2['dano'] + '\n' + abilidade2['des'] + '\n3- ' + abilidade3['nome'] + ' dano: ' + abilidade3['dano'] + '\n' + abilidade3['des'] + '\n4 "Ultimate"- ' + abilidade4['nome'] + ' dano: ' + abilidade4['dano'] + '\n' + abilidade4['des'])
-        return skill
-    }
-    function atacarLobo() {
-        let opçao
-        switch (skillEscolhida) {
+let danoCausado
 
-            case '1':
-                if (classe == '1') {
-                    while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5' && opçao != '6' && opçao != '7' && opçao != '8' && opçao != '9' && opçao != '10') {
-                        opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a o lobo que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  2- lobo2 HP: ' + lobo2['hp'] + '\n3- lobo3 HP: ' + lobo3['hp'] + '  4- lobo4 HP: ' + lobo4['hp'] + '\n5- lobo5 HP: ' + lobo5['hp'] + '  6- lobo6 HP: ' + lobo6['hp'] + '\n7- lobo7 HP: ' + lobo7['hp'] + '  8- lobo8 HP: ' + lobo8['hp'] + '\n9- lobo9 HP: ' + lobo9['hp'] + '  10- lobo10 HP: ' + lobo10['hp'])
-                    }
-                } else if (classe == '2') {
-                    while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5' && opçao != '6' && opçao != '7' && opçao != '8' && opçao != '9' && opçao != '10') {
-                        opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a o lobo que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  2- lobo2 HP: ' + lobo2['hp'] + '\n3- lobo3 HP: ' + lobo3['hp'] + '  4- lobo4 HP: ' + lobo4['hp'] + '\n5- lobo5 HP: ' + lobo5['hp'] + '  6- lobo6 HP: ' + lobo6['hp'] + '\n7- lobo7 HP: ' + lobo7['hp'] + '  8- lobo8 HP: ' + lobo8['hp'] + '\n9- lobo9 HP: ' + lobo9['hp'] + '  10- lobo10 HP: ' + lobo10['hp'])
-                    }
+let opçaoEscolhida
+
+alert('Ao entrar no coliseu, ' + nomeGuerreiro + ' se depara com uma grande multidão, bradando em alta voz pelo o espetáculo que iria ter...')
+alert('Até que....Do outro lado do coliseu, foram abertos 3 grandes portões...\n\nDos portões saiam em torno de 10 lobos\n\n Mas não eram lobos comuns, eram lobos gigantes com garras de ferro !')
+alert('Eles te atacam !\n\n Que comecem os jogos !')
+
+
+
+function skill() {
+    let skill
+    skill = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n Escolha uma skill:\n1- ' + abilidade1['nome'] + ' dano: ' + abilidade1['dano'] + '\n' + abilidade1['des'] + '\n2- ' + abilidade2['nome'] + ' dano: ' + abilidade2['dano'] + '\n' + abilidade2['des'] + '\n3- ' + abilidade3['nome'] + ' dano: ' + abilidade3['dano'] + '\n' + abilidade3['des'] + '\n4 "Ultimate"- ' + abilidade4['nome'] + ' dano: ' + abilidade4['dano'] + '\n' + abilidade4['des'])
+    return skill
+}
+function atacarLobo() {
+    let opçao
+    switch (skillEscolhida) {
+
+        case '1':
+            if (classe == '1') {
+                while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5' && opçao != '6' && opçao != '7' && opçao != '8' && opçao != '9' && opçao != '10') {
+                    opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a o lobo que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  2- lobo2 HP: ' + lobo2['hp'] + '\n3- lobo3 HP: ' + lobo3['hp'] + '  4- lobo4 HP: ' + lobo4['hp'] + '\n5- lobo5 HP: ' + lobo5['hp'] + '  6- lobo6 HP: ' + lobo6['hp'] + '\n7- lobo7 HP: ' + lobo7['hp'] + '  8- lobo8 HP: ' + lobo8['hp'] + '\n9- lobo9 HP: ' + lobo9['hp'] + '  10- lobo10 HP: ' + lobo10['hp'])
                 }
-                else if (classe == '3') {
-                    while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5') {
-                        opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha o par de lobos que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  lobo2 HP: ' + lobo2['hp'] + '\n2- lobo3 HP: ' + lobo3['hp'] + '  lobo4 HP: ' + lobo4['hp'] + '\n3- lobo5 HP: ' + lobo5['hp'] + '  lobo6 HP: ' + lobo6['hp'] + '\n4- lobo7 HP: ' + lobo7['hp'] + '  lobo8 HP: ' + lobo8['hp'] + '\n5- lobo9 HP: ' + lobo9['hp'] + '  lobo10 HP: ' + lobo10['hp'])
-                    }
+            } else if (classe == '2') {
+                while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5' && opçao != '6' && opçao != '7' && opçao != '8' && opçao != '9' && opçao != '10') {
+                    opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a o lobo que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  2- lobo2 HP: ' + lobo2['hp'] + '\n3- lobo3 HP: ' + lobo3['hp'] + '  4- lobo4 HP: ' + lobo4['hp'] + '\n5- lobo5 HP: ' + lobo5['hp'] + '  6- lobo6 HP: ' + lobo6['hp'] + '\n7- lobo7 HP: ' + lobo7['hp'] + '  8- lobo8 HP: ' + lobo8['hp'] + '\n9- lobo9 HP: ' + lobo9['hp'] + '  10- lobo10 HP: ' + lobo10['hp'])
                 }
-                break
-            case '2':
-                if (classe == '1') {
-                    while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5' && opçao != '6' && opçao != '7' && opçao != '8' && opçao != '9' && opçao != '10') {
-
-                        ////
-                        opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a o lobo que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  2- lobo2 HP: ' + lobo2['hp'] + '\n3- lobo3 HP: ' + lobo3['hp'] + '  4- lobo4 HP: ' + lobo4['hp'] + '\n5- lobo5 HP: ' + lobo5['hp'] + '  6- lobo6 HP: ' + lobo6['hp'] + '\n7- lobo7 HP: ' + lobo7['hp'] + '  8- lobo8 HP: ' + lobo8['hp'] + '\n9- lobo9 HP: ' + lobo9['hp'] + '  10- lobo10 HP: ' + lobo10['hp'])
-                    }
-                } else if (classe == '2') {
-                    while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5' && opçao != '6' && opçao != '7' && opçao != '8' && opçao != '9' && opçao != '10' && opçao != '0') {
-                        opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a o lobo que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  2- lobo2 HP: ' + lobo2['hp'] + '\n3- lobo3 HP: ' + lobo3['hp'] + '  4- lobo4 HP: ' + lobo4['hp'] + '\n5- lobo5 HP: ' + lobo5['hp'] + '  6- lobo6 HP: ' + lobo6['hp'] + '\n7- lobo7 HP: ' + lobo7['hp'] + '  8- lobo8 HP: ' + lobo8['hp'] + '\n9- lobo9 HP: ' + lobo9['hp'] + '  10- lobo10 HP: ' + lobo10['hp'])
-                    }
-                } else if (classe == '3') {
-                    while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5' && opçao != '0') {
-                        opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha o par de lobos que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  lobo2 HP: ' + lobo2['hp'] + '\n2- lobo3 HP: ' + lobo3['hp'] + '  lobo4 HP: ' + lobo4['hp'] + '\n3- lobo5 HP: ' + lobo5['hp'] + '  lobo6 HP: ' + lobo6['hp'] + '\n4- lobo7 HP: ' + lobo7['hp'] + '  lobo8 HP: ' + lobo8['hp'] + '\n5- lobo9 HP: ' + lobo9['hp'] + '  lobo10 HP: ' + lobo10['hp'])
-                    }
+            }
+            else if (classe == '3') {
+                while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5') {
+                    opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha o par de lobos que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  lobo2 HP: ' + lobo2['hp'] + '\n2- lobo3 HP: ' + lobo3['hp'] + '  lobo4 HP: ' + lobo4['hp'] + '\n3- lobo5 HP: ' + lobo5['hp'] + '  lobo6 HP: ' + lobo6['hp'] + '\n4- lobo7 HP: ' + lobo7['hp'] + '  lobo8 HP: ' + lobo8['hp'] + '\n5- lobo9 HP: ' + lobo9['hp'] + '  lobo10 HP: ' + lobo10['hp'])
                 }
-                break
-            case '3':
+            }
+            break
+        case '2':
+            if (classe == '1') {
+                while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5' && opçao != '6' && opçao != '7' && opçao != '8' && opçao != '9' && opçao != '10') {
 
+                    ////
+                    opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a o lobo que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  2- lobo2 HP: ' + lobo2['hp'] + '\n3- lobo3 HP: ' + lobo3['hp'] + '  4- lobo4 HP: ' + lobo4['hp'] + '\n5- lobo5 HP: ' + lobo5['hp'] + '  6- lobo6 HP: ' + lobo6['hp'] + '\n7- lobo7 HP: ' + lobo7['hp'] + '  8- lobo8 HP: ' + lobo8['hp'] + '\n9- lobo9 HP: ' + lobo9['hp'] + '  10- lobo10 HP: ' + lobo10['hp'])
+                }
+            } else if (classe == '2') {
+                while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5' && opçao != '6' && opçao != '7' && opçao != '8' && opçao != '9' && opçao != '10' && opçao != '0') {
+                    opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a o lobo que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  2- lobo2 HP: ' + lobo2['hp'] + '\n3- lobo3 HP: ' + lobo3['hp'] + '  4- lobo4 HP: ' + lobo4['hp'] + '\n5- lobo5 HP: ' + lobo5['hp'] + '  6- lobo6 HP: ' + lobo6['hp'] + '\n7- lobo7 HP: ' + lobo7['hp'] + '  8- lobo8 HP: ' + lobo8['hp'] + '\n9- lobo9 HP: ' + lobo9['hp'] + '  10- lobo10 HP: ' + lobo10['hp'])
+                }
+            } else if (classe == '3') {
+                while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5' && opçao != '0') {
+                    opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha o par de lobos que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  lobo2 HP: ' + lobo2['hp'] + '\n2- lobo3 HP: ' + lobo3['hp'] + '  lobo4 HP: ' + lobo4['hp'] + '\n3- lobo5 HP: ' + lobo5['hp'] + '  lobo6 HP: ' + lobo6['hp'] + '\n4- lobo7 HP: ' + lobo7['hp'] + '  lobo8 HP: ' + lobo8['hp'] + '\n5- lobo9 HP: ' + lobo9['hp'] + '  lobo10 HP: ' + lobo10['hp'])
+                }
+            }
+            break
+        case '3':
+
+            while (opçao != '1' && opçao != '2' && opçao != '0') {
+
+
+                opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a leva de lobos que você deseja atacar:\n\n1- lobo1- HP: ' + lobo1['hp'] + '   lobo2- HP: ' + lobo2['hp'] + '   lobo3- HP: ' + lobo3['hp'] + '   lobo4- HP: ' + lobo4['hp'] + '   lobo5- HP: ' + lobo5['hp'] + '\n\n2- lobo6- HP: ' + lobo6['hp'] + '   lobo7- HP: ' + lobo7['hp'] + '  lobo8- HP: ' + lobo8['hp'] + '   lobo9- HP: ' + lobo9['hp'] + '  lobo10- HP: ' + lobo10['hp'])
+            }
+
+            break
+
+        case '4':
+            if (classe == '1') {
                 while (opçao != '1' && opçao != '2' && opçao != '0') {
 
 
                     opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a leva de lobos que você deseja atacar:\n\n1- lobo1- HP: ' + lobo1['hp'] + '   lobo2- HP: ' + lobo2['hp'] + '   lobo3- HP: ' + lobo3['hp'] + '   lobo4- HP: ' + lobo4['hp'] + '   lobo5- HP: ' + lobo5['hp'] + '\n\n2- lobo6- HP: ' + lobo6['hp'] + '   lobo7- HP: ' + lobo7['hp'] + '  lobo8- HP: ' + lobo8['hp'] + '   lobo9- HP: ' + lobo9['hp'] + '  lobo10- HP: ' + lobo10['hp'])
                 }
-
-                break
-
-            case '4':
-                if (classe == '1') {
-                    while (opçao != '1' && opçao != '2' && opçao != '0') {
+            } else if (classe == '2') {
+                while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5' && opçao != '6' && opçao != '7' && opçao != '8' && opçao != '9' && opçao != '10' && opçao != '0') {
 
 
-                        opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a leva de lobos que você deseja atacar:\n\n1- lobo1- HP: ' + lobo1['hp'] + '   lobo2- HP: ' + lobo2['hp'] + '   lobo3- HP: ' + lobo3['hp'] + '   lobo4- HP: ' + lobo4['hp'] + '   lobo5- HP: ' + lobo5['hp'] + '\n\n2- lobo6- HP: ' + lobo6['hp'] + '   lobo7- HP: ' + lobo7['hp'] + '  lobo8- HP: ' + lobo8['hp'] + '   lobo9- HP: ' + lobo9['hp'] + '  lobo10- HP: ' + lobo10['hp'])
-                    }
-                } else if (classe == '2') {
-                    while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5' && opçao != '6' && opçao != '7' && opçao != '8' && opçao != '9' && opçao != '10' && opçao != '0') {
-
-
-                        opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a o lobo que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  2- lobo2 HP: ' + lobo2['hp'] + '\n3- lobo3 HP: ' + lobo3['hp'] + '  4- lobo4 HP: ' + lobo4['hp'] + '\n5- lobo5 HP: ' + lobo5['hp'] + '  6- lobo6 HP: ' + lobo6['hp'] + '\n7- lobo7 HP: ' + lobo7['hp'] + '  8- lobo8 HP: ' + lobo8['hp'] + '\n9- lobo9 HP: ' + lobo9['hp'] + '  10- lobo10 HP: ' + lobo10['hp'])
-                    }
-                } else if (classe == '3') {
-                    while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5') {
-                        opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a leva de lobos que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  lobo2 HP: ' + lobo2['hp'] + '  lobo3 HP: ' + lobo3['hp'] + '  lobo4 HP: ' + lobo4['hp'] + '  lobo5 HP: ' + lobo5['hp'] + '  lobo6 HP: ' + lobo6['hp'] + '  lobo7 HP: ' + lobo7['hp'] + '  lobo8 HP: ' + lobo8['hp'] + '  lobo9 HP: ' + lobo9['hp'] + '  lobo10 HP: ' + lobo10['hp'])
-                    }
+                    opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a o lobo que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  2- lobo2 HP: ' + lobo2['hp'] + '\n3- lobo3 HP: ' + lobo3['hp'] + '  4- lobo4 HP: ' + lobo4['hp'] + '\n5- lobo5 HP: ' + lobo5['hp'] + '  6- lobo6 HP: ' + lobo6['hp'] + '\n7- lobo7 HP: ' + lobo7['hp'] + '  8- lobo8 HP: ' + lobo8['hp'] + '\n9- lobo9 HP: ' + lobo9['hp'] + '  10- lobo10 HP: ' + lobo10['hp'])
                 }
-                break
-        }
-        return opçao
-    }
-    ////////////////////////////
-    function ataqueDolobo(vida, lbs) {
-        let novohp
-        novohp = vida - lbs
-        if (novohp <= 0) {
-            novohp = 0
-
-        }
-        return novohp
-
-    }
-    //////////////////////////////
-    function dano(lv, dan) {
-        let novaVida
-        novaVida = lv - dan
-        if (novaVida <= 0) {
-            novaVida = 0
-        }
-        return novaVida
-    }
-
-    let efeito
-    ///////////////////////////////
-
-    function dizimadorDebuff(ldef) {
-        let buffd
-
-        novoEfeito = ldef - 2
-        if (ldef == 0) {
-            ldef = 0
-        }
-        return buffd
-    }
-    ////////////////////////
-    function templarioBuff(gdf) {
-        let buffd
-        switch (skillEscolhida) {
-            case '2':
-                buffd = gdf + 5
-                break
-            case '4':
-                buffd = gdf + 50
-                break
-        }
-        return buffd
-    }
-
-    function templarioDebuff(lba) {
-        let debuffd
-        switch (skillEscolhida) {
-
-            case '3':
-                debuffd = lba - 1
-                if (lba == 0) {
-                    lba = 0
+            } else if (classe == '3') {
+                while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5') {
+                    opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a leva de lobos que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  lobo2 HP: ' + lobo2['hp'] + '  lobo3 HP: ' + lobo3['hp'] + '  lobo4 HP: ' + lobo4['hp'] + '  lobo5 HP: ' + lobo5['hp'] + '  lobo6 HP: ' + lobo6['hp'] + '  lobo7 HP: ' + lobo7['hp'] + '  lobo8 HP: ' + lobo8['hp'] + '  lobo9 HP: ' + lobo9['hp'] + '  lobo10 HP: ' + lobo10['hp'])
                 }
+            }
+            break
+    }
+    return opçao
+}
+////////////////////////////
+function ataqueDolobo(vida, lbs) {
+    let novohp
+    novohp = vida - lbs
+    if (novohp <= 0) {
+        novohp = 0
+
+    }
+    return novohp
+
+
+}
+//////////////////////////////
+function dano(lv, dan) {
+    let novaVida
+    novaVida = lv - dan
+    if (novaVida <= 0) {
+        novaVida = 0
+    }
+    return novaVida
+}
+
+let efeito
+///////////////////////////////
+
+function dizimadorDebuff(ldef) {
+    let buffd
+
+    novoEfeito = ldef - 2
+    if (ldef == 0) {
+        ldef = 0
+    }
+    return buffd
+}
+////////////////////////
+function templarioBuff(gdf) {
+    let buffd
+    switch (skillEscolhida) {
+        case '2':
+            buffd = gdf + 5
+            break
+        case '4':
+            buffd = gdf + 50
+            break
+    }
+    return buffd
+}
+
+function templarioDebuff(lba) {
+    let debuffd
+    switch (skillEscolhida) {
+
+        case '3':
+            debuffd = lba - 1
+            if (lba == 0) {
+                lba = 0
+            }
+            break
+
+    }
+    return debuffd
+}
+//////////
+
+function ninjaDebuff(lbd) {
+    let debuffn
+
+    debuffn = lbd - 2
+    if (ldef == 0) {
+        ldef = 0
+    }
+    return debuffn
+}
+
+function ladraoBuff(ghp) {
+    let Lbuff
+    switch (skillEscolhida) {
+
+        case '3':
+            Lbuff = ghp + 5
+            break
+        case '4':
+            Lbuff = ghp + 50
+            break
+    }
+
+    return Lbuff
+}
+
+function ladraoDebuff(lbs) {
+    let LdeBuff
+    if (skillEscolhida == 1) {
+        LdeBuff = lbs - 1
+    }
+    return LdeBuff
+}
+
+function loboMorto(lbs, lb) {
+    let dano
+    dano = lbs - lb
+    if (lb == 0) {
+        lb = 0
+    }
+    
+    return dano
+}
+
+function controladorBuffA(gdn) {
+    let buffc2
+    switch (skillEscolhida) {
+        case '4':
+            buffc2 = gdn + 10
+            break
+
+    }
+    return buffc2
+}
+function controladorBuffD(gdef) {
+    let buffc2
+    switch (skillEscolhida) {
+        case '4':
+            buffc2 = gdef + 10
+            break
+
+    }
+    return buffc2
+}
+
+
+function controladorDebuffA(lbs) {
+    let debuffc1
+    switch (skillEscolhida) {
+        case '1':
+            debuffc1 = lbs - 5
+            break
+        case '4':
+            debuffc1 = lbs - 10
+            break
+
+    }
+    return debuffc1
+}
+function controladorDebuffD(lbsd) {
+    let debuffc1
+    switch (skillEscolhida) {
+        case '2':
+            debuffc1 = lbsd - 5
+            break
+        case '4':
+            debuffc1 = lbsd - 10
+            break
+
+    }
+    return debuffc1
+}
+
+
+
+
+function defesa(gdef, lbs) {
+    let danoDefendido
+    danoDefendido = lbs - gdef
+    if (lbs <= 0) {
+        lbs = 0
+    }
+    return danoDefendido
+}
+
+
+
+/////////////////////////////////////////////////////
+
+
+
+do {
+    skillEscolhida = skill()
+    opçaoEscolhida = atacarLobo()
+    let lobos = lobo1['dano'] + lobo2['dano'] + lobo3['dano'] + lobo4['dano'] + lobo5['dano'] + lobo6['dano'] + lobo7['dano'] + lobo8['dano'] + lobo9['dano'] + lobo10['dano']
+
+    switch (skillEscolhida) {
+        case '1':
+            danoCausado = abilidade1['dano'] + (guerreiro['dano'] / 2)
+            if (guerreiro['class'] == 'Cavaleiro templário') {
+                lobos = templarioDebuff(lobos)
+            }
+            else if (guerreiro['class'] == 'Assasino ladrão') {
+                lobos = ladraoDebuff(lobos)
                 break
+            } else if (guerreiro['class'] == 'Mago de controle') {
+                lobos = controladorDebuffA(lobos)
+            }
+            break
+        case '2':
+            danoCausado = abilidade2['dano'] + (guerreiro['dano'] / 2)
+            if (guerreiro['class'] == 'Cavaleiro templário') {
+                guerreiro['defesa'] = templarioBuff(guerreiro['defesa'])
+            } else if (guerreiro['class'] == 'Mago de controle') {
 
-        }
-        return debuffd
-    }
-    //////////
+                lobosDef = controladorDebuffD(lobosDef)
 
-    function ninjaDebuff(lbd) {
-        let debuffn
 
-        debuffn = lbd - 2
-        if (ldef == 0) {
-            ldef = 0
-        }
-        return debuffn
-    }
+            }
+            break
+        case '3':
+            danoCausado = abilidade3['dano'] + (guerreiro['dano'] / 2)
+            if (guerreiro['class'] == 'Assasino ladrão') {
+                guerreiro['hp'] = ladraoBuff(guerreiro['hp'])
+            }
+            break
+        case '4':
+            danoCausado = abilidade4['dano'] + (guerreiro['dano'] / 2)
 
-    function ladraoBuff(ghp) {
-        let Lbuff
-        switch (skillEscolhida) {
-
-            case '3':
-                Lbuff = ghp + 5
+            if (guerreiro['class'] == 'Assasino ladrão') {
+                guerreiro['hp'] = ladraoBuff(guerreiro['hp'])
                 break
-            case '4':
-                Lbuff = ghp + 50
-                break
-        }
+            }
+            else if (guerreiro['class'] == 'Cavaleiro templário') {
+                guerreiro['defesa'] = templarioBuff(guerreiro['defesa'])
+            } else if (guerreiro['class'] == 'Mago de controle') {
+                lobos = controladorDebuffA(lobos)
+                lobosDef = controladorDebuffD(lobosDef)
+                guerreiro['dano'] = controladorBuffA(guerreiro['dano'])
+                guerreiro['defesa'] = controladorBuffD(guerreiro['defesa'])
 
-        return Lbuff
-    }
+            }
+            break
 
-    function ladraoDebuff(lbs) {
-        let LdeBuff
-        if (skillEscolhida == 1) {
-            LdeBuff = lbs - 1
-        }
-        return LdeBuff
-    }
-
-    function loboMorto(lbs, lb) {
-        let dano
-        dano = lbs - lb
-        if (lb == 0) {
-            lb = 0
-        }
-        return dano
-    }
-
-    function controladorBuffA(gdn) {
-        let buffc2
-        switch (skillEscolhida) {
-            case '4':
-                buffc2 = gdn + 10
-                break
-
-        }
-        return buffc2
-    }
-    function controladorBuffD(gdef) {
-        let buffc2
-        switch (skillEscolhida) {
-            case '4':
-                buffc2 = gdef + 10
-                break
-
-        }
-        return buffc2
-    }
-
-
-    function controladorDebuffA(lbs) {
-        let debuffc1
-        switch (skillEscolhida) {
-            case '1':
-                debuffc1 = lbs - 5
-                break
-            case '4':
-                debuffc1 = lbs - 10
-                break
-
-        }
-        return debuffc1
-    }
-    function controladorDebuffD(lbsd) {
-        let debuffc1
-        switch (skillEscolhida) {
-            case '2':
-                debuffc1 = lbsd - 5
-                break
-            case '4':
-                debuffc1 = lbsd - 10
-                break
-
-        }
-        return debuffc1
     }
 
 
 
 
-    function defesa(gdef, lbs) {
-        let danoDefendido
-        danoDefendido = lbs - gdef
-        if (lbs <= 0) {
-            lbs = 0
-        }
-        return danoDefendido
-    }
+    switch (skillEscolhida) {
+        case '1':
 
+            if (classe == '1') {
+                switch (opçaoEscolhida) {
+                    case '1':
 
+                        lobo1['hp'] = dano(lobo1['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo1['dano'])
 
-    /////////////////////////////////////////////////////
+                        break
+                    case '2':
 
+                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo2['dano'])
 
+                        break
+                    case '3':
 
-    do {
-        skillEscolhida = skill()
-        opçaoEscolhida = atacarLobo()
+                        lobo3['hp'] = dano(lobo3['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo3['dano'])
 
-        switch (skillEscolhida) {
-            case '1':
-                danoCausado = abilidade1['dano'] + (guerreiro['dano'] / 2)
-                if (guerreiro['class'] == 'Cavaleiro templário') {
-                    lobos = templarioDebuff(lobos)
+                        break
+                    case '4':
+
+                        lobo4['hp'] = dano(lobo4['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo4['dano'])
+
+                        break
+                    case '5':
+
+                        lobo5['hp'] = dano(lobo5['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo5['dano'])
+
+                        break
+                    case '6':
+
+                        lobo6['hp'] = dano(lobo6['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo6['dano'])
+
+                        break
+                    case '7':
+
+                        lobo7['hp'] = dano(lobo7['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo7['dano'])
+
+                        break
+                    case '8':
+
+                        lobo8['hp'] = dano(lobo8['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo8['dano'])
+
+                        break
+                    case '9':
+
+                        lobo9['hp'] = dano(lobo9['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo9['dano'])
+
+                        break
+                    case '10':
+
+                        lobo10['hp'] = dano(lobo10['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo10['dano']
+                        )
+                        break
                 }
-                else if (guerreiro['class'] == 'Assasino ladrão') {
-                    lobos = ladraoDebuff(lobos)
+            } else if (classe == '2') {
+                switch (opçaoEscolhida) {
+                    case '1':
+
+                        lobo1['hp'] = dano(lobo1['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo1['dano'])
+
+                        break
+                    case '2':
+
+                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo2['dano'])
+
+                        break
+                    case '3':
+
+                        lobo3['hp'] = dano(lobo3['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo3['dano'])
+
+                        break
+                    case '4':
+
+                        lobo4['hp'] = dano(lobo4['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo4['dano'])
+
+                        break
+                    case '5':
+
+                        lobo5['hp'] = dano(lobo5['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo5['dano'])
+
+                        break
+                    case '6':
+
+                        lobo6['hp'] = dano(lobo6['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo6['dano'])
+
+                        break
+                    case '7':
+
+                        lobo7['hp'] = dano(lobo7['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo7['dano'])
+
+                        break
+                    case '8':
+
+                        lobo8['hp'] = dano(lobo8['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo8['dano'])
+
+                        break
+                    case '9':
+
+                        lobo9['hp'] = dano(lobo9['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo9['dano'])
+
+                        break
+                    case '10':
+
+                        lobo10['hp'] = dano(lobo10['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo10['dano']
+                        )
+                        break
+                }
+
+            } else if (classe == '3') {
+                switch (opçaoEscolhida) {
+                    case '1':
+                        lobo1['hp'] = dano(lobo2['hp'], danoCausado)
+                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo1['dano'])
+
+                        loboMorto(lobos, lobo2['dano'])
+
+                    case '2':
+                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
+                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo3['dano'])
+
+                        loboMorto(lobos, lobo4['dano'])
+
+                        break
+                    case '3':
+                        lobo5['hp'] = dano(lobo5['hp'], danoCausado)
+                        lobo5['hp'] = dano(lobo6['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo5['dano'])
+
+                        loboMorto(lobos, lobo6['dano'])
+                        break
+                    case '4':
+
+                        lobo7['hp'] = dano(lobo7['hp'], danoCausado)
+                        lobo8['hp'] = dano(lobo8['hp'], danoCausado)
+                        break
+                    case '5':
+                        lobo9['hp'] = dano(lobo9['hp'], danoCausado)
+                        lobo10['hp'] = dano(lobo10['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo9['dano'])
+
+                        loboMorto(lobos, lobo10['dano'])
+                        break
+                }
+            }
+            alert(nomeGuerreiro + ' Usou ' + abilidade1['nome'] + ' !')
+
+            alert('Os lobos revidaram e causaram ' + lobos + ' de dano!' + '\n\n Quantidade de vida atual: ' +
+                guerreiro['hp'])
+            break
+        case '2':
+
+            if (classe == '1') {
+                switch (opçaoEscolhida) {
+                    case '1':
+
+                        lobo1['hp'] = dano(lobo1['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo1['dano'])
+
+                        break
+                    case '2':
+
+                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo2['dano'])
+
+                        break
+                    case '3':
+
+                        lobo3['hp'] = dano(lobo3['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo3['dano'])
+
+                        break
+                    case '4':
+
+                        lobo4['hp'] = dano(lobo4['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo4['dano'])
+
+                        break
+                    case '5':
+
+                        lobo5['hp'] = dano(lobo5['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo5['dano'])
+
+                        break
+                    case '6':
+
+                        lobo6['hp'] = dano(lobo6['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo6['dano'])
+
+                        break
+                    case '7':
+
+                        lobo7['hp'] = dano(lobo7['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo7['dano'])
+
+                        break
+                    case '8':
+
+                        lobo8['hp'] = dano(lobo8['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo8['dano'])
+
+                        break
+                    case '9':
+
+                        lobo9['hp'] = dano(lobo9['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo9['dano'])
+
+                        break
+                    case '10':
+
+                        lobo10['hp'] = dano(lobo10['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo10['dano']
+                        )
+                        break
+                }
+            } else if (classe == '2') {
+                switch (opçaoEscolhida) {
+                    case '1':
+
+                        lobo1['hp'] = dano(lobo1['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo1['dano'])
+
+                        break
+                    case '2':
+
+                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo2['dano'])
+
+                        break
+                    case '3':
+
+                        lobo3['hp'] = dano(lobo3['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo3['dano'])
+
+                        break
+                    case '4':
+
+                        lobo4['hp'] = dano(lobo4['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo4['dano'])
+
+                        break
+                    case '5':
+
+                        lobo5['hp'] = dano(lobo5['hp'], danoCausado)
+                        guerreiro['hp'] = gataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo5['dano'])
+
+                        break
+                    case '6':
+
+                        lobo6['hp'] = dano(lobo6['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo6['dano'])
+
+                        break
+                    case '7':
+
+                        lobo7['hp'] = dano(lobo7['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo7['dano'])
+
+                        break
+                    case '8':
+
+                        lobo8['hp'] = dano(lobo8['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo8['dano'])
+
+                        break
+                    case '9':
+
+                        lobo9['hp'] = dano(lobo9['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo9['dano'])
+
+                        break
+                    case '10':
+
+                        lobo10['hp'] = dano(lobo10['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo10['dano']
+                        )
+                        break
+                }
+            } else if (classe == '3') {
+                switch (opçaoEscolhida) {
+                    case '1':
+                        lobo1['hp'] = dano(lobo2['hp'], danoCausado)
+                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo1['dano'])
+
+                        loboMorto(lobos, lobo2['dano'])
+
+                    case '2':
+                        lobo3['hp'] = dano(lobo3['hp'], danoCausado)
+                        lobo4['hp'] = dano(lobo4['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo3['dano'])
+
+                        loboMorto(lobos, lobo4['dano'])
+
+                        break
+                    case '3':
+                        lobo5['hp'] = dano(lobo5['hp'], danoCausado)
+                        lobo6['hp'] = dano(lobo6['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo5['dano'])
+
+                        loboMorto(lobos, lobo6['dano'])
+                        break
+                    case '4':
+
+                        lobo7['hp'] = dano(lobo7['hp'], danoCausado)
+                        lobo8['hp'] = dano(lobo8['hp'], danoCausado)
+                        break
+                    case '5':
+                        lobo9['hp'] = dano(lobo9['hp'], danoCausado)
+                        lobo10['hp'] = dano(lobo10['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo9['dano'])
+
+                        loboMorto(lobos, lobo10['dano'])
+                        break
+                }
+            }
+            alert(nomeGuerreiro + ' Usou ' + abilidade2['nome'] + ' !')
+
+            alert('Os lobos revidaram e causaram ' + lobos + ' de dano!' + '\n\n Quantidade de vida atual: ' + guerreiro['hp'])
+
+
+            break
+        case '3':
+
+
+            switch (opçaoEscolhida) {
+                case '1':
+
+                    lobo1['hp'] = dano(lobo1['hp'], danoCausado)
+                    lobo2['hp'] = dano(lobo2['hp'], danoCausado)
+                    lobo3['hp'] = dano(lobo3['hp'], danoCausado)
+                    lobo4['hp'] = dano(lobo4['hp'], danoCausado)
+                    lobo5['hp'] = dano(lobo5['hp'], danoCausado)
+                    guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                    lobos = loboMorto(lobos, lobo1['dano'])
+
+                    loboMorto(lobos, lobo2['dano'])
+                    loboMorto(lobos, lobo3['dano'])
+                    loboMorto(lobos, lobo4['dano'])
+                    loboMorto(lobos, lobo5['dano'])
+
+
                     break
-                } else if (guerreiro['class'] == 'Mago de controle') {
-                    lobos = controladorDebuffA(lobos)
-                }
-                break
-            case '2':
-                danoCausado = abilidade2['dano'] + (guerreiro['dano'] / 2)
-                if (guerreiro['class'] == 'Cavaleiro templário') {
-                    guerreiro['defesa'] = templarioBuff(guerreiro['defesa'])
-                } else if (guerreiro['class'] == 'Mago de controle') {
+                case '2':
 
-                    lobosDef = controladorDebuffD(lobosDef)
+                    lobo6['hp'] = dano(lobo6['hp'], danoCausado)
+                    lobo7['hp'] = dano(lobo7['hp'], danoCausado)
+                    lobo8['hp'] = dano(lobo8['hp'], danoCausado)
+                    lobo9['hp'] = dano(lobo9['hp'], danoCausado)
+                    lobo10['hp'] = dano(lobo10['hp'], danoCausado)
+                    guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                    lobos = loboMorto(lobos, lobo6['dano'])
 
-
-                }
-                break
-            case '3':
-                danoCausado = abilidade3['dano'] + (guerreiro['dano'] / 2)
-                if (guerreiro['class'] == 'Assasino ladrão') {
-                    guerreiro['hp'] = ladraoBuff(guerreiro['hp'])
-                }
-                break
-            case '4':
-                danoCausado = abilidade4['dano'] + (guerreiro['dano'] / 2)
-
-                if (guerreiro['class'] == 'Assasino ladrão') {
-                    guerreiro['hp'] = ladraoBuff(guerreiro['hp'])
+                    loboMorto(lobos, lobo7['dano'])
+                    loboMorto(lobos, lobo8['dano'])
+                    loboMorto(lobos, lobo9['dano'])
+                    loboMorto(lobos, lobo10['dano'])
                     break
-                }
-                else if (guerreiro['class'] == 'Cavaleiro templário') {
-                    guerreiro['defesa'] = templarioBuff(guerreiro['defesa'])
-                } else if (guerreiro['class'] == 'Mago de controle') {
-                    lobos = controladorDebuffA(lobos)
-                    lobosDef = controladorDebuffD(lobosDef)
-                    guerreiro['dano'] = controladorBuffA(guerreiro['dano'])
-                    guerreiro['defesa'] = controladorBuffD(guerreiro['defesa'])
+            }
 
-                }
-                break
+            alert(nomeGuerreiro + ' Usou ' + abilidade3['nome'] + ' !')
 
-        }
+            alert('Os lobos revidaram e causaram ' + lobos + ' de dano!' + '\n\n Quantidade de vida atual: ' + guerreiro['hp'])
 
 
+            break
+        case '4':
 
-        switch (skillEscolhida) {
-            case '1':
-
-                if (classe == '1') {
-                    switch (opçaoEscolhida) {
-                        case '1':
-
-                            lobo1['hp'] = dano(lobo1['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo1['dano'])
-
-                            break
-                        case '2':
-
-                            lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo2['dano'])
-
-                            break
-                        case '3':
-
-                            lobo3['hp'] = dano(lobo3['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo3['dano'])
-
-                            break
-                        case '4':
-
-                            lobo4['hp'] = dano(lobo4['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo4['dano'])
-
-                            break
-                        case '5':
-
-                            lobo5['hp'] = dano(lobo5['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo5['dano'])
-
-                            break
-                        case '6':
-
-                            lobo6['hp'] = dano(lobo6['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo6['dano'])
-
-                            break
-                        case '7':
-
-                            lobo7['hp'] = dano(lobo7['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo7['dano'])
-
-                            break
-                        case '8':
-
-                            lobo8['hp'] = dano(lobo8['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo8['dano'])
-
-                            break
-                        case '9':
-
-                            lobo9['hp'] = dano(lobo9['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo9['dano'])
-
-                            break
-                        case '10':
-
-                            lobo10['hp'] = dano(lobo10['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo10['dano']
-                            )
-                            break
-                    }
-                } else if (classe == '2') {
-                    switch (opçaoEscolhida) {
-                        case '1':
-
-                            lobo1['hp'] = dano(lobo1['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo1['dano'])
-
-                            break
-                        case '2':
-
-                            lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo2['dano'])
-
-                            break
-                        case '3':
-
-                            lobo3['hp'] = dano(lobo3['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo3['dano'])
-
-                            break
-                        case '4':
-
-                            lobo4['hp'] = dano(lobo4['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo4['dano'])
-
-                            break
-                        case '5':
-
-                            lobo5['hp'] = dano(lobo5['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo5['dano'])
-
-                            break
-                        case '6':
-
-                            lobo6['hp'] = dano(lobo6['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo6['dano'])
-
-                            break
-                        case '7':
-
-                            lobo7['hp'] = dano(lobo7['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo7['dano'])
-
-                            break
-                        case '8':
-
-                            lobo8['hp'] = dano(lobo8['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo8['dano'])
-
-                            break
-                        case '9':
-
-                            lobo9['hp'] = dano(lobo9['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo9['dano'])
-
-                            break
-                        case '10':
-
-                            lobo10['hp'] = dano(lobo10['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo10['dano']
-                            )
-                            break
-                    }
-
-                } else if (classe == '3') {
-                    switch (opçaoEscolhida) {
-                        case '1':
-                            lobo1['hp'] = dano(lobo2['hp'], danoCausado)
-                            lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo1['dano'])
-
-                            loboMorto(lobos, lobo2['dano'])
-
-                        case '2':
-                            lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                            lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo3['dano'])
-
-                            loboMorto(lobos, lobo4['dano'])
-
-                            break
-                        case '3':
-                            lobo5['hp'] = dano(lobo5['hp'], danoCausado)
-                            lobo5['hp'] = dano(lobo6['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo5['dano'])
-
-                            loboMorto(lobos, lobo6['dano'])
-                            break
-                        case '4':
-
-                            lobo7['hp'] = dano(lobo7['hp'], danoCausado)
-                            lobo8['hp'] = dano(lobo8['hp'], danoCausado)
-                            break
-                        case '5':
-                            lobo9['hp'] = dano(lobo9['hp'], danoCausado)
-                            lobo10['hp'] = dano(lobo10['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo9['dano'])
-
-                            loboMorto(lobos, lobo10['dano'])
-                            break
-                    }
-                }
-                alert(nomeGuerreiro + ' Usou ' + abilidade1['nome'] + ' !')
-
-                alert('Os lobos revidaram e causaram ' + lobos + ' de dano!' + '\n\n Quantidade de vida atual: ' +
-                    guerreiro['hp'])
-                break
-            case '2':
-
-                if (classe == '1') {
-                    switch (opçaoEscolhida) {
-                        case '1':
-
-                            lobo1['hp'] = dano(lobo1['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo1['dano'])
-
-                            break
-                        case '2':
-
-                            lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo2['dano'])
-
-                            break
-                        case '3':
-
-                            lobo3['hp'] = dano(lobo3['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo3['dano'])
-
-                            break
-                        case '4':
-
-                            lobo4['hp'] = dano(lobo4['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo4['dano'])
-
-                            break
-                        case '5':
-
-                            lobo5['hp'] = dano(lobo5['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo5['dano'])
-
-                            break
-                        case '6':
-
-                            lobo6['hp'] = dano(lobo6['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo6['dano'])
-
-                            break
-                        case '7':
-
-                            lobo7['hp'] = dano(lobo7['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo7['dano'])
-
-                            break
-                        case '8':
-
-                            lobo8['hp'] = dano(lobo8['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo8['dano'])
-
-                            break
-                        case '9':
-
-                            lobo9['hp'] = dano(lobo9['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo9['dano'])
-
-                            break
-                        case '10':
-
-                            lobo10['hp'] = dano(lobo10['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo10['dano']
-                            )
-                            break
-                    }
-                } else if (classe == '2') {
-                    switch (opçaoEscolhida) {
-                        case '1':
-
-                            lobo1['hp'] = dano(lobo1['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo1['dano'])
-
-                            break
-                        case '2':
-
-                            lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo2['dano'])
-
-                            break
-                        case '3':
-
-                            lobo3['hp'] = dano(lobo3['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo3['dano'])
-
-                            break
-                        case '4':
-
-                            lobo4['hp'] = dano(lobo4['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo4['dano'])
-
-                            break
-                        case '5':
-
-                            lobo5['hp'] = dano(lobo5['hp'], danoCausado)
-                            guerreiro['hp'] = gataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo5['dano'])
-
-                            break
-                        case '6':
-
-                            lobo6['hp'] = dano(lobo6['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo6['dano'])
-
-                            break
-                        case '7':
-
-                            lobo7['hp'] = dano(lobo7['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo7['dano'])
-
-                            break
-                        case '8':
-
-                            lobo8['hp'] = dano(lobo8['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo8['dano'])
-
-                            break
-                        case '9':
-
-                            lobo9['hp'] = dano(lobo9['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo9['dano'])
-
-                            break
-                        case '10':
-
-                            lobo10['hp'] = dano(lobo10['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo10['dano']
-                            )
-                            break
-                    }
-                } else if (classe == '3') {
-                    switch (opçaoEscolhida) {
-                        case '1':
-                            lobo1['hp'] = dano(lobo2['hp'], danoCausado)
-                            lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo1['dano'])
-
-                            loboMorto(lobos, lobo2['dano'])
-
-                        case '2':
-                            lobo3['hp'] = dano(lobo3['hp'], danoCausado)
-                            lobo4['hp'] = dano(lobo4['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo3['dano'])
-
-                            loboMorto(lobos, lobo4['dano'])
-
-                            break
-                        case '3':
-                            lobo5['hp'] = dano(lobo5['hp'], danoCausado)
-                            lobo6['hp'] = dano(lobo6['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo5['dano'])
-
-                            loboMorto(lobos, lobo6['dano'])
-                            break
-                        case '4':
-
-                            lobo7['hp'] = dano(lobo7['hp'], danoCausado)
-                            lobo8['hp'] = dano(lobo8['hp'], danoCausado)
-                            break
-                        case '5':
-                            lobo9['hp'] = dano(lobo9['hp'], danoCausado)
-                            lobo10['hp'] = dano(lobo10['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo9['dano'])
-
-                            loboMorto(lobos, lobo10['dano'])
-                            break
-                    }
-                }
-                alert(nomeGuerreiro + ' Usou ' + abilidade2['nome'] + ' !')
-
-                alert('Os lobos revidaram e causaram ' + lobos + ' de dano!' + '\n\n Quantidade de vida atual: ' + guerreiro['hp'])
-
-
-                break
-            case '3':
-
-
+            if (classe == '1') {
                 switch (opçaoEscolhida) {
                     case '1':
 
@@ -888,202 +945,158 @@ do {
                         break
                 }
 
-                alert(nomeGuerreiro + ' Usou ' + abilidade3['nome'] + ' !')
-
-                alert('Os lobos revidaram e causaram ' + lobos + ' de dano!' + '\n\n Quantidade de vida atual: ' + guerreiro['hp'])
+            } else if (classe == '2') {
 
 
-                break
-            case '4':
+                switch (opçaoEscolhida) {
+                    case '1':
 
-                if (classe == '1') {
-                    switch (opçaoEscolhida) {
-                        case '1':
+                        lobo1['hp'] = dano(lobo1['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo1['dano'])
 
-                            lobo1['hp'] = dano(lobo1['hp'], danoCausado)
-                            lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                            lobo3['hp'] = dano(lobo3['hp'], danoCausado)
-                            lobo4['hp'] = dano(lobo4['hp'], danoCausado)
-                            lobo5['hp'] = dano(lobo5['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo1['dano'])
+                        break
+                    case '2':
 
-                            loboMorto(lobos, lobo2['dano'])
-                            loboMorto(lobos, lobo3['dano'])
-                            loboMorto(lobos, lobo4['dano'])
-                            loboMorto(lobos, lobo5['dano'])
+                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo2['dano'])
 
+                        break
+                    case '3':
 
-                            break
-                        case '2':
+                        lobo3['hp'] = dano(lobo3['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo3['dano'])
 
-                            lobo6['hp'] = dano(lobo6['hp'], danoCausado)
-                            lobo7['hp'] = dano(lobo7['hp'], danoCausado)
-                            lobo8['hp'] = dano(lobo8['hp'], danoCausado)
-                            lobo9['hp'] = dano(lobo9['hp'], danoCausado)
-                            lobo10['hp'] = dano(lobo10['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo6['dano'])
+                        break
+                    case '4':
 
-                            loboMorto(lobos, lobo7['dano'])
-                            loboMorto(lobos, lobo8['dano'])
-                            loboMorto(lobos, lobo9['dano'])
-                            loboMorto(lobos, lobo10['dano'])
-                            break
-                    }
+                        lobo4['hp'] = dano(lobo4['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo4['dano'])
 
-                } else if (classe == '2') {
+                        break
+                    case '5':
 
+                        lobo5['hp'] = dano(lobo5['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo5['dano'])
 
-                    switch (opçaoEscolhida) {
-                        case '1':
+                        break
+                    case '6':
 
-                            lobo1['hp'] = dano(lobo1['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo1['dano'])
+                        lobo6['hp'] = dano(lobo6['hp'], danoCausado)
+                        ataqueDolobo(guerreiro['hp'], lobos)
+                        loboMorto(lobos, lobo6['dano'])
+                        break
+                    case '7':
 
-                            break
-                        case '2':
+                        lobo7['hp'] = dano(lobo7['hp'], danoCausado)
+                        ataqueDolobo(guerreiro['hp'], lobos)
+                        loboMorto(lobos, lobo7['dano'])
+                        break
+                    case '8':
 
-                            lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo2['dano'])
+                        lobo8['hp'] = dano(lobo8['hp'], danoCausado)
+                        ataqueDolobo(guerreiro['hp'], lobos)
+                        loboMorto(lobos, lobo8['dano'])
+                        break
+                    case '9':
 
-                            break
-                        case '3':
+                        lobo9['hp'] = dano(lobo9['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo9['dano'])
 
-                            lobo3['hp'] = dano(lobo3['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo3['dano'])
+                        break
+                    case '10':
 
-                            break
-                        case '4':
-
-                            lobo4['hp'] = dano(lobo4['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo4['dano'])
-
-                            break
-                        case '5':
-
-                            lobo5['hp'] = dano(lobo5['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo5['dano'])
-
-                            break
-                        case '6':
-
-                            lobo6['hp'] = dano(lobo6['hp'], danoCausado)
-                            ataqueDolobo(guerreiro['hp'], lobos)
-                            loboMorto(lobos, lobo6['dano'])
-                            break
-                        case '7':
-
-                            lobo7['hp'] = dano(lobo7['hp'], danoCausado)
-                            ataqueDolobo(guerreiro['hp'], lobos)
-                            loboMorto(lobos, lobo7['dano'])
-                            break
-                        case '8':
-
-                            lobo8['hp'] = dano(lobo8['hp'], danoCausado)
-                            ataqueDolobo(guerreiro['hp'], lobos)
-                            loboMorto(lobos, lobo8['dano'])
-                            break
-                        case '9':
-
-                            lobo9['hp'] = dano(lobo9['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo9['dano'])
-
-                            break
-                        case '10':
-
-                            lobo10['hp'] = dano(lobo10['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo10['dano']
-                            )
-                            break
-                    }
-
-
-
-                } else if (classe == '3') {
-                    switch (opçaoEscolhida) {
-                        case '1':
-
-                            lobo1['hp'] = dano(lobo1['hp'], danoCausado)
-
-                            lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-
-                            lobo3['hp'] = dano(lobo3['hp'], danoCausado)
-
-                            lobo4['hp'] = dano(lobo4['hp'], danoCausado)
-
-                            lobo5['hp'] = dano(lobo5['hp'], danoCausado)
-
-                            lobo6['hp'] = dano(lobo6['hp'], danoCausado)
-
-                            lobo7['hp'] = dano(lobo7['hp'], danoCausado)
-
-                            lobo8['hp'] = dano(lobo8['hp'], danoCausado)
-
-                            lobo9['hp'] = dano(lobo9['hp'], danoCausado)
-
-                            lobo10['hp'] = dano(lobo10['hp'], danoCausado)
-                            guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                            lobos = loboMorto(lobos, lobo1['dano'])
-
-                            loboMorto(lobos, lobo2['dano'])
-                            loboMorto(lobos, lobo3['dano'])
-                            loboMorto(lobos, lobo4['dano'])
-                            loboMorto(lobos, lobo5['dano'])
-                            loboMorto(lobos, lobo6['dano'])
-                            loboMorto(lobos, lobo7['dano'])
-                            loboMorto(lobos, lobo8['dano'])
-                            loboMorto(lobos, lobo9['dano'])
-                            loboMorto(lobos, lobo10['dano'])
-
-
-
-                            break
-                    }
+                        lobo10['hp'] = dano(lobo10['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo10['dano']
+                        )
+                        break
                 }
-                alert(nomeGuerreiro + ' Usou a Ultimate ' + abilidade4['nome'] + ' !')
-
-                alert('Os lobos revidaram e causaram ' + lobos + ' de dano!' + '\n\n Quantidade de vida atual: ' + guerreiro['hp'])
-
-
-                break
-        }
 
 
 
+            } else if (classe == '3') {
+                switch (opçaoEscolhida) {
+                    case '1':
+
+                        lobo1['hp'] = dano(lobo1['hp'], danoCausado)
+
+                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
+
+                        lobo3['hp'] = dano(lobo3['hp'], danoCausado)
+
+                        lobo4['hp'] = dano(lobo4['hp'], danoCausado)
+
+                        lobo5['hp'] = dano(lobo5['hp'], danoCausado)
+
+                        lobo6['hp'] = dano(lobo6['hp'], danoCausado)
+
+                        lobo7['hp'] = dano(lobo7['hp'], danoCausado)
+
+                        lobo8['hp'] = dano(lobo8['hp'], danoCausado)
+
+                        lobo9['hp'] = dano(lobo9['hp'], danoCausado)
+
+                        lobo10['hp'] = dano(lobo10['hp'], danoCausado)
+                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
+                        lobos = loboMorto(lobos, lobo1['dano'])
+
+                        loboMorto(lobos, lobo2['dano'])
+                        loboMorto(lobos, lobo3['dano'])
+                        loboMorto(lobos, lobo4['dano'])
+                        loboMorto(lobos, lobo5['dano'])
+                        loboMorto(lobos, lobo6['dano'])
+                        loboMorto(lobos, lobo7['dano'])
+                        loboMorto(lobos, lobo8['dano'])
+                        loboMorto(lobos, lobo9['dano'])
+                        loboMorto(lobos, lobo10['dano'])
 
 
 
+                        break
+                }
+            }
+            alert(nomeGuerreiro + ' Usou a Ultimate ' + abilidade4['nome'] + ' !')
 
-        if (guerreiro['hp'] == 0) {
-            alert('Você morreu !')
-            lobo1['hp'] = 0
-            lobo2['hp'] = 0
-            lobo3['hp'] = 0
-            lobo4['hp'] = 0
-            lobo5['hp'] = 0
-            lobo6['hp'] = 0
-            lobo7['hp'] = 0
-            lobo8['hp'] = 0
-            lobo9['hp'] = 0
-            lobo10['hp'] = 0
-        }
+            alert('Os lobos revidaram e causaram ' + lobos + ' de dano!' + '\n\n Quantidade de vida atual: ' + guerreiro['hp'])
 
 
-
-
-
-
-
+            break
     }
-    while (lobo1['hp'] != 0 || lobo2['hp'] != 0 || lobo3['hp'] != 0 || lobo4['hp'] != 0 || lobo5['hp'] != 0 || lobo6['hp'] != 0 || lobo7['hp'] != 0 || lobo8['hp'] != 0 || lobo9['hp'] != 0 || lobo10['hp'] != 0 && opçaoEscolhida != '0')
+
+
+    // Desenvolvi os switchs case desta forma para eu ter maior facilidade de identificar e separar os elementos do código depois, porém pretendo unificar os mesmos para o fim de organização.
+
+
+
+
+    if (guerreiro['hp'] == 0) {
+        alert('Você morreu... Reinicie a página e tente novamente !')
+        lobo1['hp'] = 0
+        lobo2['hp'] = 0
+        lobo3['hp'] = 0
+        lobo4['hp'] = 0
+        lobo5['hp'] = 0
+        lobo6['hp'] = 0
+        lobo7['hp'] = 0
+        lobo8['hp'] = 0
+        lobo9['hp'] = 0
+        lobo10['hp'] = 0
+    }
+
+
+
+
+
+
+
+}
+while (lobo1['hp'] != 0 || lobo2['hp'] != 0 || lobo3['hp'] != 0 || lobo4['hp'] != 0 || lobo5['hp'] != 0 || lobo6['hp'] != 0 || lobo7['hp'] != 0 || lobo8['hp'] != 0 || lobo9['hp'] != 0 || lobo10['hp'] != 0 && opçaoEscolhida != '0')
 
 
 
@@ -1103,15 +1116,15 @@ if (guerreiro['hp'] > 0) {
 
     function skill2() {
         let skill2
-         skill2 = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n Escolha uma skill:\n1- ' + abilidade1['nome'] + ' dano: ' + abilidade1['dano'] + '\n' + abilidade1['des'] + '\n2- ' + abilidade2['nome'] + ' dano: ' + abilidade2['dano'] + '\n' + abilidade2['des'] + '\n3- ' + abilidade3['nome'] + ' dano: ' + abilidade3['dano'] + '\n' + abilidade3['des'] + '\n4 "Ultimate"- ' + abilidade4['nome'] + ' dano: ' + abilidade4['dano'] + '\n' + abilidade4['des'])
+        skill2 = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n Escolha uma skill:\n1- ' + abilidade1['nome'] + ' dano: ' + abilidade1['dano'] + '\n' + abilidade1['des'] + '\n2- ' + abilidade2['nome'] + ' dano: ' + abilidade2['dano'] + '\n' + abilidade2['des'] + '\n3- ' + abilidade3['nome'] + ' dano: ' + abilidade3['dano'] + '\n' + abilidade3['des'] + '\n4 "Ultimate"- ' + abilidade4['nome'] + ' dano: ' + abilidade4['dano'] + '\n' + abilidade4['des'])
 
         return skill2
     }
     function atacarFenrir() {
         let opçao2
-        
+
         while (opçao2 != 1) {
-           opçao2 = prompt('Ataque Fenrir \n\n\n1- Fenrir "BOSS" ' + '\nHP:' + fenrir['hp'])
+            opçao2 = prompt('Ataque Fenrir \n\n\n1- Fenrir "BOSS" ' + '\nHP:' + fenrir['hp'])
         }
         return opçao2
     }
@@ -1142,15 +1155,15 @@ if (guerreiro['hp'] > 0) {
         switch (skillEscolhida2) {
             case '1':
                 danoCausado2 = abilidade1['dano'] + (guerreiro['dano'] / 2)
-             
+
                 break
             case '2':
                 danoCausado2 = abilidade2['dano'] + (guerreiro['dano'] / 2)
-                
+
                 break
             case '3':
                 danoCausado2 = abilidade3['dano'] + (guerreiro['dano'] / 2)
-                
+
                 break
             case '4':
                 danoCausado2 = abilidade4['dano'] + (guerreiro['dano'] / 2)
@@ -1164,7 +1177,7 @@ if (guerreiro['hp'] > 0) {
                     case '1':
                         fenrir['hp'] = danoNoFenrir(fenrir['hp'], danoCausado2)
                         guerreiro['hp'] = ataqueDofenrir(guerreiro['hp'], fenrir['dano'])
-                    
+
 
                         alert(nomeGuerreiro + ' Usou ' + abilidade1['nome'] + ' !')
 
@@ -1183,7 +1196,7 @@ if (guerreiro['hp'] > 0) {
                         alert('Fenrir revidou caudando ' + fenrir['dano'] + ' de dano!' + '\n\n Quantidade de vida atual: ' +
                             guerreiro['hp'])
                         break
-                       
+
                 }
                 break
             case '3':
@@ -1196,7 +1209,7 @@ if (guerreiro['hp'] > 0) {
                         alert('Fenrir revidou caudando ' + fenrir['dano'] + ' de dano!' + '\n\n Quantidade de vida atual: ' +
                             guerreiro['hp'])
                         break
-                        
+
                 }
                 break
             case '4':
@@ -1209,17 +1222,20 @@ if (guerreiro['hp'] > 0) {
                         alert('Fenrir revidou caudando ' + fenrir['dano'] + ' de dano!' + '\n\n Quantidade de vida atual: ' +
                             guerreiro['hp'])
                         break
-                      
+
                 }
                 break
 
         }
-        
+
+
 
     }
     while (fenrir['hp'] != 0)
 }
-if (fenrir['hp'] == 0) {
+if (fenrir['hp'] == 0 && guerreiro['hp'] > 0) {
     alert('PARABÉNS ! VOCÊ matou o lobo lendário Fenrir !\n\nFase 1 concluída\n\n' + nomeGuerreiro + ' Ganhou 1000Xp')
     alert('Obrigado por jogar !\n\nAguarde a parte 2...')
+} else if (guerreiro['hp'] == 0) {
+    alert('Você morreu... Reinicie a página e tente novamente !')
 }

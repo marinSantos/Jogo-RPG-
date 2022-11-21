@@ -1191,7 +1191,7 @@ if (guerreiro['hp'] > 0) {
                     case '1':
                         fenrir['hp'] = danoNoFenrir(fenrir['hp'], danoCausado2)
                         guerreiro['hp'] = ataqueDofenrir(guerreiro['hp'], fenrir['dano'])
-                        alert(nomeGuerreiro + ' Usou ' + abilidade1['nome'] + ' !')
+                        alert(nomeGuerreiro + ' Usou ' + abilidade2['nome'] + ' !')
 
                         alert('Fenrir revidou caudando ' + fenrir['dano'] + ' de dano!' + '\n\n Quantidade de vida atual: ' +
                             guerreiro['hp'])
@@ -1204,7 +1204,7 @@ if (guerreiro['hp'] > 0) {
                     case '1':
                         fenrir['hp'] = danoNoFenrir(fenrir['hp'], danoCausado2)
                         guerreiro['hp'] = ataqueDofenrir(guerreiro['hp'], fenrir['dano'])
-                        alert(nomeGuerreiro + ' Usou ' + abilidade1['nome'] + ' !')
+                        alert(nomeGuerreiro + ' Usou ' + abilidade3['nome'] + ' !')
 
                         alert('Fenrir revidou caudando ' + fenrir['dano'] + ' de dano!' + '\n\n Quantidade de vida atual: ' +
                             guerreiro['hp'])
@@ -1217,7 +1217,7 @@ if (guerreiro['hp'] > 0) {
                     case '1':
                         fenrir['hp'] = danoNoFenrir(fenrir['hp'], danoCausado2)
                         guerreiro['hp'] = ataqueDofenrir(guerreiro['hp'], fenrir['dano'])
-                        alert(nomeGuerreiro + ' Usou ' + abilidade1['nome'] + ' !')
+                        alert(nomeGuerreiro + ' Usou ' + abilidade4['nome'] + ' !')
 
                         alert('Fenrir revidou caudando ' + fenrir['dano'] + ' de dano!' + '\n\n Quantidade de vida atual: ' +
                             guerreiro['hp'])

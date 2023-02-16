@@ -21,14 +21,14 @@ while (subClasse != '1' && subClasse != '2') {
     switch (classe) {
         case '1':
             alert('Guarda do coliseu:\n\nEntendi! Então você é um cavaleiro !')
-            subClasse = prompt('Guarda do coliseu:\n\nMasque tipo de cavaleiro você é ?\n\n1-Cavaleiro dizimador\n2-Cavaleiro templário')
+            subClasse = prompt('Guarda do coliseu:\n\nMas que tipo de cavaleiro você é ?\n\n1-Cavaleiro dizimador\n2-Cavaleiro templário')
             if (subClasse == 1) {
 
                 alert('Guarda do coliseu:\n\n Certo ! Pegue esta arma...\n\nVocê Recebeu uma LongSword !')
                 guerreiro = { class: 'Cavaleiro dizimador', arma: 'LongSword', dano: 150, hp: 450, defesa: 50 }
                 abilidade1 = { nome: 'Corte transversal', dano: 100, quantidade: 30, area: false, efeito: 0, des: 'Corta o inimigo com sua espada !' }
                 abilidade2 = { nome: 'Ataque esgrima', dano: 100, quantidade: 30, area: false, efeito: 10, des: 'Perfura o inimigo com a ponta de sua espada, diminuindo 5 de defesa !' }
-                abilidade3 = { nome: 'Meia Lua', dano: 50, quantidade: 25, area: true, efeito: 0, des: 'Lança diversos projéteis com forma de lua de sua espada !' }
+                abilidade3 = {   }
                 abilidade4 = {
                     nome: 'Mega meia lua', dano: 150, quantidade: 1, area: true, efeito: 0, des: 'Lança um GRANDE projétil em forma de lua de sua espada ! "Referecia de Bleach"'
                 }
@@ -37,9 +37,9 @@ while (subClasse != '1' && subClasse != '2') {
                 alert('Guarda do coliseu:\n\n Certo ! Pegue esta arma...\n\n\nVocê recebeu uma SwordShild !')
                 guerreiro = { class: 'Cavaleiro Templário', arma: 'SwordShild ', dano: 50, hp: 650, defesa: 200 }
                 abilidade1 = { nome: 'Corte lateral', dano: 50, quantidade: 50, area: false, efeito: 0, des: 'Corta o inimigo com sua espada !' }
-                abilidade2 = { nome: 'Ataque de escudo', dano: 20, quantidade: 30, area: false, efeito: 5, des: 'Golpeia o inimigo com seu escudo !' }
+                abilidade2 = { nome: 'Ataque de escudo', dano: 20, quantidade: 30, area: false, efeito: 10, des: 'Golpeia o inimigo com seu escudo !' }
                 abilidade3 = { nome: 'Fissura', dano: 25, quantidade: 25, area: true, efeito: 1, des: 'Golpeia o solo com sua espada, assim abrindo buracos no solo, destabilizando os inimigos, os fazendo perder 1 de ataque.' }
-                abilidade4 = { nome: 'Take Jeruzalem', dano: 100, quantidade: 1, area: true, efeito: 50, des: 'Se fortalece com orações para retomar Jeruzalém!  Deus vult ! Aumentando 50 pontos na defesa.' }
+                abilidade4 = { nome: 'Take Jeruzalém!', dano: 100, quantidade: 1, area: true, efeito: 50, des: 'Se fortalece com um grito de guerra, Aumentando 50 pontos na defesa.' }
             }
             break
         case '2':

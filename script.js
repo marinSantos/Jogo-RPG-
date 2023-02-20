@@ -1,1241 +1,1729 @@
 
-alert('Era uma vez um nobre guerreiro escohido para combater o mal do mundo, certo dia ficou comovido com as barbaridades que o rei do reino em que morava andou cometendo, e decidiu participar de um coliseu que o rei avia aberto para terem a oportunidade de enfrenta-lo, qual será o final desta decisão ? ...')
-
-let nomeGuerreiro = prompt('Guarda do coliseu:\n\nSaudações guerreiro! Por favor, informe seu nome para poder participar do combate: ')
-
-alert('Guarda do coliseu:\n \n...\n' + nomeGuerreiro + '... \nEste nome não me é estranho ... \nOuvi falar de uma profecia que... \nEnfim, deve ser algo da minha cabeça !')
-
+const tela = document.getElementById('tela')
+const dialogo = document.getElementById('dialogo')
+const input = document.getElementById('input')
+const submit = document.getElementById('submit')
+const btn = document.getElementById('btn')
+const bt2 = document.getElementById('btn')
+const audio1 = document.getElementById('audio1')
+const audio2 = document.getElementById('audio2')
+const audio3 = document.getElementById('audio3')
+const audio4 = document.getElementById('audio4')
+const separador2 = document.getElementById('separador2')
+let part1 = 0
+let prepr = 0
+let part2 = 0
+let part3 = 0
+let part4 = 0
+let part5 = 0
+let playerName;
 let classe
 let subClasse
 let guerreiro = {}
-let abilidade1
-let abilidade2
-let abilidade3
-let abilidade4
+let quantidade
+let habilidade1 = {}
+let habilidade2 = {}
+let habilidade3 = {}
+let habilidade4 = {}
+let baseDamage
+let baseHp
+let baseDefense
+let baseQuantity
 
-while (classe != '1' && classe != '2' && classe != '3') {
-    classe = prompt('Guarda do coliseu:\n\nAgora me responda, quais destas 3 armas você sabe usar melhor? \n\n1- Espada "Para cavaleiros"\n2- Adaga "Para assasinos"\n3- Livro mágico "Para magos" ')
+let keys = []
+
+if (part1 == 0) {
+    dialogo.innerHTML = '<p><br><br>Esta é uma história de um  guerreiro, que buscava libertar sua esposa e seus filhos presos em um reino rival, após uma invasão do mesmo em sua terra natal, para isso ele teria que participar de um torneio na qual o vencedor teria direito de libertar alguns prisioneiros, qual será o desenrolar desta história?...............</p>'
+
+    submit.style.visibility = 'hidden'
+    input.style.visibility = 'hidden'
+    btn.style.visibility = 'visible'
 }
 
-while (subClasse != '1' && subClasse != '2') {
+
+
+
+
+document.addEventListener('keydown', function (ev) {
+    ev.preventDefault()
+
+    if (ev.key === "Backspace") {
+        input.value = input.value.slice(0, -1)
+    }
+    if (ev.code === "Space") {
+
+        submit.click()
+    }
+    if (ev.key === "Enter") {
+
+        submit.click()
+    }
+
+    if (keys.includes(ev.key)) {
+        input.value += ev.key
+        return
+    }
+})
+
+
+
+
+
+
+
+btn.addEventListener('click', parte1)
+function setName() {
+    playerName = input.value
+    btn.style.visibility = 'visible'
+}
+function subClasseName() {
+    subClasse = input.value
     switch (classe) {
         case '1':
-            alert('Guarda do coliseu:\n\nEntendi! Então você é um cavaleiro !')
-            subClasse = prompt('Guarda do coliseu:\n\nMas que tipo de cavaleiro você é ?\n\n1-Cavaleiro dizimador\n2-Cavaleiro templário')
-            if (subClasse == 1) {
+            if (subClasse == '1') {
 
-                alert('Guarda do coliseu:\n\n Certo ! Pegue esta arma...\n\nVocê Recebeu uma LongSword !')
-                guerreiro = { class: 'Cavaleiro dizimador', arma: 'LongSword', dano: 150, hp: 450, defesa: 50 }
-                abilidade1 = { nome: 'Corte transversal', dano: 100, quantidade: 30, area: false, efeito: 0, des: 'Corta o inimigo com sua espada !' }
-                abilidade2 = { nome: 'Ataque esgrima', dano: 100, quantidade: 30, area: false, efeito: 10, des: 'Perfura o inimigo com a ponta de sua espada, diminuindo 5 de defesa !' }
-                abilidade3 = {   }
-                abilidade4 = {
-                    nome: 'Mega meia lua', dano: 150, quantidade: 1, area: true, efeito: 0, des: 'Lança um GRANDE projétil em forma de lua de sua espada ! "Referecia de Bleach"'
+                btn.style.visibility = 'visible'
+                dialogo.innerHTML = `<p>Guarda:<br><br> Certo, então pegue esta arma...<br><br>Você Recebeu uma LongSword !</p>`
+                baseDamage = 150
+                baseHp = 450
+                baseDefense = 10
+                guerreiro = { class: 'Cavaleiro dizimador', arma: 'LongSword', dano: 150, hp: 450, defesa: 10 }
+                quantidade = 4
+                baseQuantity = 4
+                habilidade1 = {
+                    nome: 'Corte transversal', totalDan: (70 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((70 + guerreiro.dano) - lb.defesa)
+
+                    }, area: false, des: 'Corta o inimigo com sua espada !',
+
+                    posSkill: function () {
+                        return `${playerName} usou ${this.nome} !`
+                    }
                 }
-            } else if (subClasse == 2) {
+                habilidade2 = {
+                    nome: 'Ataque esgrima', totalDan: (80 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((80 + guerreiro.dano) - lb.defesa)
+                        lb.defesa -= 5
+                    }, area: false, des: 'Perfura o inimigo com a ponta de sua espada, diminuindo 5 de defesa !',
+                    posSkill: function () {
+                        return `${playerName} usou ${this.nome} !`
+                    }
+                }
+                habilidade3 = {
+                    nome: 'Meia lua', totalDan: (30 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((30 + guerreiro.dano) - lb.defesa)
+                    }, area: true, des: 'Lança vários projéteis com formato de meia Lua em multiplos inimigos',
+                    posSkill: function () {
+                        return `${playerName} usou ${this.nome} !`
+                    }
+                }
+                habilidade4 = {
+                    
+                    nome: 'Mega meia lua', totalDan: (150 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((150 + guerreiro.dano) - lb.defesa)
+                        quantidade -= 1
 
-                alert('Guarda do coliseu:\n\n Certo ! Pegue esta arma...\n\n\nVocê recebeu uma SwordShild !')
-                guerreiro = { class: 'Cavaleiro Templário', arma: 'SwordShild ', dano: 50, hp: 650, defesa: 200 }
-                abilidade1 = { nome: 'Corte lateral', dano: 50, quantidade: 50, area: false, efeito: 0, des: 'Corta o inimigo com sua espada !' }
-                abilidade2 = { nome: 'Ataque de escudo', dano: 20, quantidade: 30, area: false, efeito: 10, des: 'Golpeia o inimigo com seu escudo !' }
-                abilidade3 = { nome: 'Fissura', dano: 25, quantidade: 25, area: true, efeito: 1, des: 'Golpeia o solo com sua espada, assim abrindo buracos no solo, destabilizando os inimigos, os fazendo perder 1 de ataque.' }
-                abilidade4 = { nome: 'Take Jeruzalém!', dano: 100, quantidade: 1, area: true, efeito: 50, des: 'Se fortalece com um grito de guerra, Aumentando 50 pontos na defesa.' }
+                    }, area: true, des: 'Lança um GRANDE projétil em forma de lua de sua espada ! "Referecia de Bleach" ',
+                    posSkill: function () {
+                        return `${playerName} usou a ultimate ${this.nome} !`
+                    }
+                }
+            } else if (subClasse == '2') {
+                btn.style.visibility = 'visible'
+                dialogo.innerHTML = `<p>Guarda:<br><br> Certo, então pegue esta arma...<br><br>Você Recebeu uma SwordShild !</p>`
+                baseDamage = 50
+                baseHp = 650
+                baseDefense = 10
+                guerreiro = { class: 'Cavaleiro Templário', arma: 'SwordShild ', dano: 50, hp: 650, defesa: 10 }
+                quantidade = 4
+                baseQuantity = 4
+                habilidade1 = {
+                    nome: 'Corte lateral', totalDan: (50 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((50 + guerreiro.dano) - lb.defesa)
+                    }, area: false, des: 'Corta o inimigo com sua espada !',
+                    posSkill: function () {
+                        return `${playerName} usou ${this.nome} !`
+                    }
+                }
+                habilidade2 = {
+                    nome: 'Ataque de escudo', totalDan: (30 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((30 + guerreiro.dano) - lb.defesa)
+                        guerreiro.defesa += 2
+                    }, area: false, des: 'Golpeia o inimigo com seu escudo, aumentando também 2 de defesa !',
+                    posSkill: function () {
+                        return `${playerName} usou ${this.nome} !`
+                    }
+                }
+                habilidade3 = {
+                    nome: 'Fissura', dano: function (lb) {
+                        lb.hp -= ((20 + guerreiro.dano) - lb.defesa)
+                        lb.dano -= 1
+                    }, area: true, des: 'Golpeia o solo com sua espada, assim abrindo buracos no solo, destabilizando os inimigos, os fazendo perder 1 de ataque.',
+                    posSkill: function () {
+                        return `${playerName} usou ${this.nome} !`
+                    }
+                }
+                habilidade4 = {
+                    
+                    nome: 'Take Jeruzalém!', totalDan: (100 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((100 + guerreiro.dano) - lb.defesa)
+                        guerreiro.defesa += 20
+                        quantidade -= 1
+                    }, area: true, des: 'Se fortalece com um grito de guerra, atropela os inimigos a sua frente e aumenta 20 pontos de defesa.',
+                    posSkill: function () {
+                        return `${playerName} usou ${this.nome} !`
+                    }
+                }
             }
             break
         case '2':
-            alert('Guarda do coliseu:\n\nEntendi! Então você é um assasino !')
-            subClasse = prompt('Guarda do coliseu:\n\nMas que tipo de assasino você é ?\n\n1-Assasino ninja\n2-Assasino ladrão')
-            if (subClasse == 1) {
-
-                alert('Guarda do coliseu:\n\n Certo ! Pegue esta arma...\n\n\nVocê recebeu uma Katana !')
-                guerreiro = { class: 'Assasino ninja', arma: 'Katana', dano: 200, hp: 350, defesa: 50 }
-                abilidade1 = { nome: 'konoha senpuu', dano: 50, quantidade: 100, area: false, des: 'Golpea o inimigo com aquela clássica voadora do Rock Lee ! "Referencia de Naruto"' }
-                abilidade2 = { nome: 'Corte das sombras', dano: 100, quantidade: 20, area: false, des: 'Usa um jutsu para cegar o inimigo temporariamente, depois executa um corte rápido e preciso onde ele menos espera . ' }
-                abilidade3 = { nome: 'Shurikens', dano: 50, quantidade: 20, area: true, des: "Lança shurikens e diversos inimigos !" }
-                abilidade4 = { nome: 'Assasinato silencioso', dano: 300, quantidade: 1, area: false, des: 'Cria uma área em que o tempo passa mais devagar para inimigo, além do mesmo não poder ouvir ou enchergar absolutamentenada, e assim acertando todos os pontos vitais do inimigo ! Quem apagou a luz ?!' }
-            } else if (subClasse == 2) {
-
-                alert('Guarda do coliseu:\n\n Certo ! Pegue esta arma...\n\n\nVocê recebeu duas Adagas vampíricas !')
-                guerreiro = { class: 'Assasino ladrão', arma: 'Adagas vampíricas', dano: 150, hp: 400, defesa: 50 }
-                abilidade1 = { nome: 'Rasteira', dano: 50, quantidade: 100, area: false, des: 'Da uma rasteira no inimigo o destabilizando, fazendo-o perder 1 de ataque .' }
-                abilidade2 = { nome: 'Golpe sujo', dano: 100, quantidade: 20, area: false, des: 'Cria ilusões para distrair o inmigo, assim o atacando pelas costas com suas adagas .' }
-                abilidade3 = { nome: 'Furto de vitalidade', dano: 50, quantidade: 20, area: true, des: 'Golpeia o inimigo com suas adagas vampiricas, sugando a vitalidade dos mesmos ! Ganhando assim 5 de vida' }
-                abilidade4 = { nome: 'Drácula', dano: 150, quantidade: 1, area: false, des: 'Marca o inimigo ao desferir um golpe, e então a marca começa a drenar vitalidade do mesmo, reornando 50 de vida ao usuário !' }
+            if (subClasse == '1') {
+                btn.style.visibility = 'visible'
+                dialogo.innerHTML = `<p>Guarda:<br><br> Certo, então pegue esta arma...<br><br>Você Recebeu um Livro mágico da destruição !</p>`
+                baseDamage = 300
+                baseHp = 200
+                baseDefense = 0
+                guerreiro = { class: 'Mago destruidor', arma: 'Livro mágico da destruição ', dano: 300, hp: 200, defesa: 0 }
+                quantidade = 4
+                baseQuantity = 4
+                habilidade1 = {
+                    nome: 'Lanças de raios', totalDan: (100 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((100 + guerreiro.dano) - lb.defesa)
+                    }, area: true, des: 'Cria um conjunto de lanças construidas por raios, assim empalando e eletrocutando os inimigos',
+                    posSkill: function () {
+                        return `${playerName} usou ${this.nome} !`
+                    }
+                }
+                habilidade2 = {
+                    nome: 'Bola de fogo comprimida', totalDan: (100 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((100 + guerreiro.dano) - lb.defesa)
+                    }, area: true, des: 'Comprime magia de fogo no seu limite e depois a solta nos inmigos, causando uma explossão flamejante queimando os mesmos.',
+                    posSkill: function () {
+                        return `${playerName} usou ${this.nome} !`
+                    }
+                }
+                habilidade3 = {
+                    nome: 'Tornado cortante', totalDan: (100 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((100 + guerreiro.dano) - lb.defesa)
+                    }, area: true, des: 'Conjura um tornado que vai varrendo os inimigos seja onde por onde passar !.',
+                    posSkill: function () {
+                        return `${playerName} usou ${this.nome} !`
+                    }
+                }
+                habilidade4 = {
+                    
+                    nome: 'Chuva de meteoros', totalDan: (200 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((200 + guerreiro.dano) - lb.defesa)
+                        quantidade -= 1
+                    }, area: true, des: 'Invoca uma série de meteoros mágicos, atingindo qualquer inimigo abaixo do céu !',
+                    posSkill: function () {
+                        return `${playerName} usou a ultimate ${this.nome} !`
+                    }
+                }
+            } else if (subClasse == '2') {
+                btn.style.visibility = 'visible'
+                dialogo.innerHTML = `<p>Guarda:<br><br> Certo, então pegue esta arma...<br><br>Você Recebeu um Livro mágico do controle !</p>`
+                baseDamage = 200
+                baseHp = 250
+                baseDefense = 0
+                guerreiro = { class: 'Mago de controle', arma: 'Livro mágico do controle ', dano: 200, hp: 250, defesa: 0 }
+                quantidade = 4
+                baseQuantity = 4
+                habilidade1 = {
+                    nome: 'Congelar', totalDan: (50 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((50 + guerreiro.dano) - lb.defesa)
+                        lb.dano -= 1
+                    }, area: 'true', des: 'Muda o clima do ambiente para o 0 absoluto,congela todos os inimigos em campo, E assim fazendo cada um perder 1 de ataque !', posSkill: function () {
+                        return `${playerName} usou ${this.nome} !`
+                    }
+                }
+                habilidade2 = {
+                    nome: 'Maré', totalDan: (50 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((50 + guerreiro.dano) - lb.defesa)
+                        lb.defesa -= 1
+                    }, area: false, des: 'Provoca uma maré com fortes correntes de água, causando dano e fazendo os inimigos perderem 1 de defesa', posSkill: function () {
+                        return `${playerName} usou ${this.nome} !`
+                    }
+                }
+                habilidade3 = {
+                    nome: 'Terremoto', totalDan: (60 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((60 + guerreiro.dano) - lb.defesa)
+                    }, area: true, des: 'Manipula as placas tectonicas, fazendo as mesmas provocarem um terremoto.', posSkill: function () {
+                        return `${playerName} usou ${this.nome} !`
+                    }
+                }
+                habilidade4 = {
+                    
+                    nome: 'Monte do gelo mágico', totalDan: (100 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((100 + guerreiro.dano) - lb.defesa)
+                        lb.dano -= 5
+                        guerreiro.defesa += 5
+                        quantidade -= 1
+                    }, area: true, des: 'Conjura um enorme monte de gelo de baixo dos inimigos, causando dano diminuindo o dano dos adversário e aumentando a própria defesa.', posSkill: function () {
+                        return `${playerName} usou a ultimate ${this.nome} !`
+                    }
+                }
             }
             break
         case '3':
-            alert('Guarda do coliseu:\n\nEntendi! Então você é um mago !')
-            subClasse = prompt('Guarda do coliseu:\n\nMas que tipo de mago você é ?\n\n\n1-Mago destruidor\n2-Mago de controle')
-            if (subClasse == 1) {
+            if (subClasse == '1') {
+                btn.style.visibility = 'visible'
+                dialogo.innerHTML = `<p>Guarda:<br><br> Certo, então pegue esta arma...<br><br>Você Recebeu uma Katana !</p>`
+                baseDamage = 200
+                baseHp = 350
+                baseDefense = 5
+                guerreiro = { class: 'Assasino ninja', arma: 'Katana', dano: 200, hp: 350, defesa: 5 }
 
-                alert('Guarda do coliseu:\n\n Certo ! Pegue esta arma...\n\n\nVocê recebeu o Livro mágico da destruição !')
+                quantidade = 4
+                baseQuantity = 4
+                habilidade1 = {
+                    nome: 'konoha senpuu', totalDan: (60 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((60 + guerreiro.dano) - lb.defesa)
+                    }, area: false, des: 'Golpea o inimigo com aquela clássica voadora do Rock Lee ! "Referencia de Naruto"', posSkill: function () {
+                        return `${playerName} usou ${this.nome} !`
+                    }
+                }
 
-                guerreiro = { class: 'Mago destruidor', arma: 'Livro mágico da destruição ', dano: 500, hp: 200, defesa: 0 }
-                abilidade1 = { nome: 'Lanças de raios', dano: 100, quantidade: 20, area: true, des: 'Cria um conjunto de lanças consruidas por raios, assim empalando e eletrocutando os inimigos' }
-                abilidade2 = { nome: 'Bola de fogo comprimida', dano: 100, quantidade: 50, area: true, des: 'Comprime magia de fogo no seu limite e depois a solta nos inmigos, causando uma explossão flamejante queimando os mesmos.' }
-                abilidade3 = { nome: 'Tornado cortante', dano: 100, quantidade: 50, area: true, des: 'Conjura um tornado que vai varrendo os inimigos seja onde por onde passar !.' }
-                abilidade4 = { nome: 'Chuva de meteoros', dano: 200, quantidade: 1, area: true, des: 'Invoca uma série de meteoros mágicos, atingindo qualquer inimigo abaixo do céu !' }
-            } else if (subClasse == 2) {
 
-                alert('Guarda do coliseu:\n\n Certo ! Pegue esta arma...\n\n\nVocê recebeu o Livro mágico do controle !')
+                habilidade2 = {
+                    nome: 'Corte das sombras', totalDan: (100 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((100 + guerreiro.dano) - lb.defesa)
+                    }, area: false, des: 'Usa um jutsu para cegar o inimigo temporariamente, depois executa um corte rápido e preciso onde ele menos espera . ', posSkill: function () {
+                        return `${playerName} usou ${this.nome} !`
+                    }
+                }
 
-                guerreiro = { class: 'Mago de controle', arma: 'Livro mágico do controle ', dano: 400, hp: 400, defesa: 0 }
-                abilidade1 = { nome: 'Congelar', dano: 50, quantidade: 50, area: 'true', des: 'Muda o clima do ambiente para o 0 absoluto,congela todos os inimigos em campo, E assim fazendo cada um perder 5 de ataque !' }
-                abilidade2 = { nome: 'Maré', dano: 50, quantidade: 50, area: 'false', des: 'Provoca uma maré com fortes correntes de água, causando dano e fazendo os inimigos perderem 5 de defesa' }
-                abilidade3 = { nome: 'Terremoto', dano: 50, quantidade: 20, area: 'true', des: 'Manipula as placas tectonicas, fazendo as mesmas provocarem um terremoto.' }
-                abilidade4 = { nome: 'Monte do gelo mágico', dano: 100, quantidade: 1, area: 'true', des: 'Invoca um enorme monte com diversor recursos para dificultar a batalha para o inimigo e dar vantagens ao conjurador, aumentando assim 20 pontos de ataque 20 de defesa e tirando 20 pontos de ataque e 20 pontos de defesa dos inimigo. ' }
+
+                habilidade3 = {
+                    nome: 'Shurikens', totalDan: (50 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((50 + guerreiro.dano) - lb.defesa)
+                    }, area: true, des: "Lança shurikens e diversos inimigos !", posSkill: function () {
+                        return `${playerName} usou ${this.nome} !`
+                    }
+                }
+
+
+                habilidade4 = {
+                    
+                    nome: 'Assasinato silencioso', totalDan: (350 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((400 + guerreiro.dano) - lb.defesa)
+                        quantidade -= 1
+                    }, area: false, des: 'Cria uma área em que o tempo passa mais devagar para inimigo, além do mesmo não poder ouvir ou enchergar nada, e assim acertando todos os pontos vitais do inimigo ! Quem apagou a luz ?!', posSkill: function () {
+                        return `${playerName} usou a ultimate ${this.nome} !`
+                    }
+                }
+            } else if (subClasse == '2') {
+                btn.style.visibility = 'visible'
+                dialogo.innerHTML = `<p>Guarda:<br><br> Certo, então pegue esta arma...<br><br>Você Recebeu as Adagas vampíricas !</p>`
+                baseDamage = 150
+                baseHp = 350
+                baseDefense = 5
+                guerreiro = { class: 'Assasino ladrão', arma: 'Adagas vampíricas', dano: 150, hp: 350, defesa: 5 }
+
+                quantidade = 4
+                baseQuantity = 4
+                habilidade1 = {
+                    nome: 'Rasteira', totalDan: (50 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((50 + guerreiro.dano) - lb.defesa)
+                        lb.dano -= 1
+                    }, area: false, des: 'Da uma rasteira no inimigo o destabilizando, fazendo-o perder 1 de ataque .', posSkill: function () {
+                        return `${playerName} usou ${this.nome} !`
+                    }
+                }
+                habilidade2 = {
+                    nome: 'Golpe sujo', totalDan: (100 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((100 + guerreiro.dano) - lb.defesa)
+                    }, area: false, des: 'Cria ilusões para distrair o inmigo, assim o atacando pelas costas com suas adagas .', posSkill: function () {
+                        return `${playerName} usou ${this.nome} !`
+                    }
+                }
+                habilidade3 = {
+                    nome: 'Furto de vitalidade', totalDan: (50 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((50 + guerreiro.dano) - lb.defesa)
+                        guerreiro.hp += 10
+                    }, area: true, des: 'Golpeia 2 inimigos com suas adagas vampiricas, sugando a vitalidade de ambos ! Ganhando assim 6 de vida', posSkill: function () {
+                        return `${playerName} usou ${this.nome} !`
+                    }
+                }
+                habilidade4 = {
+                    
+                    nome: 'Drácula', totalDan: (150 + guerreiro.dano), dano: function (lb) {
+                        lb.hp -= ((150 + guerreiro.dano) - lb.defesa)
+                        guerreiro.hp += 30
+                        quantidade -= 1
+                    }, area: false, des: 'Marca o inimigo ao desferir um golpe, e então a marca começa a drenar vitalidade do mesmo, retornando 30 de vida ao usuário !', posSkill: function () {
+                        return `${playerName} usou a ultimate ${this.nome} !`
+                    }
+                }
             }
             break
     }
+
 }
+function classeName() {
+    classe = input.value
+    if (classe == '1') {
+        dialogo.innerHTML = `<p>Guarda:<br><br>Entendi, então você é um Cavaleiro !</p>`
+        btn.style.visibility = 'visible'
 
+    } else if (classe == '2') {
+        dialogo.innerHTML = `<p>Guarda do coliseu:<br><br>Entendi, então você é um Mago !</p>`
+        btn.style.visibility = 'visible'
 
-alert('Guarda do coliseu: \nTudo certo !\n Agora aguarde junto a aquela fogueira o início sua primeira batalha...')
+    } else if (classe == '3') {
 
+        dialogo.innerHTML = `<p>Guarda do coliseu:<br><br>Entendi, então você é um Assasino !</p>`
+        btn.style.visibility = 'visible'
 
-
-
-let opçaoEscolhida1
-
-function preparo() {
-    let opçao
-    while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4') {
-        opçao = prompt('Você está na fogueira do descanso !\n Sente-se relaxe um pouco\n E quando preparado, escolha sua próxima ação...\n\n\n1- Ver informações do personagem\n2- Descansar\n3- Ir para a batalha\n4- Sair do jogo')
     }
-    return opçao
-
 }
-let vidaQuantidade = guerreiro['hp']
-do {
-    opçaoEscolhida1 = preparo()
-    switch (opçaoEscolhida1) {
-        case '1':
-            alert('Nome: ' + nomeGuerreiro + '\nClasse/Subclasse: ' + guerreiro['class'] + '\nArma: ' + guerreiro['arma'] + '\nDano: ' + guerreiro['dano'] + '\nHp: ' + guerreiro['hp'] + '\nDefesa: ' + guerreiro['defesa'])
-            break
-        case '2':
+function parte1() {
+    part1++
 
-            alert(nomeGuerreiro + ':' + '\n\nZzzzzzzzzzzzzzzzzzzz.....')
-            alert(nomeGuerreiro + '\n\n\n"Acorda ........."\n\n' + '"Bocejo ........."')
-            alert('Energias restauradas !')
+    switch (part1) {
+        case 1:
+            dialogo.innerHTML = ' <p>.................</p>'
+            audio1.play()
             break
-        case '3':
-            alert('Vamos para a batalha !')
+        case 2:
+            dialogo.innerHTML = ' <p><br><br>Em um fim de tarde, em época de inverno, o crepúsculo se forma nos céus..<br>Com o sol  Lembrando um guarda saindo de seu posto para enfim repousar, após a chegada do seu tão aguardado fim de expediente...</p>'
+            break
+        case 3:
+            dialogo.innerHTML = ' <p><br><br>Falando em guardas...<br>Um se encontra logo a frente, guardando as portas do nosso destino.<br></p>'
+            break
+        case 4:
+            tela.innerHTML = '<img src="imagens/guarda.webp" alt="">'
+            break
+        case 5:
+
+            dialogo.innerHTML = '<p>Guarda: <br><br>Saudações guerreiro! Por favor, informe seu nome para poder passar, sem ele você não poderá participar do torneio.</p>'
+            keys = ['q', 'Q', 'w', 'W', 'e', 'E', 'r', 'R', 't', 'T', 'u', 'U', 'i', 'I', 'o', 'O', 'p', 'P', '´', 'a', 'A', 's', 'S', 'd', 'D', 'f', 'F', 'g', 'G', 'h', 'H', 'j', 'J', 'k', 'K', 'l', 'L', 'ç', 'Ç', 'z', 'Z', 'x', 'X', 'c', 'C', 'v', 'V', 'b', 'B', 'n', 'N', 'm', 'M', ',', '.', ';', '?', '/', '`', '"', '}', '{', '[', ']', '(', ')', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '+', '-', '*', '_', '!', '#', '$', '%', '¨', '&', '|']
+            submit.style.visibility = 'visible'
+            input.style.visibility = 'visible'
+            btn.style.visibility = 'hidden'
+
+            submit.addEventListener('click', setName)
+            break
+        case 6:
+            submit.removeEventListener('click', setName)
+            input.value = ''
+            dialogo.innerHTML = `<p>Guarda:<br> <br>...<br>'${playerName}'.....<br>Este nome não me é estranho .......</p>`
+            submit.style.visibility = 'hidden'
+            input.style.visibility = 'hidden'
+            btn.style.visibility = 'visible'
+
+            break
+        case 7:
+            dialogo.innerHTML = `<p>Guarda:<br><br>Ouvi falar de uma história que.....</p>`
+            break
+        case 8:
+            dialogo.innerHTML = `<p>Guarda: <br><br>Enfim, deve ser algo da minha cabeça...</p>`
+            break
+        case 9:
+            keys = ['1', '2', '3']
+            input.value = ''
+            dialogo.innerHTML = '<p>Guarda: <br><br>Agora me responda, qual destas 3 armas você sabe usar:<br><br>1-Espada "Para Cavaleiros"<br>2-Livro mágico "Para Magos"<br>3-Adagas "Para Assasinos"</p>'
+            submit.style.visibility = 'visible'
+            input.style.visibility = 'visible'
+            btn.style.visibility = 'hidden'
+
+            submit.addEventListener('click', classeName)
+            break
+        case 10:
+            keys = ['1', '2']
+            if (classe == '1') {
+                dialogo.innerHTML = '<p>Guarda: <br><br>Que tipo de cavaleiro você é?<br><br>1- Cavaleiro dizimador<br>2- Cavaleiro templário</p>'
+            } else if (classe == '2') {
+                dialogo.innerHTML = '<p>Guarda: <br><br>Que tipo de mago você é?<br><br>1- Mago da destruição<br>2- Mago de controle</p>'
+            } else if (classe == '3') {
+                dialogo.innerHTML = '<p>Guarda: <br><br>Que tipo de assasino você é?<br><br>1- Assasino ninja<br>2- Assasino ladrão</p>'
+            }
+            input.value = ''
+            submit.removeEventListener('click', classeName)
+            submit.addEventListener('click', subClasseName)
+
+            submit.style.visibility = 'visible'
+            input.style.visibility = 'visible'
+            btn.style.visibility = 'hidden'
+
+            break
+        case 11:
+            submit.removeEventListener('click', subClasseName)
+            dialogo.innerHTML = '<p> Guarda:<br><br>Pronto, agora você tem o suficiente</p>'
+            submit.style.visibility = 'hidden'
+            input.style.visibility = 'hidden'
+            btn.style.visibility = 'visible'
+            break
+        case 12:
+            dialogo.innerHTML = '<p> Guarda:<br><br>Vá até aquela fogueira e repouse guerreiro, para amanhã estar pronto para sua primeira batalha...</p>'
             break
         default:
-            alert('Saindo do jogo...')
+
+            tela.innerHTML = ''
+            dialogo.innerHTML = '<p>.................</p>'
+            btn.removeEventListener('click', parte1)
+            btn.addEventListener('click', preparo)
+            break
+    }
+}
+
+let opçao
+let sleepcicle = 0
+
+function sleep() {
+    sleepcicle++
+    if (sleepcicle == 1) {
+        dialogo.innerHTML = '<p>' + playerName + ':' + '<br><br>Zzzzzzzzzzzzzzzzzzzz.....</p>'
+    }
+    if (sleepcicle == 2) {
+        dialogo.innerHTML = '<p>' + playerName + ':' + '"Acorda ........."<br><br>' + '"Bocejo ........."</p>'
+    }
+    if (sleepcicle == 3) {
+        dialogo.innerHTML = '<p>Energias restauradas !</p>'
+        submit.style.visibility = 'hidden'
+        input.style.visibility = 'hidden'
+        btn.style.visibility = 'visible'
+        btn.addEventListener('click', preparo)
+        prepr = 0
+        clearInterval(sleep)
+        guerreiro.dano = baseDamage
+        guerreiro.hp = baseHp
+        guerreiro.defesa = baseDefense
+        quantidade = baseQuantity
     }
 
 
-} while (opçaoEscolhida1 != '4' && opçaoEscolhida1 != '3')
 
-let lobo1 = { dano: 5, hp: 200, defesa: 0 }
-let lobo2 = { dano: 5, hp: 200, defesa: 0 }
-let lobo3 = { dano: 5, hp: 200, defesa: 0 }
-let lobo4 = { dano: 5, hp: 200, defesa: 0 }
-let lobo5 = { dano: 5, hp: 200, defesa: 0 }
-let lobo6 = { dano: 5, hp: 200, defesa: 0 }
-let lobo7 = { dano: 5, hp: 200, defesa: 0 }
-let lobo8 = { dano: 5, hp: 200, defesa: 0 }
-let lobo9 = { dano: 5, hp: 200, defesa: 0 }
-let lobo10 = { dano: 5, hp: 200, defesa: 0 }
-let lb1at = lobo1['dano']
-let lb2at = lobo2['dano']
-let lb3at = lobo3['dano']
-let lb4at = lobo4['dano']
-let lb5at = lobo5['dano']
-let lb6at = lobo6['dano']
-let lb7at = lobo7['dano']
-let lb8at = lobo8['dano']
-let lb9at = lobo9['dano']
-let lb10at = lobo10['dano']
+}
 
-// através deste código, pretendo fazer com que o dano causado pelos lobos diminua de acordo com o estado dele, se ele estiver morto vai dar dano 0 por razões obvias e enquanto estiver vivo vai cotinuar dando 5 de dano, porém ainda não implementei de fato esta ideia pois tem muita coisa a ser editada no código que já escrevi, mas esta é a ideia que tive para resolver o problema.
+function choseOption() {
 
+    opçao = input.value
+    if (opçao == '1') {
+        btn.addEventListener('click', preparo)
+        prepr = 0
+        dialogo.innerHTML = '<p>Nome: ' + playerName + '<br>Classe/Subclasse: ' + guerreiro.class + '<br>Arma: ' + guerreiro.arma + '<br>Dano: ' + guerreiro.dano + '<br>Hp: ' + guerreiro.hp + '<br>Defesa: ' + guerreiro.defesa + '</p>'
+        submit.style.visibility = 'hidden'
+        input.style.visibility = 'hidden'
+        btn.style.visibility = 'visible'
+    } else if (opçao == '2') {
+        input.value = ''
+        sleepcicle = 0
+
+        setInterval(sleep, 1200)
+        submit.removeEventListener('click', choseOption)
+        btn.addEventListener('click', preparo)
+        part2 = 0
+    } else if (opçao == '3') {
+        submit.style.visibility = 'hidden'
+        input.style.visibility = 'hidden'
+        btn.style.visibility = 'visible'
+        if (guerreiro.hp == baseHp) {
+            submit.removeEventListener('click', choseOption)
+            dialogo.innerHTML = '<p>Vamos para a batalha !</p>'
+            btn.removeEventListener('click', preparo)
+            btn.addEventListener('click', parte2)
+        } else if (guerreiro.hp != baseHp) {
+            dialogo.innerHTML = '<p>Você ainda está fraco por conta da ultima batalha, descanse um pouco para prosseguir...</p>'
+            btn.addEventListener('click', preparo)
+            prepr = 0
+
+        }
+    } else if (opçao == '4') {
+        dialogo.innerHTML = '<p>Saindo do jogo...</p>'
+        submit.removeEventListener('click', choseOption)
+        btn.removeEventListener('click', preparo)
+
+    }
+}
+
+function preparo() {
+    prepr++
+
+    input.value = ''
+    switch (prepr) {
+        case 1:
+            keys = ['1', '2', '3', '4']
+            audio1.pause()
+            audio3.pause()
+            audio1.currentTime = 0
+            audio3.currentTime = 0
+            audio2.play()
+            part2 = 0
+            part3 = 0
+            part4 = 0
+            part5 = 0
+            btn.removeEventListener('click', preparo)
+            submit.style.visibility = 'visible'
+            input.style.visibility = 'visible'
+            btn.style.visibility = 'hidden'
+
+            tela.innerHTML = '<img src="imagens/fogueira.png" alt="">'
+            dialogo.innerHTML = ' <p>Você está na fogueira do descanso !<br> Sente-se relaxe um pouco<br> E quando preparado, escolha sua próxima ação...<br><br>1- Ver informações do personagem<br>2- Descansar<br>3- Ir para a batalha<br>4- Sair do jogo</p>'
+            submit.addEventListener('click', choseOption)
+
+            break
+
+    }
+}
 
 let skillEscolhida
+let loboAtacado
 
-let danoCausado
-
-let opçaoEscolhida
-
-alert('Ao entrar no coliseu, ' + nomeGuerreiro + ' se depara com uma grande multidão, bradando em alta voz pelo o espetáculo que iria ter...')
-alert('Até que....Do outro lado do coliseu, foram abertos 3 grandes portões...\n\nDos portões saiam em torno de 10 lobos\n\n Mas não eram lobos comuns, eram lobos gigantes com garras de ferro !')
-alert('Eles te atacam !\n\n Que comecem os jogos !')
-
-
-
-function skill() {
-    let skill
-    skill = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n Escolha uma skill:\n1- ' + abilidade1['nome'] + ' dano: ' + abilidade1['dano'] + '\n' + abilidade1['des'] + '\n2- ' + abilidade2['nome'] + ' dano: ' + abilidade2['dano'] + '\n' + abilidade2['des'] + '\n3- ' + abilidade3['nome'] + ' dano: ' + abilidade3['dano'] + '\n' + abilidade3['des'] + '\n4 "Ultimate"- ' + abilidade4['nome'] + ' dano: ' + abilidade4['dano'] + '\n' + abilidade4['des'])
-    return skill
+function parte2() {
+    part2++
+    switch (part2) {
+        case 1:
+            audio3.play()
+            audio2.currentTime = 0
+            audio2.pause()
+            input.value = ''
+            tela.innerHTML = ''
+            dialogo.innerHTML = '<p>..............</p>'
+            break
+        case 2:
+            tela.innerHTML = '<img src="imagens/plateia.png">'
+            dialogo.innerHTML = '<p>Ao entrar no Torneio, ' + playerName + ' se depara com uma grande multidão, bradando em alta voz pelo o espetáculo que estava prestes a acontecer...</p>'
+            break
+        case 3:
+            tela.innerHTML = '<img src="imagens/portas.png">'
+            dialogo.innerHTML = '<p>Até que....Do outro lado do Torneio, foram abertos 3 grandes portões...<br><br>Dos portões saiam em torno de 8 lobos<br><br> Mas não eram lobos comuns, eram lobos gigantes com garras de ferro !</p>'
+            break
+        default:
+            tela.innerHTML = '<img src="imagens/lobos.png">'
+            dialogo.innerHTML = '<p>Eles te atacam !<br><br> Que comecem os jogos !</p>'
+            btn.removeEventListener('click', parte2)
+            btn.addEventListener('click', parte3)
+            break
+    }
 }
+
+
+let lobo1 = {
+    dano: 10, hp: 400, defesa: 0, dead1: function () {
+        this.dano = 0
+        this.hp = 0
+    }
+}
+let lobo2 = {
+    dano: 10, hp: 400, defesa: 0, dead2: function () {
+        this.dano = 0
+        this.hp = 0
+    }
+}
+let lobo3 = {
+    dano: 10, hp: 400, defesa: 0, dead3: function () {
+        this.dano = 0
+        this.hp = 0
+    }
+}
+let lobo4 = {
+    dano: 10, hp: 400, defesa: 0, dead4: function () {
+        this.dano = 0
+        this.hp = 0
+    }
+}
+let lobo5 = {
+    dano: 10, hp: 400, defesa: 0, dead5: function () {
+        this.dano = 0
+        this.hp = 0
+    }
+}
+let lobo6 = {
+    dano: 10, hp: 400, defesa: 0, dead6: function () {
+        this.dano = 0
+        this.hp = 0
+    }
+}
+let lobo7 = {
+    dano: 10, hp: 400, defesa: 0, dead7: function () {
+        this.dano = 0
+        this.hp = 0
+    }
+}
+let lobo8 = {
+    dano: 5, hp: 400, defesa: 0, dead8: function () {
+        this.dano = 0
+        this.hp = 0
+    }
+}
+
+
+
+
+
 function atacarLobo() {
-    let opçao
-    switch (skillEscolhida) {
+    loboAtacado = input.value
+    input.value = ''
+    part3 = 0
 
-        case '1':
-            if (classe == '1') {
-                while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5' && opçao != '6' && opçao != '7' && opçao != '8' && opçao != '9' && opçao != '10') {
-                    opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a o lobo que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  2- lobo2 HP: ' + lobo2['hp'] + '\n3- lobo3 HP: ' + lobo3['hp'] + '  4- lobo4 HP: ' + lobo4['hp'] + '\n5- lobo5 HP: ' + lobo5['hp'] + '  6- lobo6 HP: ' + lobo6['hp'] + '\n7- lobo7 HP: ' + lobo7['hp'] + '  8- lobo8 HP: ' + lobo8['hp'] + '\n9- lobo9 HP: ' + lobo9['hp'] + '  10- lobo10 HP: ' + lobo10['hp'])
+    if (classe == '1') {
+        switch (loboAtacado) {
+            case '1':
+                if (skillEscolhida == "1") {
+                    habilidade1.dano(lobo1)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "2") {
+                    habilidade2.dano(lobo1)
+                    dialogo.innerHTML = `<p>${habilidade2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "3") {
+                    habilidade3.dano(lobo1)
+                    habilidade3.dano(lobo2)
+                    dialogo.innerHTML = `<p>${habilidade3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "4") {
+                    habilidade4.dano(lobo1)
+                    habilidade4.dano(lobo2)
+                    habilidade4.dano(lobo3)
+                    habilidade4.dano(lobo4)
+                    dialogo.innerHTML = `<p>${habilidade4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
                 }
-            } else if (classe == '2') {
-                while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5' && opçao != '6' && opçao != '7' && opçao != '8' && opçao != '9' && opçao != '10') {
-                    opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a o lobo que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  2- lobo2 HP: ' + lobo2['hp'] + '\n3- lobo3 HP: ' + lobo3['hp'] + '  4- lobo4 HP: ' + lobo4['hp'] + '\n5- lobo5 HP: ' + lobo5['hp'] + '  6- lobo6 HP: ' + lobo6['hp'] + '\n7- lobo7 HP: ' + lobo7['hp'] + '  8- lobo8 HP: ' + lobo8['hp'] + '\n9- lobo9 HP: ' + lobo9['hp'] + '  10- lobo10 HP: ' + lobo10['hp'])
-                }
-            }
-            else if (classe == '3') {
-                while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5') {
-                    opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha o par de lobos que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  lobo2 HP: ' + lobo2['hp'] + '\n2- lobo3 HP: ' + lobo3['hp'] + '  lobo4 HP: ' + lobo4['hp'] + '\n3- lobo5 HP: ' + lobo5['hp'] + '  lobo6 HP: ' + lobo6['hp'] + '\n4- lobo7 HP: ' + lobo7['hp'] + '  lobo8 HP: ' + lobo8['hp'] + '\n5- lobo9 HP: ' + lobo9['hp'] + '  lobo10 HP: ' + lobo10['hp'])
-                }
-            }
-            break
-        case '2':
-            if (classe == '1') {
-                while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5' && opçao != '6' && opçao != '7' && opçao != '8' && opçao != '9' && opçao != '10') {
-
-                    ////
-                    opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a o lobo que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  2- lobo2 HP: ' + lobo2['hp'] + '\n3- lobo3 HP: ' + lobo3['hp'] + '  4- lobo4 HP: ' + lobo4['hp'] + '\n5- lobo5 HP: ' + lobo5['hp'] + '  6- lobo6 HP: ' + lobo6['hp'] + '\n7- lobo7 HP: ' + lobo7['hp'] + '  8- lobo8 HP: ' + lobo8['hp'] + '\n9- lobo9 HP: ' + lobo9['hp'] + '  10- lobo10 HP: ' + lobo10['hp'])
-                }
-            } else if (classe == '2') {
-                while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5' && opçao != '6' && opçao != '7' && opçao != '8' && opçao != '9' && opçao != '10' && opçao != '0') {
-                    opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a o lobo que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  2- lobo2 HP: ' + lobo2['hp'] + '\n3- lobo3 HP: ' + lobo3['hp'] + '  4- lobo4 HP: ' + lobo4['hp'] + '\n5- lobo5 HP: ' + lobo5['hp'] + '  6- lobo6 HP: ' + lobo6['hp'] + '\n7- lobo7 HP: ' + lobo7['hp'] + '  8- lobo8 HP: ' + lobo8['hp'] + '\n9- lobo9 HP: ' + lobo9['hp'] + '  10- lobo10 HP: ' + lobo10['hp'])
-                }
-            } else if (classe == '3') {
-                while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5' && opçao != '0') {
-                    opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha o par de lobos que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  lobo2 HP: ' + lobo2['hp'] + '\n2- lobo3 HP: ' + lobo3['hp'] + '  lobo4 HP: ' + lobo4['hp'] + '\n3- lobo5 HP: ' + lobo5['hp'] + '  lobo6 HP: ' + lobo6['hp'] + '\n4- lobo7 HP: ' + lobo7['hp'] + '  lobo8 HP: ' + lobo8['hp'] + '\n5- lobo9 HP: ' + lobo9['hp'] + '  lobo10 HP: ' + lobo10['hp'])
-                }
-            }
-            break
-        case '3':
-
-            while (opçao != '1' && opçao != '2' && opçao != '0') {
-
-
-                opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a leva de lobos que você deseja atacar:\n\n1- lobo1- HP: ' + lobo1['hp'] + '   lobo2- HP: ' + lobo2['hp'] + '   lobo3- HP: ' + lobo3['hp'] + '   lobo4- HP: ' + lobo4['hp'] + '   lobo5- HP: ' + lobo5['hp'] + '\n\n2- lobo6- HP: ' + lobo6['hp'] + '   lobo7- HP: ' + lobo7['hp'] + '  lobo8- HP: ' + lobo8['hp'] + '   lobo9- HP: ' + lobo9['hp'] + '  lobo10- HP: ' + lobo10['hp'])
-            }
-
-            break
-
-        case '4':
-            if (classe == '1') {
-                while (opçao != '1' && opçao != '2' && opçao != '0') {
-
-
-                    opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a leva de lobos que você deseja atacar:\n\n1- lobo1- HP: ' + lobo1['hp'] + '   lobo2- HP: ' + lobo2['hp'] + '   lobo3- HP: ' + lobo3['hp'] + '   lobo4- HP: ' + lobo4['hp'] + '   lobo5- HP: ' + lobo5['hp'] + '\n\n2- lobo6- HP: ' + lobo6['hp'] + '   lobo7- HP: ' + lobo7['hp'] + '  lobo8- HP: ' + lobo8['hp'] + '   lobo9- HP: ' + lobo9['hp'] + '  lobo10- HP: ' + lobo10['hp'])
-                }
-            } else if (classe == '2') {
-                while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5' && opçao != '6' && opçao != '7' && opçao != '8' && opçao != '9' && opçao != '10' && opçao != '0') {
-
-
-                    opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a o lobo que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  2- lobo2 HP: ' + lobo2['hp'] + '\n3- lobo3 HP: ' + lobo3['hp'] + '  4- lobo4 HP: ' + lobo4['hp'] + '\n5- lobo5 HP: ' + lobo5['hp'] + '  6- lobo6 HP: ' + lobo6['hp'] + '\n7- lobo7 HP: ' + lobo7['hp'] + '  8- lobo8 HP: ' + lobo8['hp'] + '\n9- lobo9 HP: ' + lobo9['hp'] + '  10- lobo10 HP: ' + lobo10['hp'])
-                }
-            } else if (classe == '3') {
-                while (opçao != '1' && opçao != '2' && opçao != '3' && opçao != '4' && opçao != '5') {
-                    opçao = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n' + 'Escolha a leva de lobos que você deseja atacar:\n\n1- lobo1 HP: ' + lobo1['hp'] + '  lobo2 HP: ' + lobo2['hp'] + '  lobo3 HP: ' + lobo3['hp'] + '  lobo4 HP: ' + lobo4['hp'] + '  lobo5 HP: ' + lobo5['hp'] + '  lobo6 HP: ' + lobo6['hp'] + '  lobo7 HP: ' + lobo7['hp'] + '  lobo8 HP: ' + lobo8['hp'] + '  lobo9 HP: ' + lobo9['hp'] + '  lobo10 HP: ' + lobo10['hp'])
-                }
-            }
-            break
-    }
-    return opçao
-}
-////////////////////////////
-function ataqueDolobo(vida, lbs) {
-    let novohp
-    novohp = vida - lbs
-    if (novohp <= 0) {
-        novohp = 0
-
-    }
-    return novohp
-
-
-}
-//////////////////////////////
-function dano(lv, dan) {
-    let novaVida
-    novaVida = lv - dan
-    if (novaVida <= 0) {
-        novaVida = 0
-    }
-    return novaVida
-}
-
-let efeito
-///////////////////////////////
-
-function dizimadorDebuff(ldef) {
-    let buffd
-
-    novoEfeito = ldef - 2
-    if (ldef == 0) {
-        ldef = 0
-    }
-    return buffd
-}
-////////////////////////
-function templarioBuff(gdf) {
-    let buffd
-    switch (skillEscolhida) {
-        case '2':
-            buffd = gdf + 5
-            break
-        case '4':
-            buffd = gdf + 50
-            break
-    }
-    return buffd
-}
-
-function templarioDebuff(lba) {
-    let debuffd
-    switch (skillEscolhida) {
-
-        case '3':
-            debuffd = lba - 1
-            if (lba == 0) {
-                lba = 0
-            }
-            break
-
-    }
-    return debuffd
-}
-//////////
-
-function ninjaDebuff(lbd) {
-    let debuffn
-
-    debuffn = lbd - 2
-    if (ldef == 0) {
-        ldef = 0
-    }
-    return debuffn
-}
-
-function ladraoBuff(ghp) {
-    let Lbuff
-    switch (skillEscolhida) {
-
-        case '3':
-            Lbuff = ghp + 5
-            break
-        case '4':
-            Lbuff = ghp + 50
-            break
-    }
-
-    return Lbuff
-}
-
-function ladraoDebuff(lbs) {
-    let LdeBuff
-    if (skillEscolhida == 1) {
-        LdeBuff = lbs - 1
-    }
-    return LdeBuff
-}
-
-function loboMorto(lbs, lb) {
-    let dano
-    dano = lbs - lb
-    if (lb == 0) {
-        lb = 0
-    }
-    
-    return dano
-}
-
-function controladorBuffA(gdn) {
-    let buffc2
-    switch (skillEscolhida) {
-        case '4':
-            buffc2 = gdn + 10
-            break
-
-    }
-    return buffc2
-}
-function controladorBuffD(gdef) {
-    let buffc2
-    switch (skillEscolhida) {
-        case '4':
-            buffc2 = gdef + 10
-            break
-
-    }
-    return buffc2
-}
-
-
-function controladorDebuffA(lbs) {
-    let debuffc1
-    switch (skillEscolhida) {
-        case '1':
-            debuffc1 = lbs - 5
-            break
-        case '4':
-            debuffc1 = lbs - 10
-            break
-
-    }
-    return debuffc1
-}
-function controladorDebuffD(lbsd) {
-    let debuffc1
-    switch (skillEscolhida) {
-        case '2':
-            debuffc1 = lbsd - 5
-            break
-        case '4':
-            debuffc1 = lbsd - 10
-            break
-
-    }
-    return debuffc1
-}
-
-
-
-
-function defesa(gdef, lbs) {
-    let danoDefendido
-    danoDefendido = lbs - gdef
-    if (lbs <= 0) {
-        lbs = 0
-    }
-    return danoDefendido
-}
-
-
-
-/////////////////////////////////////////////////////
-
-
-
-do {
-    skillEscolhida = skill()
-    opçaoEscolhida = atacarLobo()
-    let lobos = lobo1['dano'] + lobo2['dano'] + lobo3['dano'] + lobo4['dano'] + lobo5['dano'] + lobo6['dano'] + lobo7['dano'] + lobo8['dano'] + lobo9['dano'] + lobo10['dano']
-
-    switch (skillEscolhida) {
-        case '1':
-            danoCausado = abilidade1['dano'] + (guerreiro['dano'] / 2)
-            if (guerreiro['class'] == 'Cavaleiro templário') {
-                lobos = templarioDebuff(lobos)
-            }
-            else if (guerreiro['class'] == 'Assasino ladrão') {
-                lobos = ladraoDebuff(lobos)
                 break
-            } else if (guerreiro['class'] == 'Mago de controle') {
-                lobos = controladorDebuffA(lobos)
-            }
-            break
-        case '2':
-            danoCausado = abilidade2['dano'] + (guerreiro['dano'] / 2)
-            if (guerreiro['class'] == 'Cavaleiro templário') {
-                guerreiro['defesa'] = templarioBuff(guerreiro['defesa'])
-            } else if (guerreiro['class'] == 'Mago de controle') {
+            case '2':
 
-                lobosDef = controladorDebuffD(lobosDef)
-
-
-            }
-            break
-        case '3':
-            danoCausado = abilidade3['dano'] + (guerreiro['dano'] / 2)
-            if (guerreiro['class'] == 'Assasino ladrão') {
-                guerreiro['hp'] = ladraoBuff(guerreiro['hp'])
-            }
-            break
-        case '4':
-            danoCausado = abilidade4['dano'] + (guerreiro['dano'] / 2)
-
-            if (guerreiro['class'] == 'Assasino ladrão') {
-                guerreiro['hp'] = ladraoBuff(guerreiro['hp'])
+                if (skillEscolhida == "1") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade1.dano(lobo2)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "2") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade2.dano(lobo2)
+                    dialogo.innerHTML = `<p>${habilidade2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "3") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade3.dano(lobo3)
+                    habilidade3.dano(lobo4)
+                    dialogo.innerHTML = `<p>${habilidade3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "4") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade4.dano(lobo5)
+                    habilidade4.dano(lobo6)
+                    habilidade4.dano(lobo7)
+                    habilidade4.dano(lobo8)
+                    dialogo.innerHTML = `<p>${habilidade4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                }
                 break
-            }
-            else if (guerreiro['class'] == 'Cavaleiro templário') {
-                guerreiro['defesa'] = templarioBuff(guerreiro['defesa'])
-            } else if (guerreiro['class'] == 'Mago de controle') {
-                lobos = controladorDebuffA(lobos)
-                lobosDef = controladorDebuffD(lobosDef)
-                guerreiro['dano'] = controladorBuffA(guerreiro['dano'])
-                guerreiro['defesa'] = controladorBuffD(guerreiro['defesa'])
+            case '3':
 
-            }
-            break
+                if (skillEscolhida == "1") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade1.dano(lobo3)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "2") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade2.dano(lobo3)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "3") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade3.dano(lobo5)
+                    habilidade3.dano(lobo6)
+                    dialogo.innerHTML = `<p>${habilidade3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                }
+                break
+            case '4':
 
+                if (skillEscolhida == "1") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade1.dano(lobo4)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "2") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade2.dano(lobo4)
+                    dialogo.innerHTML = `<p>${habilidade2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "3") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade3.dano(lobo7)
+                    habilidade3.dano(lobo8)
+                    dialogo.innerHTML = `<p>${habilidade3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                }
+                break
+            case '5':
+
+                if (skillEscolhida == "1") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade1.dano(lobo5)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "2") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade2.dano(lobo6)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                }
+                break
+            case '6':
+
+                if (skillEscolhida == "1") {
+                    habilidade1.dano(lobo6)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "2") {
+                    habilidade2.dano(lobo6)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                }
+                break
+            case '7':
+
+                if (skillEscolhida == "1") {
+                    habilidade1.dano(lobo7)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "2") {
+                    habilidade2.dano(lobo7)
+                    dialogo.innerHTML = `<p>${habilidade2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                }
+                break
+            case '8':
+
+
+                if (skillEscolhida == "1") {
+                    habilidade1.dano(lobo8)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+
+                } else if (skillEscolhida == "2") {
+
+                    habilidade2.dano(lobo8)
+                    dialogo.innerHTML = `<p>${habilidade2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+
+                }
+                break
+        }
+    } else if (classe == '2') {
+        switch (loboAtacado) {
+            case '1':
+                if (skillEscolhida == "1") {
+                    habilidade4.dano(lobo1)
+                    habilidade4.dano(lobo2)
+                    habilidade4.dano(lobo3)
+                    habilidade4.dano(lobo4)
+                    submit.removeEventListener('click', atacarLobo)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "2") {
+                    habilidade4.dano(lobo1)
+                    habilidade4.dano(lobo2)
+                    habilidade4.dano(lobo3)
+                    habilidade4.dano(lobo4)
+                    lobo1.hp -= (guerreiro.dano + habilidade2.dano)
+                    dialogo.innerHTML = `<p>${habilidade2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "3") {
+                    habilidade4.dano(lobo1)
+                    habilidade4.dano(lobo2)
+                    habilidade4.dano(lobo3)
+                    habilidade4.dano(lobo4)
+                    submit.removeEventListener('click', atacarLobo)
+
+                    dialogo.innerHTML = `<p>${habilidade3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "4") {
+                    habilidade4.dano(lobo1)
+                    habilidade4.dano(lobo2)
+                    habilidade4.dano(lobo3)
+                    habilidade4.dano(lobo4)
+                    habilidade4.dano(lobo5)
+                    habilidade4.dano(lobo6)
+                    habilidade4.dano(lobo7)
+                    habilidade4.dano(lobo8)
+                    submit.removeEventListener('click', atacarLobo)
+                    dialogo.innerHTML = `<p>${habilidade4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                }
+                break
+            case '2':
+
+                if (skillEscolhida == "1") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade4.dano(lobo5)
+                    habilidade4.dano(lobo6)
+                    habilidade4.dano(lobo7)
+                    habilidade4.dano(lobo8)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "2") {
+                    habilidade4.dano(lobo5)
+                    habilidade4.dano(lobo6)
+                    habilidade4.dano(lobo7)
+                    habilidade4.dano(lobo8)
+                    submit.removeEventListener('click', atacarLobo)
+                    lobo2.hp -= (guerreiro.dano + habilidade2.dano)
+                    dialogo.innerHTML = `<p>${habilidade2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "3") {
+                    habilidade4.dano(lobo5)
+                    habilidade4.dano(lobo6)
+                    habilidade4.dano(lobo7)
+                    habilidade4.dano(lobo8)
+                    submit.removeEventListener('click', atacarLobo)
+
+                    dialogo.innerHTML = `<p>${habilidade3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                }
+                break
+        }
+    } else if (classe == '3') {
+        switch (loboAtacado) {
+            case '1':
+
+                if (skillEscolhida == "1") {
+                    habilidade1.dano(lobo1)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "2") {
+                    habilidade2.dano(lobo1)
+                    dialogo.innerHTML = `<p>${habilidade2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "3") {
+                    habilidade3.dano(lobo1)
+                    habilidade3.dano(lobo2)
+                    dialogo.innerHTML = `<p>${habilidade3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "4") {
+                    habilidade4.dano(lobo1)
+                    dialogo.innerHTML = `<p>${habilidade4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                }
+                break
+            case '2':
+
+                if (skillEscolhida == "1") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade1.dano(lobo2)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "2") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade2.dano(lobo2)
+                    dialogo.innerHTML = `<p>${habilidade2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "3") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade3.dano(lobo3)
+                    habilidade3.dano(lobo4)
+                    dialogo.innerHTML = `<p>${habilidade3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "4") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade4.dano(lobo2)
+                    dialogo.innerHTML = `<p>${habilidade4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                }
+                break
+            case '3':
+
+                if (skillEscolhida == "1") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade1.dano(lobo3)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "2") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade2.dano(lobo3)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "3") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade3.dano(lobo5)
+                    habilidade3.dano(lobo6)
+                    dialogo.innerHTML = `<p>${habilidade3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "4") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade4.dano(lobo3)
+                    dialogo.innerHTML = `<p>${habilidade4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                }
+                break
+            case '4':
+
+                if (skillEscolhida == "1") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade1.dano(lobo4)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "2") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade2.dano(lobo4)
+                    dialogo.innerHTML = `<p>${habilidade2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "3") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade3.dano(lobo7)
+                    habilidade3.dano(lobo8)
+                    dialogo.innerHTML = `<p>${habilidade3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "4") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade4.dano(lobo4)
+                    dialogo.innerHTML = `<p>${habilidade4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                }
+                break
+            case '5':
+
+                if (skillEscolhida == "1") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade1.dano(lobo5)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "2") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade2.dano(lobo6)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "4") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade4.dano(lobo5)
+                    dialogo.innerHTML = `<p>${habilidade4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                }
+                break
+            case '6':
+
+                if (skillEscolhida == "1") {
+                    habilidade1.dano(lobo6)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "2") {
+                    habilidade2.dano(lobo6)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "4") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade4.dano(lobo6)
+                    dialogo.innerHTML = `<p>${habilidade4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                }
+                break
+            case '7':
+
+                if (skillEscolhida == "1") {
+                    habilidade1.dano(lobo7)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "2") {
+                    habilidade2.dano(lobo7)
+                    dialogo.innerHTML = `<p>${habilidade2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                } else if (skillEscolhida == "4") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade4.dano(lobo7)
+                    dialogo.innerHTML = `<p>${habilidade4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                }
+                break
+            case '8':
+
+
+                if (skillEscolhida == "1") {
+                    habilidade1.dano(lobo8)
+                    dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+
+                } else if (skillEscolhida == "2") {
+
+                    habilidade2.dano(lobo8)
+                    dialogo.innerHTML = `<p>${habilidade2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+
+                } else if (skillEscolhida == "4") {
+                    submit.removeEventListener('click', atacarLobo)
+                    habilidade4.dano(lobo8)
+                    dialogo.innerHTML = `<p>${habilidade4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                    guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                }
+                break
+        }
     }
-
-
-
-
-    switch (skillEscolhida) {
-        case '1':
-
-            if (classe == '1') {
-                switch (opçaoEscolhida) {
-                    case '1':
-
-                        lobo1['hp'] = dano(lobo1['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo1['dano'])
-
-                        break
-                    case '2':
-
-                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo2['dano'])
-
-                        break
-                    case '3':
-
-                        lobo3['hp'] = dano(lobo3['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo3['dano'])
-
-                        break
-                    case '4':
-
-                        lobo4['hp'] = dano(lobo4['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo4['dano'])
-
-                        break
-                    case '5':
-
-                        lobo5['hp'] = dano(lobo5['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo5['dano'])
-
-                        break
-                    case '6':
-
-                        lobo6['hp'] = dano(lobo6['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo6['dano'])
-
-                        break
-                    case '7':
-
-                        lobo7['hp'] = dano(lobo7['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo7['dano'])
-
-                        break
-                    case '8':
-
-                        lobo8['hp'] = dano(lobo8['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo8['dano'])
-
-                        break
-                    case '9':
-
-                        lobo9['hp'] = dano(lobo9['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo9['dano'])
-
-                        break
-                    case '10':
-
-                        lobo10['hp'] = dano(lobo10['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo10['dano']
-                        )
-                        break
-                }
-            } else if (classe == '2') {
-                switch (opçaoEscolhida) {
-                    case '1':
-
-                        lobo1['hp'] = dano(lobo1['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo1['dano'])
-
-                        break
-                    case '2':
-
-                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo2['dano'])
-
-                        break
-                    case '3':
-
-                        lobo3['hp'] = dano(lobo3['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo3['dano'])
-
-                        break
-                    case '4':
-
-                        lobo4['hp'] = dano(lobo4['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo4['dano'])
-
-                        break
-                    case '5':
-
-                        lobo5['hp'] = dano(lobo5['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo5['dano'])
-
-                        break
-                    case '6':
-
-                        lobo6['hp'] = dano(lobo6['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo6['dano'])
-
-                        break
-                    case '7':
-
-                        lobo7['hp'] = dano(lobo7['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo7['dano'])
-
-                        break
-                    case '8':
-
-                        lobo8['hp'] = dano(lobo8['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo8['dano'])
-
-                        break
-                    case '9':
-
-                        lobo9['hp'] = dano(lobo9['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo9['dano'])
-
-                        break
-                    case '10':
-
-                        lobo10['hp'] = dano(lobo10['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo10['dano']
-                        )
-                        break
-                }
-
-            } else if (classe == '3') {
-                switch (opçaoEscolhida) {
-                    case '1':
-                        lobo1['hp'] = dano(lobo2['hp'], danoCausado)
-                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo1['dano'])
-
-                        loboMorto(lobos, lobo2['dano'])
-
-                    case '2':
-                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo3['dano'])
-
-                        loboMorto(lobos, lobo4['dano'])
-
-                        break
-                    case '3':
-                        lobo5['hp'] = dano(lobo5['hp'], danoCausado)
-                        lobo5['hp'] = dano(lobo6['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo5['dano'])
-
-                        loboMorto(lobos, lobo6['dano'])
-                        break
-                    case '4':
-
-                        lobo7['hp'] = dano(lobo7['hp'], danoCausado)
-                        lobo8['hp'] = dano(lobo8['hp'], danoCausado)
-                        break
-                    case '5':
-                        lobo9['hp'] = dano(lobo9['hp'], danoCausado)
-                        lobo10['hp'] = dano(lobo10['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo9['dano'])
-
-                        loboMorto(lobos, lobo10['dano'])
-                        break
-                }
-            }
-            alert(nomeGuerreiro + ' Usou ' + abilidade1['nome'] + ' !')
-
-            alert('Os lobos revidaram e causaram ' + lobos + ' de dano!' + '\n\n Quantidade de vida atual: ' +
-                guerreiro['hp'])
-            break
-        case '2':
-
-            if (classe == '1') {
-                switch (opçaoEscolhida) {
-                    case '1':
-
-                        lobo1['hp'] = dano(lobo1['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo1['dano'])
-
-                        break
-                    case '2':
-
-                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo2['dano'])
-
-                        break
-                    case '3':
-
-                        lobo3['hp'] = dano(lobo3['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo3['dano'])
-
-                        break
-                    case '4':
-
-                        lobo4['hp'] = dano(lobo4['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo4['dano'])
-
-                        break
-                    case '5':
-
-                        lobo5['hp'] = dano(lobo5['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo5['dano'])
-
-                        break
-                    case '6':
-
-                        lobo6['hp'] = dano(lobo6['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo6['dano'])
-
-                        break
-                    case '7':
-
-                        lobo7['hp'] = dano(lobo7['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo7['dano'])
-
-                        break
-                    case '8':
-
-                        lobo8['hp'] = dano(lobo8['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo8['dano'])
-
-                        break
-                    case '9':
-
-                        lobo9['hp'] = dano(lobo9['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo9['dano'])
-
-                        break
-                    case '10':
-
-                        lobo10['hp'] = dano(lobo10['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo10['dano']
-                        )
-                        break
-                }
-            } else if (classe == '2') {
-                switch (opçaoEscolhida) {
-                    case '1':
-
-                        lobo1['hp'] = dano(lobo1['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo1['dano'])
-
-                        break
-                    case '2':
-
-                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo2['dano'])
-
-                        break
-                    case '3':
-
-                        lobo3['hp'] = dano(lobo3['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo3['dano'])
-
-                        break
-                    case '4':
-
-                        lobo4['hp'] = dano(lobo4['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo4['dano'])
-
-                        break
-                    case '5':
-
-                        lobo5['hp'] = dano(lobo5['hp'], danoCausado)
-                        guerreiro['hp'] = gataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo5['dano'])
-
-                        break
-                    case '6':
-
-                        lobo6['hp'] = dano(lobo6['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo6['dano'])
-
-                        break
-                    case '7':
-
-                        lobo7['hp'] = dano(lobo7['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo7['dano'])
-
-                        break
-                    case '8':
-
-                        lobo8['hp'] = dano(lobo8['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo8['dano'])
-
-                        break
-                    case '9':
-
-                        lobo9['hp'] = dano(lobo9['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo9['dano'])
-
-                        break
-                    case '10':
-
-                        lobo10['hp'] = dano(lobo10['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo10['dano']
-                        )
-                        break
-                }
-            } else if (classe == '3') {
-                switch (opçaoEscolhida) {
-                    case '1':
-                        lobo1['hp'] = dano(lobo2['hp'], danoCausado)
-                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo1['dano'])
-
-                        loboMorto(lobos, lobo2['dano'])
-
-                    case '2':
-                        lobo3['hp'] = dano(lobo3['hp'], danoCausado)
-                        lobo4['hp'] = dano(lobo4['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo3['dano'])
-
-                        loboMorto(lobos, lobo4['dano'])
-
-                        break
-                    case '3':
-                        lobo5['hp'] = dano(lobo5['hp'], danoCausado)
-                        lobo6['hp'] = dano(lobo6['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo5['dano'])
-
-                        loboMorto(lobos, lobo6['dano'])
-                        break
-                    case '4':
-
-                        lobo7['hp'] = dano(lobo7['hp'], danoCausado)
-                        lobo8['hp'] = dano(lobo8['hp'], danoCausado)
-                        break
-                    case '5':
-                        lobo9['hp'] = dano(lobo9['hp'], danoCausado)
-                        lobo10['hp'] = dano(lobo10['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo9['dano'])
-
-                        loboMorto(lobos, lobo10['dano'])
-                        break
-                }
-            }
-            alert(nomeGuerreiro + ' Usou ' + abilidade2['nome'] + ' !')
-
-            alert('Os lobos revidaram e causaram ' + lobos + ' de dano!' + '\n\n Quantidade de vida atual: ' + guerreiro['hp'])
-
-
-            break
-        case '3':
-
-
-            switch (opçaoEscolhida) {
-                case '1':
-
-                    lobo1['hp'] = dano(lobo1['hp'], danoCausado)
-                    lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                    lobo3['hp'] = dano(lobo3['hp'], danoCausado)
-                    lobo4['hp'] = dano(lobo4['hp'], danoCausado)
-                    lobo5['hp'] = dano(lobo5['hp'], danoCausado)
-                    guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                    lobos = loboMorto(lobos, lobo1['dano'])
-
-                    loboMorto(lobos, lobo2['dano'])
-                    loboMorto(lobos, lobo3['dano'])
-                    loboMorto(lobos, lobo4['dano'])
-                    loboMorto(lobos, lobo5['dano'])
-
-
-                    break
-                case '2':
-
-                    lobo6['hp'] = dano(lobo6['hp'], danoCausado)
-                    lobo7['hp'] = dano(lobo7['hp'], danoCausado)
-                    lobo8['hp'] = dano(lobo8['hp'], danoCausado)
-                    lobo9['hp'] = dano(lobo9['hp'], danoCausado)
-                    lobo10['hp'] = dano(lobo10['hp'], danoCausado)
-                    guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                    lobos = loboMorto(lobos, lobo6['dano'])
-
-                    loboMorto(lobos, lobo7['dano'])
-                    loboMorto(lobos, lobo8['dano'])
-                    loboMorto(lobos, lobo9['dano'])
-                    loboMorto(lobos, lobo10['dano'])
-                    break
-            }
-
-            alert(nomeGuerreiro + ' Usou ' + abilidade3['nome'] + ' !')
-
-            alert('Os lobos revidaram e causaram ' + lobos + ' de dano!' + '\n\n Quantidade de vida atual: ' + guerreiro['hp'])
-
-
-            break
-        case '4':
-
-            if (classe == '1') {
-                switch (opçaoEscolhida) {
-                    case '1':
-
-                        lobo1['hp'] = dano(lobo1['hp'], danoCausado)
-                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                        lobo3['hp'] = dano(lobo3['hp'], danoCausado)
-                        lobo4['hp'] = dano(lobo4['hp'], danoCausado)
-                        lobo5['hp'] = dano(lobo5['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo1['dano'])
-
-                        loboMorto(lobos, lobo2['dano'])
-                        loboMorto(lobos, lobo3['dano'])
-                        loboMorto(lobos, lobo4['dano'])
-                        loboMorto(lobos, lobo5['dano'])
-
-
-                        break
-                    case '2':
-
-                        lobo6['hp'] = dano(lobo6['hp'], danoCausado)
-                        lobo7['hp'] = dano(lobo7['hp'], danoCausado)
-                        lobo8['hp'] = dano(lobo8['hp'], danoCausado)
-                        lobo9['hp'] = dano(lobo9['hp'], danoCausado)
-                        lobo10['hp'] = dano(lobo10['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo6['dano'])
-
-                        loboMorto(lobos, lobo7['dano'])
-                        loboMorto(lobos, lobo8['dano'])
-                        loboMorto(lobos, lobo9['dano'])
-                        loboMorto(lobos, lobo10['dano'])
-                        break
-                }
-
-            } else if (classe == '2') {
-
-
-                switch (opçaoEscolhida) {
-                    case '1':
-
-                        lobo1['hp'] = dano(lobo1['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo1['dano'])
-
-                        break
-                    case '2':
-
-                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo2['dano'])
-
-                        break
-                    case '3':
-
-                        lobo3['hp'] = dano(lobo3['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo3['dano'])
-
-                        break
-                    case '4':
-
-                        lobo4['hp'] = dano(lobo4['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo4['dano'])
-
-                        break
-                    case '5':
-
-                        lobo5['hp'] = dano(lobo5['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo5['dano'])
-
-                        break
-                    case '6':
-
-                        lobo6['hp'] = dano(lobo6['hp'], danoCausado)
-                        ataqueDolobo(guerreiro['hp'], lobos)
-                        loboMorto(lobos, lobo6['dano'])
-                        break
-                    case '7':
-
-                        lobo7['hp'] = dano(lobo7['hp'], danoCausado)
-                        ataqueDolobo(guerreiro['hp'], lobos)
-                        loboMorto(lobos, lobo7['dano'])
-                        break
-                    case '8':
-
-                        lobo8['hp'] = dano(lobo8['hp'], danoCausado)
-                        ataqueDolobo(guerreiro['hp'], lobos)
-                        loboMorto(lobos, lobo8['dano'])
-                        break
-                    case '9':
-
-                        lobo9['hp'] = dano(lobo9['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo9['dano'])
-
-                        break
-                    case '10':
-
-                        lobo10['hp'] = dano(lobo10['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo10['dano']
-                        )
-                        break
-                }
-
-
-
-            } else if (classe == '3') {
-                switch (opçaoEscolhida) {
-                    case '1':
-
-                        lobo1['hp'] = dano(lobo1['hp'], danoCausado)
-
-                        lobo2['hp'] = dano(lobo2['hp'], danoCausado)
-
-                        lobo3['hp'] = dano(lobo3['hp'], danoCausado)
-
-                        lobo4['hp'] = dano(lobo4['hp'], danoCausado)
-
-                        lobo5['hp'] = dano(lobo5['hp'], danoCausado)
-
-                        lobo6['hp'] = dano(lobo6['hp'], danoCausado)
-
-                        lobo7['hp'] = dano(lobo7['hp'], danoCausado)
-
-                        lobo8['hp'] = dano(lobo8['hp'], danoCausado)
-
-                        lobo9['hp'] = dano(lobo9['hp'], danoCausado)
-
-                        lobo10['hp'] = dano(lobo10['hp'], danoCausado)
-                        guerreiro['hp'] = ataqueDolobo(guerreiro['hp'], lobos)
-                        lobos = loboMorto(lobos, lobo1['dano'])
-
-                        loboMorto(lobos, lobo2['dano'])
-                        loboMorto(lobos, lobo3['dano'])
-                        loboMorto(lobos, lobo4['dano'])
-                        loboMorto(lobos, lobo5['dano'])
-                        loboMorto(lobos, lobo6['dano'])
-                        loboMorto(lobos, lobo7['dano'])
-                        loboMorto(lobos, lobo8['dano'])
-                        loboMorto(lobos, lobo9['dano'])
-                        loboMorto(lobos, lobo10['dano'])
-
-
-
-                        break
-                }
-            }
-            alert(nomeGuerreiro + ' Usou a Ultimate ' + abilidade4['nome'] + ' !')
-
-            alert('Os lobos revidaram e causaram ' + lobos + ' de dano!' + '\n\n Quantidade de vida atual: ' + guerreiro['hp'])
-
-
-            break
-    }
-
-
-    // Desenvolvi os switchs case desta forma para eu ter maior facilidade de identificar e separar os elementos do código depois, porém pretendo unificar os mesmos para o fim de organização.
-
-
-
-
-    if (guerreiro['hp'] == 0) {
-        alert('Você morreu... Reinicie a página e tente novamente !')
-        lobo1['hp'] = 0
-        lobo2['hp'] = 0
-        lobo3['hp'] = 0
-        lobo4['hp'] = 0
-        lobo5['hp'] = 0
-        lobo6['hp'] = 0
-        lobo7['hp'] = 0
-        lobo8['hp'] = 0
-        lobo9['hp'] = 0
-        lobo10['hp'] = 0
-    }
-
-
-
-
-
-
 
 }
-while (lobo1['hp'] != 0 || lobo2['hp'] != 0 || lobo3['hp'] != 0 || lobo4['hp'] != 0 || lobo5['hp'] != 0 || lobo6['hp'] != 0 || lobo7['hp'] != 0 || lobo8['hp'] != 0 || lobo9['hp'] != 0 || lobo10['hp'] != 0 && opçaoEscolhida != '0')
+function escolherSkill() {
+    skillEscolhida = input.value
+    input.value = ''
+    switch (classe) {
+        case '1':
+
+            if (skillEscolhida == "1") {
+                keys = ['1', '2', '3', '4', '5', '6', '7', '8']
+                dialogo.innerHTML = `<p>Escolha o lobo que você quer atacar: <br><br><br> 1 Lobo1-<span>${lobo1.hp}</span> | 2 Lobo2-<span>${lobo2.hp}</span> | 3 Lobo3-<span>${lobo3.hp}</span> | 4 Lobo4-<span>${lobo4.hp}</span> | 5 Lobo5-<span>${lobo5.hp}</span> | 6 Lobo6-<span>${lobo6.hp}</span>  7 Lobo7-<span>${lobo7.hp}</span> | 8 Lobo8-<span>${lobo8.hp}</span><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+                submit.removeEventListener('click', escolherSkill)
+                submit.addEventListener('click', atacarLobo)
+            } else if (skillEscolhida == "2") {
+                keys = ['1', '2', '3', '4', '5', '6', '7', '8']
+                dialogo.innerHTML = `<p>Escolha o lobo que você quer atacar: <br><br><br> 1 Lobo1-<span>${lobo1.hp}</span> | 2 Lobo2-<span>${lobo2.hp}</span> | 3 Lobo3-<span>${lobo3.hp}</span> | 4 Lobo4-<span>${lobo4.hp}</span> | 5 Lobo5-<span>${lobo5.hp}</span> | 6 Lobo6-<span>${lobo6.hp}</span>  7 Lobo7-<span>${lobo7.hp}</span> | 8 Lobo8-<span>${lobo8.hp}</span><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+                submit.removeEventListener('click', escolherSkill)
+                submit.addEventListener('click', atacarLobo)
+            } else if (skillEscolhida == "3") {
+                keys = ['1', '2', '3', '4']
+                dialogo.innerHTML = `<p>Escolha a dupla de lobos que você quer atacar: <br><br><br>1 Lobo1-<span>${lobo1.hp}</span> |  Lobo2-<span>${lobo2.hp}</span><br>2 Lobo3-<span>${lobo3.hp}</span> | Lobo4-<span>${lobo4.hp}</span><br>3 Lobo5-<span>${lobo5.hp}</span> | Lobo6-<span>${lobo6.hp}</span><br>4 Lobo7-<span>${lobo7.hp}</span> | Lobo8-<span>${lobo8.hp}</span><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+                submit.removeEventListener('click', escolherSkill)
+                submit.addEventListener('click', atacarLobo)
+            } else if (skillEscolhida == "4") {
+                keys = ['1', '2']
+                dialogo.innerHTML = `<p>Escolha a leva de lobos você quer atacar: <br><br><br>1 Lobo1-<span>${lobo1.hp}</span> | Lobo2-<span>${lobo2.hp}</span> | Lobo3-<span>${lobo3.hp}</span> | Lobo4-<span>${lobo4.hp}</span><br>2 Lobo5-<span>${lobo5.hp}</span> | Lobo6-<span>${lobo6.hp}</span> | Lobo7-<span>${lobo7.hp}</span> | Lobo8-<span>${lobo8.hp}</span><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+                submit.removeEventListener('click', escolherSkill)
+                submit.addEventListener('click', atacarLobo)
+            } 
+             if (skillEscolhida == "4" && quantidade == 0) {
+                 skillEscolhida = ''
+                part5 = 0
+                submit.removeEventListener('click', escolherSkill)
+                submit.removeEventListener('click', atacarLobo)
+
+                dialogo.innerHTML = `<p>Você não pode mais usar esta skill!</p>`
+                submit.removeEventListener('click', escolherSkill)
+                submit.removeEventListener('click', atacarLobo)
+                submit.style.visibility = 'hidden'
+                input.style.visibility = 'hidden'
+                btn.style.visibility = 'visible'
+                keys = []
+                btn.addEventListener('click', parte5)
+                part5 = 0
+            }
+            break
+        case '2':
+            if (skillEscolhida == "1") {
+                keys = ['1', '2']
+                dialogo.innerHTML = `<p>Escolha a leva de lobos você quer atacar: <br><br><br>1 Lobo1-<span>${lobo1.hp}</span> | Lobo2-<span>${lobo2.hp}</span> | Lobo3-<span>${lobo3.hp}</span> | Lobo4-<span>${lobo4.hp}</span><br>2 Lobo5-<span>${lobo5.hp}</span> | Lobo6-<span>${lobo6.hp}</span> | Lobo7-<span>${lobo7.hp}</span> | Lobo8-<span>${lobo8.hp}</span><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+                submit.removeEventListener('click', escolherSkill)
+                submit.addEventListener('click', atacarLobo)
+            } else if (skillEscolhida == "2") {
+                keys = ['1', '2']
+                dialogo.innerHTML = `<p>Escolha a leva de lobos você quer atacar: <br><br><br>1 Lobo1-<span>${lobo1.hp}</span> | Lobo2-<span>${lobo2.hp}</span> | Lobo3-<span>${lobo3.hp}</span> | Lobo4-<span>${lobo4.hp}</span><br>2 Lobo5-<span>${lobo5.hp}</span> | Lobo6-<span>${lobo6.hp}</span> | Lobo7-<span>${lobo7.hp}</span> | Lobo8-<span>${lobo8.hp}</span><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+                submit.removeEventListener('click', escolherSkill)
+                submit.addEventListener('click', atacarLobo)
+            } else if (skillEscolhida == "3") {
+                keys = ['1', '2']
+                dialogo.innerHTML = `<p>Escolha a leva de lobos você quer atacar: <br><br><br>1 Lobo1-<span>${lobo1.hp}</span> | Lobo2-<span>${lobo2.hp}</span> | Lobo3-<span>${lobo3.hp}</span> | Lobo4-<span>${lobo4.hp}</span><br>2 Lobo5-<span>${lobo5.hp}</span> | Lobo6-<span>${lobo6.hp}</span> | Lobo7-<span>${lobo7.hp}</span> | Lobo8-<span>${lobo8.hp}</span><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+                submit.removeEventListener('click', escolherSkill)
+                submit.addEventListener('click', atacarLobo)
+            } else if (skillEscolhida == "4") {
+                keys = ['1']
+                dialogo.innerHTML = `<p>Ataque os lobos: <br><br><br>1 Lobo1-<span>${lobo1.hp}</span> | Lobo2-<span>${lobo2.hp}</span> | Lobo3-<span>${lobo3.hp}</span> | Lobo4-<span>${lobo4.hp}</span> Lobo5-<span>${lobo5.hp}</span> | Lobo6-<span>${lobo6.hp}</span> | Lobo7-<span>${lobo7.hp}</span> | Lobo8-<span>${lobo8.hp}</span></p>`
+                submit.removeEventListener('click', escolherSkill)
+                submit.addEventListener('click', atacarLobo)
+            } 
+             if (skillEscolhida == "4" && quantidade == 0) {
+                 skillEscolhida = ''
+                part5 = 0
+                submit.removeEventListener('click', escolherSkill)
+                submit.removeEventListener('click', atacarLobo)
+                
+                dialogo.innerHTML = `<p>Você não pode mais usar esta skill!</p>`
+                submit.style.visibility = 'hidden'
+                input.style.visibility = 'hidden'
+                btn.style.visibility = 'visible'
+                keys = []
+                btn.addEventListener('click', parte5)
+            }
+            break
+        case '3':
+            if (skillEscolhida == "1") {
+                keys = ['1', '2', '3', '4', '5', '6', '7', '8']
+                dialogo.innerHTML = `<p>Escolha o lobo que você quer atacar: <br><br><br> 1 Lobo1-<span>${lobo1.hp}</span> | 2 Lobo2-<span>${lobo2.hp}</span> | 3 Lobo3-<span>${lobo3.hp}</span> | 4 Lobo4-<span>${lobo4.hp}</span> | 5 Lobo5-<span>${lobo5.hp}</span> | 6 Lobo6-<span>${lobo6.hp}</span>  7 Lobo7-<span>${lobo7.hp}</span> | 8 Lobo8-<span>${lobo8.hp}</span><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+                submit.removeEventListener('click', escolherSkill)
+                submit.addEventListener('click', atacarLobo)
+            } else if (skillEscolhida == "2") {
+                keys = ['1', '2', '3', '4', '5', '6', '7', '8']
+                dialogo.innerHTML = `<p>Escolha o lobo que você quer atacar: <br><br><br> 1 Lobo1-<span>${lobo1.hp}</span> | 2 Lobo2-<span>${lobo2.hp}</span> | 3 Lobo3-<span>${lobo3.hp}</span> | 4 Lobo4-<span>${lobo4.hp}</span> | 5 Lobo5-<span>${lobo5.hp}</span> | 6 Lobo6-<span>${lobo6.hp}</span>  7 Lobo7-<span>${lobo7.hp}</span> | 8 Lobo8-<span>${lobo8.hp}</span><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+                submit.removeEventListener('click', escolherSkill)
+                submit.addEventListener('click', atacarLobo)
+            } else if (skillEscolhida == "3") {
+                keys = ['1', '2', '3', '4']
+                dialogo.innerHTML = `<p>Escolha a dupla de lobos que você quer atacar: <br><br><br>1 Lobo1-<span>${lobo1.hp}</span> |  Lobo2-<span>${lobo2.hp}</span><br>2 Lobo3-<span>${lobo3.hp}</span> | Lobo4-<span>${lobo4.hp}</span><br>3 Lobo5-<span>${lobo5.hp}</span> | Lobo6-<span>${lobo6.hp}</span><br>4 Lobo7-<span>${lobo7.hp}</span> | Lobo8-<span>${lobo8.hp}</span><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+                submit.removeEventListener('click', escolherSkill)
+                submit.addEventListener('click', atacarLobo)
+            } else if (skillEscolhida == "4") {
+                keys = ['1', '2', '3', '4', '5', '6', '7', '8']
+                dialogo.innerHTML = `<p>Escolha o lobo que você quer atacar: <br><br><br> 1 Lobo1-<span>${lobo1.hp}</span> | 2 Lobo2-<span>${lobo2.hp}</span> | 3 Lobo3-<span>${lobo3.hp}</span> | 4 Lobo4-<span>${lobo4.hp}</span> | 5 Lobo5-<span>${lobo5.hp}</span> | 6 Lobo6-<span>${lobo6.hp}</span>  7 Lobo7-<span>${lobo7.hp}</span> | 8 Lobo8-<span>${lobo8.hp}</span><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+                submit.removeEventListener('click', escolherSkill)
+                submit.addEventListener('click', atacarLobo)
+            } 
+             if (skillEscolhida == "4" && quantidade == 0) {
+                 skillEscolhida = ''
+                part5 = 0
+                submit.removeEventListener('click', escolherSkill)
+                submit.removeEventListener('click', atacarLobo)
+
+                dialogo.innerHTML = `<p>Você não pode mais usar esta skill!</p>`
+                submit.style.visibility = 'hidden'
+                input.style.visibility = 'hidden'
+                btn.style.visibility = 'visible'
+                keys = []
+                btn.addEventListener('click', parte5)
+            }
+            break
+    }
+
+}
+function parte3() {
+    part3++
+
+    input.value = ''
+
+    switch (part3) {
+        case 1:
+            if (quantidade != 1 && quantidade != 2 && quantidade != 3 & quantidade != 4) {
+    quantidade = 0
+}
+            if (lobo1.hp < 1) {
+                lobo1.dead1()
+            }
+            if (lobo2.hp < 1) {
+                lobo2.dead2()
+            }
+            if (lobo3.hp < 1) {
+                lobo3.dead3()
+            }
+            if (lobo4.hp < 1) {
+                lobo4.dead4()
+            }
+            if (lobo5.hp < 1) {
+                lobo5.dead5()
+            }
+            if (lobo6.hp < 1) {
+                lobo6.dead6()
+            }
+            if (lobo7.hp < 1) {
+                lobo7.dead7()
+            }
+            if (lobo8.hp < 1) {
+                lobo8.dead8()
+            }
+
+            
+            skillEscolhida = ''
+            loboAtacado = ''
+            submit.addEventListener('click', escolherSkill)
+            submit.removeEventListener('click', atacarLobo)
+            btn.removeEventListener('click', parte3)
+            submit.style.visibility = 'visible'
+            input.style.visibility = 'visible'
+            btn.style.visibility = 'hidden'
+            keys = ['1', '2', '3', '4']
+            dialogo.innerHTML = `<p>Lobo1-<span>${lobo1.hp}</span> | Lobo2-<span>${lobo2.hp}</span> | Lobo3-<span>${lobo3.hp}</span> | Lobo4-<span>${lobo4.hp}</span> | Lobo5-<span>${lobo5.hp}</span> | Lobo6-<span>${lobo6.hp}</span>  Lobo7-<span>${lobo7.hp}</span> | Lobo8-<span>${lobo8.hp}</span><br><br>1 ${habilidade1.nome} : ${habilidade1.des} danototal: ${habilidade1.totalDan}<br>2 ${habilidade2.nome} : ${habilidade2.des} danototal: ${habilidade2.totalDan}<br>3 ${habilidade3.nome} : ${habilidade3.des} danototal: ${habilidade3.totalDan}<br>4 ${habilidade4.nome} : ${habilidade4.des} danototal: ${habilidade4.totalDan} <br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+
+            
+
+
+            if (lobo1.hp == 0 && lobo2.hp == 0 && lobo3.hp == 0 && lobo4.hp == 0 && lobo5.hp == 0 && lobo6.hp == 0 && lobo7.hp == 0 && lobo8.hp == 0) {
+                submit.removeEventListener('click', escolherSkill)
+                submit.removeEventListener('click', atacarLobo)
+                btn.addEventListener('click', parte4)
+                submit.style.visibility = 'hidden'
+                input.style.visibility = 'hidden'
+                btn.style.visibility = 'visible'
+                keys = []
+                dialogo.innerHTML = `<p>Você matou todos os lobos !<br><br><br>${playerName} ganhou 500Xp</p>`
+            }
+            if (guerreiro.hp < 1) {
+                btn.addEventListener('click', preparo)
+                submit.removeEventListener('click', atacarLobo)
+                submit.removeEventListener('click', escolherSkill)
+                prepr = 0
+                submit.style.visibility = 'hidden'
+                input.style.visibility = 'hidden'
+                btn.style.visibility = 'visible'
+                keys = []
+                submit.removeEventListener('click', atacarLobo)
+                dialogo.innerHTML = '<p><br><br>Você perdeu...<br>Volte para o acampamento, se recupere e tente novamente!<p/>'
+                fenrir.dano = 30
+                fenrir.hp = 2000
+                fenrir.defesa = 20
+                lobo1.dano = 10
+                lobo1.hp = 300
+                lobo1.defesa = 0
+                lobo2.dano = 10
+                lobo2.hp = 300
+                lobo2.defesa = 0
+                lobo3.dano = 10
+                lobo3.hp = 300
+                lobo3.defesa = 0
+                lobo4.dano = 10
+                lobo4.hp = 300
+                lobo4.defesa = 0
+                lobo5.dano = 10
+                lobo5.hp = 300
+                lobo5.defesa = 0
+                lobo6.dano = 10
+                lobo6.hp = 300
+                lobo6.defesa = 0
+                lobo7.dano = 10
+                lobo7.hp = 300
+                lobo7.defesa = 0
+                lobo8.dano = 10
+                lobo8.hp = 300
+                lobo8.defesa = 0
+            }
+            break
+    }
+}
 
 
 
 
+function parte4() {
+    part4++
+    input.value = ''
+    switch (part4) {
 
-let fenrir = { dano: 20, hp: 1000, defesa: 0 }
-let opçaoEscolhida3
-let danoCausado2
+        case 1:
+            tela.innerHTML = `<img src="imagens/portas.png" alt="">`
+            dialogo.innerHTML = `<p><br><br>Após a derrota dos lobos, de um dos grandes portões</p>`
+            break
+        case 2:
+            dialogo.innerHTML = `<p><br><br>Surge uma criatura com grandes olhos vermelhos e garras 3 vezes maiores do que a dos lobos que você enfrentou...</p>`
+            break
+        case 3:
+            tela.innerHTML = `<img src="imagens/fenrir.png" alt="">`
+            dialogo.innerHTML = `<p>A criatura se revela !<br><br>O nome dela é Fenrir, o grande lobo da mitologia nórdica !</p>`
+            break
+        case 4:
+            dialogo.innerHTML = `<p>'Fenrir te ataca ! <br><br>Que comece a batalha !</p>`
+            btn.removeEventListener('click', parte4)
+            btn.addEventListener('click', parte5)
+            break
+    }
+}
+
+
+let fenrir = {
+    dano: 30, hp: 2000, defesa: 20, dead: function () {
+        this.dano = 0
+        this.hp = 0
+    }
+}
+
+let loboAtacado2
 let skillEscolhida2
-if (guerreiro['hp'] > 0) {
-    alert('Você matou todos os lobos !')
 
-    alert('Porém de um dos grandes portões, do portão do meio, você avista uma criatura com grandes olhos vermelhos e garras 3 vezes maiores do que a dos lobos que você enfrentou\n\nA criatura se revela !\n\nO nome dela é Fenrir, o grande lobo da mitologia nórdica !')
-
-    alert('Fenrir te ataca ! \n\nQue comece a batalha !')
-
-
-    function skill2() {
-        let skill2
-        skill2 = prompt('Quantidade de vida atual:' + guerreiro['hp'] + '\n\n\n Escolha uma skill:\n1- ' + abilidade1['nome'] + ' dano: ' + abilidade1['dano'] + '\n' + abilidade1['des'] + '\n2- ' + abilidade2['nome'] + ' dano: ' + abilidade2['dano'] + '\n' + abilidade2['des'] + '\n3- ' + abilidade3['nome'] + ' dano: ' + abilidade3['dano'] + '\n' + abilidade3['des'] + '\n4 "Ultimate"- ' + abilidade4['nome'] + ' dano: ' + abilidade4['dano'] + '\n' + abilidade4['des'])
-
-        return skill2
+function atacarFenrir() {
+    loboAtacado2 = input.value
+    input.value = ''
+    part5 = 0
+    switch (loboAtacado2) {
+        case '1':
+            if (skillEscolhida2 == '1') {
+                habilidade1.dano(fenrir)
+                dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Fenrir revidou causando: ${fenrir.dano} de Dano !</p>`
+                guerreiro.hp -= (fenrir.dano)
+                submit.style.visibility = 'hidden'
+                input.style.visibility = 'hidden'
+                btn.style.visibility = 'visible'
+                keys = []
+                btn.addEventListener('click', parte5)
+                submit.removeEventListener('click', atacarFenrir)
+            } else if (skillEscolhida2 == '2') {
+                habilidade2.dano(fenrir)
+                dialogo.innerHTML = `<p>${habilidade2.posSkill()} <br><br><br>Fenrir revidou causando: ${fenrir.dano} de Dano !</p>`
+                guerreiro.hp -= (fenrir.dano)
+                submit.style.visibility = 'hidden'
+                input.style.visibility = 'hidden'
+                btn.style.visibility = 'visible'
+                keys = []
+                btn.addEventListener('click', parte5)
+                submit.removeEventListener('click', atacarFenrir)
+            } else if (skillEscolhida2 == '3') {
+                habilidade3.dano(fenrir)
+                dialogo.innerHTML = `<p>${habilidade3.posSkill()} <br><br><br>Fenrir revidou causando: ${fenrir.dano} de Dano !</p>`
+                guerreiro.hp -= (fenrir.dano)
+                submit.style.visibility = 'hidden'
+                input.style.visibility = 'hidden'
+                btn.style.visibility = 'visible'
+                keys = []
+                btn.addEventListener('click', parte5)
+                submit.removeEventListener('click', atacarFenrir)
+            } else if (skillEscolhida2 == '4') {
+                habilidade4.dano(fenrir)
+                dialogo.innerHTML = `<p>${habilidade4.posSkill()} <br><br><br>Fenrir revidou causando: ${fenrir.dano} de Dano !</p>`
+                guerreiro.hp -= (fenrir.dano)
+                submit.style.visibility = 'hidden'
+                input.style.visibility = 'hidden'
+                btn.style.visibility = 'visible'
+                keys = []
+                btn.addEventListener('click', parte5)
+                submit.removeEventListener('click', atacarFenrir)
+            }
+            break
     }
-    function atacarFenrir() {
-        let opçao2
-
-        while (opçao2 != 1) {
-            opçao2 = prompt('Ataque Fenrir \n\n\n1- Fenrir "BOSS" ' + '\nHP:' + fenrir['hp'])
-        }
-        return opçao2
-    }
 
 
-    function ataqueDofenrir(vida, fa) {
-        let novohp2
-        novohp2 = vida - fa
-        if (novohp2 <= 0) {
-            novohp2 = 0
-
-        }
-        return novohp2
-
-    }
-    function danoNoFenrir(fv, dan) {
-        let novaVida
-        novaVida = fv - dan
-        if (novaVida <= 0) {
-            novaVida = 0
-        }
-        return novaVida
-    }
-
-    do {
-        skillEscolhida2 = skill2()
-        opçaoEscolhida3 = atacarFenrir()
-        switch (skillEscolhida2) {
-            case '1':
-                danoCausado2 = abilidade1['dano'] + (guerreiro['dano'] / 2)
-
-                break
-            case '2':
-                danoCausado2 = abilidade2['dano'] + (guerreiro['dano'] / 2)
-
-                break
-            case '3':
-                danoCausado2 = abilidade3['dano'] + (guerreiro['dano'] / 2)
-
-                break
-            case '4':
-                danoCausado2 = abilidade4['dano'] + (guerreiro['dano'] / 2)
-
-                break
-
-        }
-        switch (skillEscolhida2) {
-            case '1':
-                switch (opçaoEscolhida3) {
-                    case '1':
-                        fenrir['hp'] = danoNoFenrir(fenrir['hp'], danoCausado2)
-                        guerreiro['hp'] = ataqueDofenrir(guerreiro['hp'], fenrir['dano'])
-
-
-                        alert(nomeGuerreiro + ' Usou ' + abilidade1['nome'] + ' !')
-
-                        alert('Fenrir revidou caudando ' + fenrir['dano'] + ' de dano!' + '\n\n Quantidade de vida atual: ' +
-                            guerreiro['hp'])
-                        break
-                }
-                break
-            case '2':
-                switch (opçaoEscolhida3) {
-                    case '1':
-                        fenrir['hp'] = danoNoFenrir(fenrir['hp'], danoCausado2)
-                        guerreiro['hp'] = ataqueDofenrir(guerreiro['hp'], fenrir['dano'])
-                        alert(nomeGuerreiro + ' Usou ' + abilidade2['nome'] + ' !')
-
-                        alert('Fenrir revidou caudando ' + fenrir['dano'] + ' de dano!' + '\n\n Quantidade de vida atual: ' +
-                            guerreiro['hp'])
-                        break
-
-                }
-                break
-            case '3':
-                switch (opçaoEscolhida3) {
-                    case '1':
-                        fenrir['hp'] = danoNoFenrir(fenrir['hp'], danoCausado2)
-                        guerreiro['hp'] = ataqueDofenrir(guerreiro['hp'], fenrir['dano'])
-                        alert(nomeGuerreiro + ' Usou ' + abilidade3['nome'] + ' !')
-
-                        alert('Fenrir revidou caudando ' + fenrir['dano'] + ' de dano!' + '\n\n Quantidade de vida atual: ' +
-                            guerreiro['hp'])
-                        break
-
-                }
-                break
-            case '4':
-                switch (opçaoEscolhida3) {
-                    case '1':
-                        fenrir['hp'] = danoNoFenrir(fenrir['hp'], danoCausado2)
-                        guerreiro['hp'] = ataqueDofenrir(guerreiro['hp'], fenrir['dano'])
-                        alert(nomeGuerreiro + ' Usou ' + abilidade4['nome'] + ' !')
-
-                        alert('Fenrir revidou caudando ' + fenrir['dano'] + ' de dano!' + '\n\n Quantidade de vida atual: ' +
-                            guerreiro['hp'])
-                        break
-
-                }
-                break
-
-        }
-
-
-
-    }
-    while (fenrir['hp'] != 0)
 }
-if (fenrir['hp'] == 0 && guerreiro['hp'] > 0) {
-    alert('PARABÉNS ! VOCÊ matou o lobo lendário Fenrir !\n\nFase 1 concluída\n\n' + nomeGuerreiro + ' Ganhou 1000Xp')
-    alert('Obrigado por jogar !\n\nAguarde a parte 2...')
-} else if (guerreiro['hp'] == 0) {
-    alert('Você morreu... Reinicie a página e tente novamente !')
+function escolherSkill2() {
+    skillEscolhida2 = input.value
+    input.value = ''
+    part5 = 0
+
+    if (skillEscolhida2 == "1") {
+        keys = ['1']
+        dialogo.innerHTML = `<p>Ataque o Fenrir: <br><br><br> 1 Fenrir"Boss"-<span>${fenrir.hp}</span><br><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+        submit.removeEventListener('click', escolherSkill2)
+        submit.addEventListener('click', atacarFenrir)
+    } else if (skillEscolhida2 == "2") {
+        keys = ['1']
+        dialogo.innerHTML = `<p>Ataque o Fenrir: <br><br><br> 1 Fenrir"Boss"-<span>${fenrir.hp}</span><br><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+        submit.removeEventListener('click', escolherSkill2)
+        submit.addEventListener('click', atacarFenrir)
+    } else if (skillEscolhida2 == "3") {
+        keys = ['1']
+        dialogo.innerHTML = `<p>Ataque o Fenrir: <br><br><br> 1 Fenrir"Boss"-<span>${fenrir.hp}</span><br><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+        submit.removeEventListener('click', escolherSkill2)
+        submit.addEventListener('click', atacarFenrir)
+    } else if (skillEscolhida2 == "4") {
+        keys = ['1']
+        dialogo.innerHTML = `<p>Ataque o Fenrir: <br><br><br> 1 Fenrir"Boss"-<span>${fenrir.hp}</span><br><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+        submit.removeEventListener('click', escolherSkill2)
+        submit.addEventListener('click', atacarFenrir)
+    } else if (skillEscolhida2 == "4" && quantidade == 0) {
+        keys = []
+        dialogo.innerHTML = `<p>Você não pode mais usar esta skill!</p>`
+        submit.style.visibility = 'hidden'
+        input.style.visibility = 'hidden'
+        btn.style.visibility = 'visible'
+        btn.addEventListener('click', parte5)
+    }
 }
+
+
+function parte5() {
+    part5++
+
+    input.value = ''
+    switch (part5) {
+        case 1:
+            if (quantidade != 1 && quantidade != 2 && quantidade != 3 & quantidade != 4) {
+    quantidade = 0
+}
+            
+            skillEscolhida2 = ''
+            loboAtacado2 = ''
+            submit.addEventListener('click', escolherSkill2)
+            submit.removeEventListener('click', atacarFenrir)
+            btn.removeEventListener('click', parte5)
+            submit.style.visibility = 'visible'
+            input.style.visibility = 'visible'
+            btn.style.visibility = 'hidden'
+
+            keys = ['1', '2', '3', '4']
+            dialogo.innerHTML = `<p>Fenrir-<span>${fenrir.hp}</span><br><br>1 ${habilidade1.nome} : ${habilidade1.des} danototal: ${habilidade1.totalDan}<br>2 ${habilidade2.nome} : ${habilidade2.des} danototal: ${habilidade2.totalDan}<br>3 ${habilidade3.nome} : ${habilidade3.des} danototal: ${habilidade3.totalDan}<br>4 ${habilidade4.nome} : ${habilidade4.des} danototal: ${habilidade4.totalDan} <br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+
+            if (fenrir.hp < 1) {
+                tela.innerHTML = `<img src="imagens/fenrirDead.png" alt="">`
+                fenrir.dead()
+                btn.addEventListener('click', parte6)
+                submit.style.visibility = 'hidden'
+                input.style.visibility = 'hidden'
+                btn.style.visibility = 'visible'
+                keys = []
+                dialogo.innerHTML = `<p>Parabéns você derrotou a lendária fera Fenrir!<br><br><br>${playerName} ganhou 1000xp</p>`
+                submit.removeEventListener('click', atacarFenrir)
+                submit.addEventListener('click', escolherSkill2)
+            }
+            if (guerreiro.hp < 1) {
+                btn.addEventListener('click', preparo)
+                prepr = 0
+                submit.removeEventListener('click', atacarFenrir)
+                submit.removeEventListener('click', escolherSkill2)
+                submit.style.visibility = 'hidden'
+                input.style.visibility = 'hidden'
+                btn.style.visibility = 'visible'
+                keys = []
+                submit.removeEventListener('click', atacarFenrir)
+                dialogo.innerHTML = '<p><br><br>Você perdeu...<br>Volte para o acampamento, se recupere e tente novamente!<p/>'
+                fenrir.dano = 30
+                fenrir.hp = 2000
+                fenrir.defesa = 20
+                lobo1.dano = 10
+                lobo1.hp = 300
+                lobo1.defesa = 0
+                lobo2.dano = 10
+                lobo2.hp = 300
+                lobo2.defesa = 0
+                lobo3.dano = 10
+                lobo3.hp = 300
+                lobo3.defesa = 0
+                lobo4.dano = 10
+                lobo4.hp = 300
+                lobo4.defesa = 0
+                lobo5.dano = 10
+                lobo5.hp = 300
+                lobo5.defesa = 0
+                lobo6.dano = 10
+                lobo6.hp = 300
+                lobo6.defesa = 0
+                lobo7.dano = 10
+                lobo7.hp = 300
+                lobo7.defesa = 0
+                lobo8.dano = 10
+                lobo8.hp = 300
+                lobo8.defesa = 0
+            }
+
+
+            break
+    }
+}
+
+
+function parte6() {
+    tela.innerHTML = ``
+    dialogo.innerHTML = `<p>Aguarde a parte 2!</p>`
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

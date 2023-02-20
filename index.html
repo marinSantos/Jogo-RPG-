@@ -1,13 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="script.js"></script>
+    <title>Ingvar | RPG</title>
+    <!-- <script src="App.js" type="module"></script> -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="imagens/skyrim-icon-41570-Windows.ico" type="image/x-icon">
+    <script src="index.js" defer></script>  
 </head>
+
 <body>
+    <div class="sounds">
+        <audio id="audio1" src="audios/yt5s.io - Skyrim Music - Awake (Cart Intro) (128 kbps).mp3" loop controls></audio>
+        <audio id="audio2" src="audios/yt5s.io - Descanse aqui guerreiro este é seu check point , MUSICA RELAXANTE (128 kbps).mp3" loop controls></audio>
+        <audio id="audio3" src="audios/yt5s.io - Skyrim Music - Sovngarde (Sovngarde Chant) (128 kbps).mp3" loop controls></audio>
+        <audio id="audio4" src="audios/Dragonborn (320 kbps).mp3" loop controls></audio>
     
+    </div>
+    <div id="game">
+        <div id="tela"></div>
+        <div id="dialogo">
+ <span id="vivo1"></span>
+        </div>
+
+        <div id="inputs">
+            <div  id="iteraçao"><label for="input"></label><input type="text" id="input" ><input id="submit" type="submit">
+            </div> <button id="btn">Avançar</button>
+        </div>
+        
+    </div>
+
 </body>
+
 </html>

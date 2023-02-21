@@ -4,12 +4,13 @@ const dialogo = document.getElementById('dialogo')
 const input = document.getElementById('input')
 const submit = document.getElementById('submit')
 const btn = document.getElementById('btn')
-const bt2 = document.getElementById('btn')
+
 const audio1 = document.getElementById('audio1')
 const audio2 = document.getElementById('audio2')
 const audio3 = document.getElementById('audio3')
 const audio4 = document.getElementById('audio4')
 const separador2 = document.getElementById('separador2')
+
 let part1 = 0
 let prepr = 0
 let part2 = 0
@@ -44,6 +45,8 @@ if (part1 == 0) {
 
 
 
+
+
 document.addEventListener('keydown', function (ev) {
     ev.preventDefault()
 
@@ -51,12 +54,11 @@ document.addEventListener('keydown', function (ev) {
         input.value = input.value.slice(0, -1)
     }
     if (ev.code === "Space") {
-
         submit.click()
     }
     if (ev.key === "Enter") {
 
-        submit.click()
+        btn.click()
     }
 
     if (keys.includes(ev.key)) {
@@ -73,17 +75,26 @@ document.addEventListener('keydown', function (ev) {
 
 btn.addEventListener('click', parte1)
 function setName() {
-    playerName = input.value
-    btn.style.visibility = 'visible'
+    if (input.value.length > 0) {
+        playerName = input.value
+        btn.addEventListener('click', parte1)
+        btn.style.visibility = 'visible'
+        dialogo.innerHTML = ` <p>Você:<br><br>Meu nome é ${playerName}!</p>`
+    } else {
+        dialogo.innerHTML = ' <p>Guarda:<br><br>Você precisa colocar um nome...</p>'
+
+    }
 }
 function subClasseName() {
     subClasse = input.value
     switch (classe) {
         case '1':
+          
             if (subClasse == '1') {
-
+                btn.addEventListener('click', parte1)
                 btn.style.visibility = 'visible'
                 dialogo.innerHTML = `<p>Guarda:<br><br> Certo, então pegue esta arma...<br><br>Você Recebeu uma LongSword !</p>`
+
                 baseDamage = 150
                 baseHp = 450
                 baseDefense = 10
@@ -91,85 +102,92 @@ function subClasseName() {
                 quantidade = 4
                 baseQuantity = 4
                 habilidade1 = {
-                    nome: 'Corte transversal', totalDan: (70 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((70 + guerreiro.dano) - lb.defesa)
+                    nome: 'Corte transversal', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 35) / 100), dano: function (lb) {
+                        let total = this.totalDan - lb.defesa
+                        lb.hp -= total
 
-                    }, area: false, des: 'Corta o inimigo com sua espada !',
+                    }, area: false, des: `Corta o inimigo com sua espada causando <span class="dano">+35%</span> de dano.`,
 
                     posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
                 habilidade2 = {
-                    nome: 'Ataque esgrima', totalDan: (80 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((80 + guerreiro.dano) - lb.defesa)
+                    nome: 'Ataque esgrima', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 25) / 100), dano: function (lb) {
+                        let total = this.totalDan - lb.defesa
+                        lb.hp -= total
                         lb.defesa -= 5
-                    }, area: false, des: 'Perfura o inimigo com a ponta de sua espada, diminuindo 5 de defesa !',
+                    }, area: false, des: `Perfura o inimigo com a ponta de sua espada, diminuindo 5 de defesa e causando <span class="dano">+25%</span> de dano.`,
                     posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
                 habilidade3 = {
-                    nome: 'Meia lua', totalDan: (30 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((30 + guerreiro.dano) - lb.defesa)
-                    }, area: true, des: 'Lança vários projéteis com formato de meia Lua em multiplos inimigos',
+                    nome: 'Meia lua', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 20) / 100), dano: function (lb) {
+                        let total = this.totalDan - lb.defesa
+                        lb.hp -= total
+                    }, area: true, des: `Lança vários projéteis com formato de meia Lua em multiplos inimigos, causando <span class="dano">+20%</span> de dano.`,
                     posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
                 habilidade4 = {
-                    
-                    nome: 'Mega meia lua', totalDan: (150 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((150 + guerreiro.dano) - lb.defesa)
-                        quantidade -= 1
 
-                    }, area: true, des: 'Lança um GRANDE projétil em forma de lua de sua espada ! "Referecia de Bleach" ',
+                    nome: 'Mega meia lua', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 50) / 100), dano: function (lb) {
+                        let total = this.totalDan - lb.defesa
+                        lb.hp -= total
+                    }, area: true, des: `Lança de sua espada um grande projétil com formato de meia-lua, causando <span class="dano">+50%</span> de dano.`,
                     posSkill: function () {
                         return `${playerName} usou a ultimate ${this.nome} !`
                     }
                 }
             } else if (subClasse == '2') {
+                btn.addEventListener('click', parte1)
                 btn.style.visibility = 'visible'
                 dialogo.innerHTML = `<p>Guarda:<br><br> Certo, então pegue esta arma...<br><br>Você Recebeu uma SwordShild !</p>`
-                baseDamage = 50
+                baseDamage = 120
                 baseHp = 650
-                baseDefense = 10
-                guerreiro = { class: 'Cavaleiro Templário', arma: 'SwordShild ', dano: 50, hp: 650, defesa: 10 }
+                baseDefense = 30
+                guerreiro = { class: 'Cavaleiro Templário', arma: 'SwordShild ', dano: 120, hp: 650, defesa: 30 }
                 quantidade = 4
                 baseQuantity = 4
                 habilidade1 = {
-                    nome: 'Corte lateral', totalDan: (50 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((50 + guerreiro.dano) - lb.defesa)
-                    }, area: false, des: 'Corta o inimigo com sua espada !',
+                    nome: 'Corte lateral', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 18) / 100), dano: function (lb) {
+                        let total = this.totalDan - lb.defesa
+                        lb.hp -= total
+                    }, area: false, des: 'Corta o inimigo com sua espada, causando <span class="dano">+18%</span> de dano.',
                     posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
                 habilidade2 = {
-                    nome: 'Ataque de escudo', totalDan: (30 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((30 + guerreiro.dano) - lb.defesa)
-                        guerreiro.defesa += 2
-                    }, area: false, des: 'Golpeia o inimigo com seu escudo, aumentando também 2 de defesa !',
+                    nome: 'Ataque de escudo', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 13) / 100), dano: function (lb) {
+                        let total = this.totalDan - lb.defesa
+                        lb.hp -= total
+                        guerreiro.defesa += 5
+                    }, area: false, des: 'Golpeia o inimigo com seu escudo, aumentando também 5 de defesa e causando <span class="dano">+13%</span> de dano.',
                     posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
                 habilidade3 = {
-                    nome: 'Fissura', dano: function (lb) {
-                        lb.hp -= ((20 + guerreiro.dano) - lb.defesa)
+                    nome: 'Fissura', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 10) / 100), dano: function (lb) {
+                        let total = this.totalDan - lb.defesa
+                        lb.hp -= total
                         lb.dano -= 1
-                    }, area: true, des: 'Golpeia o solo com sua espada, assim abrindo buracos no solo, destabilizando os inimigos, os fazendo perder 1 de ataque.',
+                    }, area: true, des: 'Golpeia o solo com sua espada, assim abrindo buracos no solo, destabilizando os inimigos, os fazendo perder 1 de ataque e causando <span class="dano">+10%</span> de dano.',
                     posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
                 habilidade4 = {
-                    
-                    nome: 'Take Jeruzalém!', totalDan: (100 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((100 + guerreiro.dano) - lb.defesa)
+
+                    nome: 'Take Jeruzalém!', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 30) / 100), dano: function (lb) {
+                        let total = this.totalDan - lb.defesa
+                        lb.hp -= total
                         guerreiro.defesa += 20
-                        quantidade -= 1
-                    }, area: true, des: 'Se fortalece com um grito de guerra, atropela os inimigos a sua frente e aumenta 20 pontos de defesa.',
+
+                    }, area: true, des: 'Se fortalece com um grito de guerra, atropela os inimigos a sua frente, aumentando 20 pontos de defesa e causando <span class="dano">+30%</span> de dano.',
                     posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
@@ -177,96 +195,113 @@ function subClasseName() {
             }
             break
         case '2':
+           
             if (subClasse == '1') {
+                btn.addEventListener('click', parte1)
                 btn.style.visibility = 'visible'
                 dialogo.innerHTML = `<p>Guarda:<br><br> Certo, então pegue esta arma...<br><br>Você Recebeu um Livro mágico da destruição !</p>`
-                baseDamage = 300
-                baseHp = 200
+                baseDamage = 250
+                baseHp = 250
                 baseDefense = 0
-                guerreiro = { class: 'Mago destruidor', arma: 'Livro mágico da destruição ', dano: 300, hp: 200, defesa: 0 }
+                guerreiro = { class: 'Mago destruidor', arma: 'Livro mágico da destruição ', dano: 200, hp: 250, defesa: 1 }
                 quantidade = 4
                 baseQuantity = 4
                 habilidade1 = {
-                    nome: 'Lanças de raios', totalDan: (100 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((100 + guerreiro.dano) - lb.defesa)
-                    }, area: true, des: 'Cria um conjunto de lanças construidas por raios, assim empalando e eletrocutando os inimigos',
+                    nome: 'Lanças de raios', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 40) / 100), dano: function (lb) {
+                        let total = this.totalDan - lb.defesa
+                        lb.hp -= total
+                    }, area: true, des: `Cria um conjunto de lanças construidas por raios, assim empalando e eletrocutando os inimigos, causando <span class="dano">+40%</span> de dano.`,
                     posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
                 habilidade2 = {
-                    nome: 'Bola de fogo comprimida', totalDan: (100 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((100 + guerreiro.dano) - lb.defesa)
-                    }, area: true, des: 'Comprime magia de fogo no seu limite e depois a solta nos inmigos, causando uma explossão flamejante queimando os mesmos.',
+                    nome: 'Bola de fogo comprimida', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 40) / 100), dano: function (lb) {
+                        let total = this.totalDan - lb.defesa
+                        lb.hp -= total
+                    }, area: true, des: `Comprime magia de fogo no seu limite e depois a solta nos inmigos, causando uma explossão flamejante queimando os mesmos e causando <span class="dano">+40%</span> de dano.`,
                     posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
                 habilidade3 = {
-                    nome: 'Tornado cortante', totalDan: (100 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((100 + guerreiro.dano) - lb.defesa)
-                    }, area: true, des: 'Conjura um tornado que vai varrendo os inimigos seja onde por onde passar !.',
+                    nome: 'Tornado cortante', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 40) / 100), dano: function (lb) {
+                        let total = this.totalDan - lb.defesa
+                        lb.hp -= total
+                    }, area: true, des: `Conjura um tornado que vai varrendo os inimigos seja onde por onde passar, causando <span class="dano">+40%</span> de dano..`,
                     posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
                 habilidade4 = {
-                    
-                    nome: 'Chuva de meteoros', totalDan: (200 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((200 + guerreiro.dano) - lb.defesa)
-                        quantidade -= 1
-                    }, area: true, des: 'Invoca uma série de meteoros mágicos, atingindo qualquer inimigo abaixo do céu !',
+
+                    nome: 'Chuva de meteoros', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 70) / 100), dano: function (lb) {
+                        let total = this.totalDan - lb.defesa
+                        lb.hp -= total
+                    }, area: true, des: `Invoca uma série de meteoros mágicos, atingindo qualquer inimigo abaixo do céu, causando <span class="dano">+70%</span> de dano.`,
                     posSkill: function () {
                         return `${playerName} usou a ultimate ${this.nome} !`
                     }
                 }
             } else if (subClasse == '2') {
+                btn.addEventListener('click', parte1)
                 btn.style.visibility = 'visible'
                 dialogo.innerHTML = `<p>Guarda:<br><br> Certo, então pegue esta arma...<br><br>Você Recebeu um Livro mágico do controle !</p>`
-                baseDamage = 200
+                baseDamage = 150
                 baseHp = 250
                 baseDefense = 0
-                guerreiro = { class: 'Mago de controle', arma: 'Livro mágico do controle ', dano: 200, hp: 250, defesa: 0 }
-                quantidade = 4
+                guerreiro = { class: 'Mago de controle', arma: 'Livro mágico do controle ', dano: 150, hp: 250, defesa: 1 }
+                quantidade = 2
                 baseQuantity = 4
                 habilidade1 = {
-                    nome: 'Congelar', totalDan: (50 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((50 + guerreiro.dano) - lb.defesa)
-                        lb.dano -= 1
-                    }, area: 'true', des: 'Muda o clima do ambiente para o 0 absoluto,congela todos os inimigos em campo, E assim fazendo cada um perder 1 de ataque !', posSkill: function () {
+                    nome: 'Congelar', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 25) / 100), dano: function (lb) {
+                        let total = (this.totalDan - lb.defesa)
+                        lb.hp -= total
+                        if(lb.dano > 3){
+                            lb.dano -= 1
+                        }else if(lb.dano <= 3){
+                            lb.dano -= 0
+                        }
+                       
+                    }, area: 'true', des: `Muda o clima do ambiente para o 0 absoluto,congela todos os inimigos em campo, E assim fazendo cada um perder 1 de ataque e causando <span class="dano">+25%</span> de dano.`, posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
                 habilidade2 = {
-                    nome: 'Maré', totalDan: (50 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((50 + guerreiro.dano) - lb.defesa)
-                        lb.defesa -= 1
-                    }, area: false, des: 'Provoca uma maré com fortes correntes de água, causando dano e fazendo os inimigos perderem 1 de defesa', posSkill: function () {
+                    nome: 'Maré', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 25) / 100), dano: function (lb) {
+                        let total = this.totalDan - lb.defesa
+                        lb.hp -= total
+                        lb.defesa -= 2
+                    }, area: false, des: 'Provoca uma maré com fortes correntes de água, causando dano e fazendo os inimigos perderem 2 de defesa e causando <span class="dano">+25%</span> de dano.', posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
                 habilidade3 = {
-                    nome: 'Terremoto', totalDan: (60 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((60 + guerreiro.dano) - lb.defesa)
-                    }, area: true, des: 'Manipula as placas tectonicas, fazendo as mesmas provocarem um terremoto.', posSkill: function () {
+                    nome: 'Terremoto', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 35) / 100), dano: function (lb) {
+                        let total = this.totalDan - lb.defesa
+                        lb.hp -= total
+                    }, area: true, des: 'Manipula as placas tectonicas, fazendo as mesmas provocarem um terremoto e causando <span class="dano">+33%</span> de dano.', posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
                 habilidade4 = {
-                    
-                    nome: 'Monte do gelo mágico', totalDan: (100 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((100 + guerreiro.dano) - lb.defesa)
+
+                    nome: 'Monte do gelo mágico', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 50) / 100), dano: function (lb) {
+                        let total = this.totalDan - lb.defesa
+                        lb.hp -= total
                         lb.dano -= 5
                         guerreiro.defesa += 5
-                        quantidade -= 1
-                    }, area: true, des: 'Conjura um enorme monte de gelo de baixo dos inimigos, causando dano diminuindo o dano dos adversário e aumentando a própria defesa.', posSkill: function () {
+
+                    }, area: true, des: 'Conjura um enorme monte de gelo de baixo dos inimigos, diminuindo 5 de dano dos adversários, aumentando 5 a própria defesa e causando <span class="dano">+50%</span> de dano.', posSkill: function () {
                         return `${playerName} usou a ultimate ${this.nome} !`
                     }
                 }
             }
             break
         case '3':
+      
             if (subClasse == '1') {
+                btn.addEventListener('click', parte1)
                 btn.style.visibility = 'visible'
                 dialogo.innerHTML = `<p>Guarda:<br><br> Certo, então pegue esta arma...<br><br>Você Recebeu uma Katana !</p>`
                 baseDamage = 200
@@ -277,42 +312,43 @@ function subClasseName() {
                 quantidade = 4
                 baseQuantity = 4
                 habilidade1 = {
-                    nome: 'konoha senpuu', totalDan: (60 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((60 + guerreiro.dano) - lb.defesa)
-                    }, area: false, des: 'Golpea o inimigo com aquela clássica voadora do Rock Lee ! "Referencia de Naruto"', posSkill: function () {
+                    nome: 'konoha senpuu', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 50) / 100), dano: function (lb) {
+                        lb.hp -= (this.totalDan - lb.defesa)
+                    }, area: false, des: `Golpea o inimigo com aquela clássica voadora do Rock Lee, causando <span class="dano">+50%</span> de dano.`, posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
 
 
                 habilidade2 = {
-                    nome: 'Corte das sombras', totalDan: (100 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((100 + guerreiro.dano) - lb.defesa)
-                    }, area: false, des: 'Usa um jutsu para cegar o inimigo temporariamente, depois executa um corte rápido e preciso onde ele menos espera . ', posSkill: function () {
+                    nome: 'Corte das sombras', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 60) / 100), dano: function (lb) {
+                        lb.hp -= (this.totalDan - lb.defesa)
+                    }, area: false, des: `Usa um jutsu para cegar o inimigo temporariamente, depois executa um corte rápido e preciso onde ele menos espera, causando <span class="dano">+60%</span> de dano.`, posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
 
 
                 habilidade3 = {
-                    nome: 'Shurikens', totalDan: (50 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((50 + guerreiro.dano) - lb.defesa)
-                    }, area: true, des: "Lança shurikens e diversos inimigos !", posSkill: function () {
+                    nome: 'Shurikens', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 40) / 100), dano: function (lb) {
+                        lb.hp -= (this.totalDan - lb.defesa)
+                    }, area: true, des: `Lança shurikens nos inimigos, causando <span class="dano">+40%</span> de dano.`, posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
 
 
                 habilidade4 = {
-                    
-                    nome: 'Assasinato silencioso', totalDan: (350 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((400 + guerreiro.dano) - lb.defesa)
-                        quantidade -= 1
-                    }, area: false, des: 'Cria uma área em que o tempo passa mais devagar para inimigo, além do mesmo não poder ouvir ou enchergar nada, e assim acertando todos os pontos vitais do inimigo ! Quem apagou a luz ?!', posSkill: function () {
+
+                    nome: 'Assasinato silencioso', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 150) / 100), dano: function (lb) {
+                        lb.hp -= (this.totalDan - lb.defesa)
+
+                    }, area: false, des: 'Cria uma área em que o tempo passa mais devagar para inimigo, além do mesmo não poder ouvir ou enchergar nada, e assim acertando todos os pontos vitais do inimigo, causando <span class="dano">+150%</span> de dano.', posSkill: function () {
                         return `${playerName} usou a ultimate ${this.nome} !`
                     }
                 }
             } else if (subClasse == '2') {
+                btn.addEventListener('click', parte1)
                 btn.style.visibility = 'visible'
                 dialogo.innerHTML = `<p>Guarda:<br><br> Certo, então pegue esta arma...<br><br>Você Recebeu as Adagas vampíricas !</p>`
                 baseDamage = 150
@@ -323,35 +359,45 @@ function subClasseName() {
                 quantidade = 4
                 baseQuantity = 4
                 habilidade1 = {
-                    nome: 'Rasteira', totalDan: (50 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((50 + guerreiro.dano) - lb.defesa)
+                    nome: 'Rasteira', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 25) / 100), dano: function (lb) {
+                        let total = this.totalDan - lb.defesa
+                        lb.hp -= total
                         lb.dano -= 1
-                    }, area: false, des: 'Da uma rasteira no inimigo o destabilizando, fazendo-o perder 1 de ataque .', posSkill: function () {
+                    }, area: false, des: `Da uma rasteira no inimigo o destabilizando, fazendo-o perder 1 de dano e  causando <span class="dano">+25%</span> de dano.`, posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
                 habilidade2 = {
-                    nome: 'Golpe sujo', totalDan: (100 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((100 + guerreiro.dano) - lb.defesa)
-                    }, area: false, des: 'Cria ilusões para distrair o inmigo, assim o atacando pelas costas com suas adagas .', posSkill: function () {
+                    nome: 'Golpe sujo', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 35) / 100), dano: function (lb) {
+                        let total = this.totalDan - lb.defesa
+                        lb.hp -= total
+                    }, area: false, des: `Cria ilusões para distrair o inmigo, assim o atacando pelas costas com suas adagas, causando <span class="dano">+35%</span> de dano. .`, posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
                 habilidade3 = {
-                    nome: 'Furto de vitalidade', totalDan: (50 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((50 + guerreiro.dano) - lb.defesa)
-                        guerreiro.hp += 10
-                    }, area: true, des: 'Golpeia 2 inimigos com suas adagas vampiricas, sugando a vitalidade de ambos ! Ganhando assim 6 de vida', posSkill: function () {
+                    nome: 'Furto de vitalidade', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 25) / 100), dano: function (lb) {                     
+                        let total = this.totalDan - lb1.defesa
+                        lb.hp -= total
+                        guerreiro.hp += Math.round(((baseHp * 5) / 100) + ((total * 2) / 100))
+                    }, area: true, des: `Golpeia os inimigos com suas adagas vampíricas, causando <span class="dano">+25%</span> de dano e drenando 5% da sua vida máxima + 2% do dano total causado a cada inimigo.  `, posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
                 habilidade4 = {
-                    
-                    nome: 'Drácula', totalDan: (150 + guerreiro.dano), dano: function (lb) {
-                        lb.hp -= ((150 + guerreiro.dano) - lb.defesa)
-                        guerreiro.hp += 30
-                        quantidade -= 1
-                    }, area: false, des: 'Marca o inimigo ao desferir um golpe, e então a marca começa a drenar vitalidade do mesmo, retornando 30 de vida ao usuário !', posSkill: function () {
+
+                    nome: 'Drácula', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 80) / 100), dano: function (lb) {
+                        let total
+                        if (lb.dano == 0) {
+                            total = 0
+                        } else if (lb.dano > 1) {
+                            total = this.totalDan - lb.defesa
+                        }
+
+                        lb.hp -= total
+                        guerreiro.hp += Math.round(((baseHp * 20) / 100) + ((total * 10) / 100))
+
+                    }, area: false, des: 'Marca o inimigo ao desferir um golpe, e então a marca começa a drenar vitalidade do mesmo,causando <span class="dano">+80%</span> de dano, além retornando 20% de sua vida máxima + 10% do dano causado !', posSkill: function () {
                         return `${playerName} usou a ultimate ${this.nome} !`
                     }
                 }
@@ -363,14 +409,17 @@ function subClasseName() {
 function classeName() {
     classe = input.value
     if (classe == '1') {
+          btn.addEventListener('click', parte1)
         dialogo.innerHTML = `<p>Guarda:<br><br>Entendi, então você é um Cavaleiro !</p>`
         btn.style.visibility = 'visible'
 
     } else if (classe == '2') {
+          btn.addEventListener('click', parte1)
         dialogo.innerHTML = `<p>Guarda do coliseu:<br><br>Entendi, então você é um Mago !</p>`
         btn.style.visibility = 'visible'
 
     } else if (classe == '3') {
+          btn.addEventListener('click', parte1)
 
         dialogo.innerHTML = `<p>Guarda do coliseu:<br><br>Entendi, então você é um Assasino !</p>`
         btn.style.visibility = 'visible'
@@ -382,7 +431,7 @@ function parte1() {
 
     switch (part1) {
         case 1:
-            dialogo.innerHTML = ' <p>.................</p>'
+            dialogo.innerHTML = ' <p>Instruções:<br><br>Enter- Avançar<br>Space- Confirmar <br><br>Obss: Você pode digitar a opção escolhida sem precisar clicar no input.</p>'
             audio1.play()
             break
         case 2:
@@ -401,7 +450,7 @@ function parte1() {
             submit.style.visibility = 'visible'
             input.style.visibility = 'visible'
             btn.style.visibility = 'hidden'
-
+            btn.removeEventListener('click', parte1)
             submit.addEventListener('click', setName)
             break
         case 6:
@@ -426,7 +475,7 @@ function parte1() {
             submit.style.visibility = 'visible'
             input.style.visibility = 'visible'
             btn.style.visibility = 'hidden'
-
+            btn.removeEventListener('click', parte1)
             submit.addEventListener('click', classeName)
             break
         case 10:
@@ -439,6 +488,7 @@ function parte1() {
                 dialogo.innerHTML = '<p>Guarda: <br><br>Que tipo de assasino você é?<br><br>1- Assasino ninja<br>2- Assasino ladrão</p>'
             }
             input.value = ''
+            btn.removeEventListener('click', parte1)
             submit.removeEventListener('click', classeName)
             submit.addEventListener('click', subClasseName)
 
@@ -577,6 +627,7 @@ function parte2() {
             audio3.play()
             audio2.currentTime = 0
             audio2.pause()
+            audio1.pause()
             input.value = ''
             tela.innerHTML = ''
             dialogo.innerHTML = '<p>..............</p>'
@@ -600,51 +651,51 @@ function parte2() {
 
 
 let lobo1 = {
-    dano: 10, hp: 400, defesa: 0, dead1: function () {
+    dano: 5, hp: 400, defesa: 0, dead1: function () {
         this.dano = 0
-        this.hp = 0
+        this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo2 = {
-    dano: 10, hp: 400, defesa: 0, dead2: function () {
+    dano: 5, hp: 400, defesa: 0, dead2: function () {
         this.dano = 0
-        this.hp = 0
+        this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo3 = {
-    dano: 10, hp: 400, defesa: 0, dead3: function () {
+    dano: 5, hp: 400, defesa: 0, dead3: function () {
         this.dano = 0
-        this.hp = 0
+        this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo4 = {
-    dano: 10, hp: 400, defesa: 0, dead4: function () {
+    dano: 5, hp: 400, defesa: 0, dead4: function () {
         this.dano = 0
-        this.hp = 0
+        this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo5 = {
-    dano: 10, hp: 400, defesa: 0, dead5: function () {
+    dano: 5, hp: 400, defesa: 0, dead5: function () {
         this.dano = 0
-        this.hp = 0
+        this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo6 = {
-    dano: 10, hp: 400, defesa: 0, dead6: function () {
+    dano: 5, hp: 400, defesa: 0, dead6: function () {
         this.dano = 0
-        this.hp = 0
+        this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo7 = {
-    dano: 10, hp: 400, defesa: 0, dead7: function () {
+    dano: 5, hp: 400, defesa: 0, dead7: function () {
         this.dano = 0
-        this.hp = 0
+        this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo8 = {
     dano: 5, hp: 400, defesa: 0, dead8: function () {
         this.dano = 0
-        this.hp = 0
+        this.hp = `<span class="morto">0</span>`
     }
 }
 
@@ -897,10 +948,10 @@ function atacarLobo() {
         switch (loboAtacado) {
             case '1':
                 if (skillEscolhida == "1") {
-                    habilidade4.dano(lobo1)
-                    habilidade4.dano(lobo2)
-                    habilidade4.dano(lobo3)
-                    habilidade4.dano(lobo4)
+                    habilidade1.dano(lobo1)
+                    habilidade1.dano(lobo2)
+                    habilidade1.dano(lobo3)
+                    habilidade1.dano(lobo4)
                     submit.removeEventListener('click', atacarLobo)
                     dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano} de Dano !</p>`
                     guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
@@ -909,10 +960,10 @@ function atacarLobo() {
                     btn.style.visibility = 'visible'
                     btn.addEventListener('click', parte3)
                 } else if (skillEscolhida == "2") {
-                    habilidade4.dano(lobo1)
-                    habilidade4.dano(lobo2)
-                    habilidade4.dano(lobo3)
-                    habilidade4.dano(lobo4)
+                    habilidade2.dano(lobo1)
+                    habilidade2.dano(lobo2)
+                    habilidade2.dano(lobo3)
+                    habilidade2.dano(lobo4)
                     lobo1.hp -= (guerreiro.dano + habilidade2.dano)
                     dialogo.innerHTML = `<p>${habilidade2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
                     guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
@@ -921,10 +972,10 @@ function atacarLobo() {
                     btn.style.visibility = 'visible'
                     btn.addEventListener('click', parte3)
                 } else if (skillEscolhida == "3") {
-                    habilidade4.dano(lobo1)
-                    habilidade4.dano(lobo2)
-                    habilidade4.dano(lobo3)
-                    habilidade4.dano(lobo4)
+                    habilidade3.dano(lobo1)
+                    habilidade3.dano(lobo2)
+                    habilidade3.dano(lobo3)
+                    habilidade3.dano(lobo4)
                     submit.removeEventListener('click', atacarLobo)
 
                     dialogo.innerHTML = `<p>${habilidade3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
@@ -955,9 +1006,9 @@ function atacarLobo() {
 
                 if (skillEscolhida == "1") {
                     submit.removeEventListener('click', atacarLobo)
-                    habilidade4.dano(lobo5)
-                    habilidade4.dano(lobo6)
-                    habilidade4.dano(lobo7)
+                    habilidade1.dano(lobo5)
+                    habilidade2.dano(lobo6)
+                    habilidade3.dano(lobo7)
                     habilidade4.dano(lobo8)
                     dialogo.innerHTML = `<p>${habilidade1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
                     guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
@@ -966,10 +1017,10 @@ function atacarLobo() {
                     btn.style.visibility = 'visible'
                     btn.addEventListener('click', parte3)
                 } else if (skillEscolhida == "2") {
-                    habilidade4.dano(lobo5)
-                    habilidade4.dano(lobo6)
-                    habilidade4.dano(lobo7)
-                    habilidade4.dano(lobo8)
+                    habilidade2.dano(lobo5)
+                    habilidade2.dano(lobo6)
+                    habilidade2.dano(lobo7)
+                    habilidade2.dano(lobo8)
                     submit.removeEventListener('click', atacarLobo)
                     lobo2.hp -= (guerreiro.dano + habilidade2.dano)
                     dialogo.innerHTML = `<p>${habilidade2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
@@ -979,10 +1030,10 @@ function atacarLobo() {
                     btn.style.visibility = 'visible'
                     btn.addEventListener('click', parte3)
                 } else if (skillEscolhida == "3") {
-                    habilidade4.dano(lobo5)
-                    habilidade4.dano(lobo6)
-                    habilidade4.dano(lobo7)
-                    habilidade4.dano(lobo8)
+                    habilidade3.dano(lobo5)
+                    habilidade3.dano(lobo6)
+                    habilidade3.dano(lobo7)
+                    habilidade3.dano(lobo8)
                     submit.removeEventListener('click', atacarLobo)
 
                     dialogo.innerHTML = `<p>${habilidade3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
@@ -1017,6 +1068,7 @@ function atacarLobo() {
                 } else if (skillEscolhida == "3") {
                     habilidade3.dano(lobo1)
                     habilidade3.dano(lobo2)
+                    
                     dialogo.innerHTML = `<p>${habilidade3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
                     guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
                     submit.style.visibility = 'hidden'
@@ -1304,27 +1356,28 @@ function escolherSkill() {
                 submit.removeEventListener('click', escolherSkill)
                 submit.addEventListener('click', atacarLobo)
             } else if (skillEscolhida == "4") {
-                keys = ['1', '2']
-                dialogo.innerHTML = `<p>Escolha a leva de lobos você quer atacar: <br><br><br>1 Lobo1-<span>${lobo1.hp}</span> | Lobo2-<span>${lobo2.hp}</span> | Lobo3-<span>${lobo3.hp}</span> | Lobo4-<span>${lobo4.hp}</span><br>2 Lobo5-<span>${lobo5.hp}</span> | Lobo6-<span>${lobo6.hp}</span> | Lobo7-<span>${lobo7.hp}</span> | Lobo8-<span>${lobo8.hp}</span><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
-                submit.removeEventListener('click', escolherSkill)
-                submit.addEventListener('click', atacarLobo)
-            } 
-             if (skillEscolhida == "4" && quantidade == 0) {
-                 skillEscolhida = ''
-                part5 = 0
-                submit.removeEventListener('click', escolherSkill)
-                submit.removeEventListener('click', atacarLobo)
+                if (quantidade < 1) {
+                    keys = []
+                    dialogo.innerHTML = `<p>Você não pode mais usar esta skill!</p>`
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                    skillEscolhida = ''
+                    submit.removeEventListener('click', escolherSkill)
+                    submit.removeEventListener('click', atacarLobo)
+                    btn.addEventListener('click', parte3)
+                    part3 = 0
+                } else if (quantidade >= 1) {
+                    quantidade -= 1
+                    keys = ['1', '2']
+                    dialogo.innerHTML = `<p>Escolha a leva de lobos você quer atacar: <br><br><br>1 Lobo1-<span>${lobo1.hp}</span> | Lobo2-<span>${lobo2.hp}</span> | Lobo3-<span>${lobo3.hp}</span> | Lobo4-<span>${lobo4.hp}</span><br>2 Lobo5-<span>${lobo5.hp}</span> | Lobo6-<span>${lobo6.hp}</span> | Lobo7-<span>${lobo7.hp}</span> | Lobo8-<span>${lobo8.hp}</span><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+                    submit.removeEventListener('click', escolherSkill)
+                    submit.addEventListener('click', atacarLobo)
+                }
 
-                dialogo.innerHTML = `<p>Você não pode mais usar esta skill!</p>`
-                submit.removeEventListener('click', escolherSkill)
-                submit.removeEventListener('click', atacarLobo)
-                submit.style.visibility = 'hidden'
-                input.style.visibility = 'hidden'
-                btn.style.visibility = 'visible'
-                keys = []
-                btn.addEventListener('click', parte5)
-                part5 = 0
             }
+
             break
         case '2':
             if (skillEscolhida == "1") {
@@ -1343,26 +1396,31 @@ function escolherSkill() {
                 submit.removeEventListener('click', escolherSkill)
                 submit.addEventListener('click', atacarLobo)
             } else if (skillEscolhida == "4") {
-                keys = ['1']
-                dialogo.innerHTML = `<p>Ataque os lobos: <br><br><br>1 Lobo1-<span>${lobo1.hp}</span> | Lobo2-<span>${lobo2.hp}</span> | Lobo3-<span>${lobo3.hp}</span> | Lobo4-<span>${lobo4.hp}</span> Lobo5-<span>${lobo5.hp}</span> | Lobo6-<span>${lobo6.hp}</span> | Lobo7-<span>${lobo7.hp}</span> | Lobo8-<span>${lobo8.hp}</span></p>`
-                submit.removeEventListener('click', escolherSkill)
-                submit.addEventListener('click', atacarLobo)
-            } 
-             if (skillEscolhida == "4" && quantidade == 0) {
-                 skillEscolhida = ''
-                part5 = 0
-                submit.removeEventListener('click', escolherSkill)
-                submit.removeEventListener('click', atacarLobo)
-                
-                dialogo.innerHTML = `<p>Você não pode mais usar esta skill!</p>`
-                submit.style.visibility = 'hidden'
-                input.style.visibility = 'hidden'
-                btn.style.visibility = 'visible'
-                keys = []
-                btn.addEventListener('click', parte5)
+                if (quantidade < 1) {
+                    keys = []
+                    dialogo.innerHTML = `<p>Você não pode mais usar esta skill!</p>`
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                    skillEscolhida = ''
+                    submit.removeEventListener('click', escolherSkill)
+                    submit.removeEventListener('click', atacarLobo)
+                    btn.addEventListener('click', parte3)
+                    part3 = 0
+                } else if (quantidade >= 1) {
+                    quantidade -= 1
+                    keys = ['1']
+                    dialogo.innerHTML = `<p>Ataque os lobos: <br><br><br>1 Lobo1-<span>${lobo1.hp}</span> | Lobo2-<span>${lobo2.hp}</span> | Lobo3-<span>${lobo3.hp}</span> | Lobo4-<span>${lobo4.hp}</span> Lobo5-<span>${lobo5.hp}</span> | Lobo6-<span>${lobo6.hp}</span> | Lobo7-<span>${lobo7.hp}</span> | Lobo8-<span>${lobo8.hp}</span></p>`
+                    submit.removeEventListener('click', escolherSkill)
+                    submit.addEventListener('click', atacarLobo)
+                }
+
             }
+
             break
         case '3':
+
             if (skillEscolhida == "1") {
                 keys = ['1', '2', '3', '4', '5', '6', '7', '8']
                 dialogo.innerHTML = `<p>Escolha o lobo que você quer atacar: <br><br><br> 1 Lobo1-<span>${lobo1.hp}</span> | 2 Lobo2-<span>${lobo2.hp}</span> | 3 Lobo3-<span>${lobo3.hp}</span> | 4 Lobo4-<span>${lobo4.hp}</span> | 5 Lobo5-<span>${lobo5.hp}</span> | 6 Lobo6-<span>${lobo6.hp}</span>  7 Lobo7-<span>${lobo7.hp}</span> | 8 Lobo8-<span>${lobo8.hp}</span><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
@@ -1379,24 +1437,28 @@ function escolherSkill() {
                 submit.removeEventListener('click', escolherSkill)
                 submit.addEventListener('click', atacarLobo)
             } else if (skillEscolhida == "4") {
-                keys = ['1', '2', '3', '4', '5', '6', '7', '8']
-                dialogo.innerHTML = `<p>Escolha o lobo que você quer atacar: <br><br><br> 1 Lobo1-<span>${lobo1.hp}</span> | 2 Lobo2-<span>${lobo2.hp}</span> | 3 Lobo3-<span>${lobo3.hp}</span> | 4 Lobo4-<span>${lobo4.hp}</span> | 5 Lobo5-<span>${lobo5.hp}</span> | 6 Lobo6-<span>${lobo6.hp}</span>  7 Lobo7-<span>${lobo7.hp}</span> | 8 Lobo8-<span>${lobo8.hp}</span><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
-                submit.removeEventListener('click', escolherSkill)
-                submit.addEventListener('click', atacarLobo)
-            } 
-             if (skillEscolhida == "4" && quantidade == 0) {
-                 skillEscolhida = ''
-                part5 = 0
-                submit.removeEventListener('click', escolherSkill)
-                submit.removeEventListener('click', atacarLobo)
+                if (quantidade < 1) {
+                    keys = []
+                    dialogo.innerHTML = `<p>Você não pode mais usar esta skill!</p>`
+                    submit.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    btn.style.visibility = 'visible'
+                    btn.addEventListener('click', parte3)
+                    skillEscolhida = ''
+                    submit.removeEventListener('click', escolherSkill)
+                    submit.removeEventListener('click', atacarLobo)
+                    btn.addEventListener('click', parte3)
+                    part3 = 0
+                } else if (quantidade >= 1) {
+                    quantidade -= 1
+                    keys = ['1', '2', '3', '4', '5', '6', '7', '8']
+                    dialogo.innerHTML = `<p>Escolha o lobo que você quer atacar: <br><br><br> 1 Lobo1-<span>${lobo1.hp}</span> | 2 Lobo2-<span>${lobo2.hp}</span> | 3 Lobo3-<span>${lobo3.hp}</span> | 4 Lobo4-<span>${lobo4.hp}</span> | 5 Lobo5-<span>${lobo5.hp}</span> | 6 Lobo6-<span>${lobo6.hp}</span>  7 Lobo7-<span>${lobo7.hp}</span> | 8 Lobo8-<span>${lobo8.hp}</span><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+                    submit.removeEventListener('click', escolherSkill)
+                    submit.addEventListener('click', atacarLobo)
+                }
 
-                dialogo.innerHTML = `<p>Você não pode mais usar esta skill!</p>`
-                submit.style.visibility = 'hidden'
-                input.style.visibility = 'hidden'
-                btn.style.visibility = 'visible'
-                keys = []
-                btn.addEventListener('click', parte5)
             }
+
             break
     }
 
@@ -1408,35 +1470,60 @@ function parte3() {
 
     switch (part3) {
         case 1:
-            if (quantidade != 1 && quantidade != 2 && quantidade != 3 & quantidade != 4) {
-    quantidade = 0
-}
-            if (lobo1.hp < 1) {
+            if (quantidade <= 0) {
+                quantidade = 0
+            }
+            if (lobo1.hp < 1 || lobo1.dano < 1) {
                 lobo1.dead1()
             }
-            if (lobo2.hp < 1) {
+            if (lobo2.hp < 1 || lobo2.dano < 1) {
                 lobo2.dead2()
             }
-            if (lobo3.hp < 1) {
+            if (lobo3.hp < 1 || lobo3.dano < 1) {
                 lobo3.dead3()
             }
-            if (lobo4.hp < 1) {
+            if (lobo4.hp < 1 || lobo4.dano < 1) {
                 lobo4.dead4()
             }
-            if (lobo5.hp < 1) {
+            if (lobo5.hp < 1 || lobo5.dano < 1) {
                 lobo5.dead5()
             }
-            if (lobo6.hp < 1) {
+            if (lobo6.hp < 1 || lobo6.dano < 1) {
                 lobo6.dead6()
             }
-            if (lobo7.hp < 1) {
+            if (lobo7.hp < 1 || lobo7.dano < 1) {
                 lobo7.dead7()
             }
-            if (lobo8.hp < 1) {
+            if (lobo8.hp < 1 || lobo8.dano < 1) {
                 lobo8.dead8()
             }
 
-            
+            if (lobo1.defesa < 1) {
+                lobo1.defesa = 0
+            }
+            if (lobo2.defesa < 1) {
+                lobo2.defesa = 0
+            }
+            if (lobo3.defesa < 1) {
+                lobo3.defesa = 0
+            }
+            if (lobo4.defesa < 1) {
+                lobo4.defesa = 0
+            }
+            if (lobo5.defesa < 1) {
+                lobo5.defesa = 0
+            }
+            if (lobo6.defesa < 1) {
+                lobo6.defesa = 0
+            }
+            if (lobo7.defesa < 1) {
+                lobo7.defesa = 0
+            }
+            if (lobo8.defesa < 1) {
+                lobo8.defesa = 0
+            }
+
+
             skillEscolhida = ''
             loboAtacado = ''
             submit.addEventListener('click', escolherSkill)
@@ -1446,12 +1533,9 @@ function parte3() {
             input.style.visibility = 'visible'
             btn.style.visibility = 'hidden'
             keys = ['1', '2', '3', '4']
-            dialogo.innerHTML = `<p>Lobo1-<span>${lobo1.hp}</span> | Lobo2-<span>${lobo2.hp}</span> | Lobo3-<span>${lobo3.hp}</span> | Lobo4-<span>${lobo4.hp}</span> | Lobo5-<span>${lobo5.hp}</span> | Lobo6-<span>${lobo6.hp}</span>  Lobo7-<span>${lobo7.hp}</span> | Lobo8-<span>${lobo8.hp}</span><br><br>1 ${habilidade1.nome} : ${habilidade1.des} danototal: ${habilidade1.totalDan}<br>2 ${habilidade2.nome} : ${habilidade2.des} danototal: ${habilidade2.totalDan}<br>3 ${habilidade3.nome} : ${habilidade3.des} danototal: ${habilidade3.totalDan}<br>4 ${habilidade4.nome} : ${habilidade4.des} danototal: ${habilidade4.totalDan} <br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+            dialogo.innerHTML = `<p>Lobo1-<span>${lobo1.hp}</span> | Lobo2-<span>${lobo2.hp}</span> | Lobo3-<span>${lobo3.hp}</span> | Lobo4-<span>${lobo4.hp}</span> | Lobo5-<span>${lobo5.hp}</span> | Lobo6-<span>${lobo6.hp}</span>  Lobo7-<span>${lobo7.hp}</span> | Lobo8-<span>${lobo8.hp}</span><br><br>1 ${habilidade1.nome} : ${habilidade1.des} danototal: ${habilidade1.totalDan}<br>2 ${habilidade2.nome} : ${habilidade2.des} danototal: ${habilidade2.totalDan}<br>3 ${habilidade3.nome} : ${habilidade3.des} danototal: ${habilidade3.totalDan}<br>4 ${habilidade4.nome} : ${habilidade4.des} danototal: ${habilidade4.totalDan} restam: ${quantidade} <br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
 
-            
-
-
-            if (lobo1.hp == 0 && lobo2.hp == 0 && lobo3.hp == 0 && lobo4.hp == 0 && lobo5.hp == 0 && lobo6.hp == 0 && lobo7.hp == 0 && lobo8.hp == 0) {
+            if (lobo1.dano == 0 && lobo2.dano == 0 && lobo3.dano == 0 && lobo4.dano == 0 && lobo5.dano == 0 && lobo6.dano == 0 && lobo7.dano == 0 && lobo8.dano == 0) {
                 submit.removeEventListener('click', escolherSkill)
                 submit.removeEventListener('click', atacarLobo)
                 btn.addEventListener('click', parte4)
@@ -1462,6 +1546,7 @@ function parte3() {
                 dialogo.innerHTML = `<p>Você matou todos os lobos !<br><br><br>${playerName} ganhou 500Xp</p>`
             }
             if (guerreiro.hp < 1) {
+                guerreiro.hp = 0
                 btn.addEventListener('click', preparo)
                 submit.removeEventListener('click', atacarLobo)
                 submit.removeEventListener('click', escolherSkill)
@@ -1533,9 +1618,10 @@ function parte4() {
 
 
 let fenrir = {
-    dano: 30, hp: 2000, defesa: 20, dead: function () {
+    dano: 20, hp: 1500, defesa: 20, dead:function () {
         this.dano = 0
-        this.hp = 0
+        this.hp = `<span class="morto">0</span>`
+        this.defesa = 0
     }
 }
 
@@ -1569,7 +1655,7 @@ function atacarFenrir() {
                 btn.addEventListener('click', parte5)
                 submit.removeEventListener('click', atacarFenrir)
             } else if (skillEscolhida2 == '3') {
-                habilidade3.dano(fenrir)
+                fenrir.hp -= habilidade3.totalDan
                 dialogo.innerHTML = `<p>${habilidade3.posSkill()} <br><br><br>Fenrir revidou causando: ${fenrir.dano} de Dano !</p>`
                 guerreiro.hp -= (fenrir.dano)
                 submit.style.visibility = 'hidden'
@@ -1615,17 +1701,25 @@ function escolherSkill2() {
         submit.removeEventListener('click', escolherSkill2)
         submit.addEventListener('click', atacarFenrir)
     } else if (skillEscolhida2 == "4") {
-        keys = ['1']
-        dialogo.innerHTML = `<p>Ataque o Fenrir: <br><br><br> 1 Fenrir"Boss"-<span>${fenrir.hp}</span><br><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
-        submit.removeEventListener('click', escolherSkill2)
-        submit.addEventListener('click', atacarFenrir)
-    } else if (skillEscolhida2 == "4" && quantidade == 0) {
-        keys = []
-        dialogo.innerHTML = `<p>Você não pode mais usar esta skill!</p>`
-        submit.style.visibility = 'hidden'
-        input.style.visibility = 'hidden'
-        btn.style.visibility = 'visible'
-        btn.addEventListener('click', parte5)
+        if (quantidade < 1) {
+            keys = []
+            dialogo.innerHTML = `<p>Você não pode mais usar esta skill!</p>`
+            submit.style.visibility = 'hidden'
+            input.style.visibility = 'hidden'
+            btn.style.visibility = 'visible'
+            btn.addEventListener('click', parte5)
+            skillEscolhida2 = ''
+            submit.removeEventListener('click', escolherSkill2)
+            submit.removeEventListener('click', atacarFenrir)
+            part5 = 0
+        } else if (quantidade >= 1) {
+            quantidade -= 1
+            keys = ['1']
+            dialogo.innerHTML = `<p>Ataque o Fenrir: <br><br><br> 1 Fenrir"Boss"-<span>${fenrir.hp}</span><br><br><br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+            submit.removeEventListener('click', escolherSkill2)
+            submit.addEventListener('click', atacarFenrir)
+        }
+
     }
 }
 
@@ -1636,10 +1730,12 @@ function parte5() {
     input.value = ''
     switch (part5) {
         case 1:
-            if (quantidade != 1 && quantidade != 2 && quantidade != 3 & quantidade != 4) {
-    quantidade = 0
-}
-            
+            if (quantidade <= 0) {
+                quantidade = 0
+            }
+            if (fenrir.hp < 1) {
+                fenrir.dead()
+            }
             skillEscolhida2 = ''
             loboAtacado2 = ''
             submit.addEventListener('click', escolherSkill2)
@@ -1650,11 +1746,10 @@ function parte5() {
             btn.style.visibility = 'hidden'
 
             keys = ['1', '2', '3', '4']
-            dialogo.innerHTML = `<p>Fenrir-<span>${fenrir.hp}</span><br><br>1 ${habilidade1.nome} : ${habilidade1.des} danototal: ${habilidade1.totalDan}<br>2 ${habilidade2.nome} : ${habilidade2.des} danototal: ${habilidade2.totalDan}<br>3 ${habilidade3.nome} : ${habilidade3.des} danototal: ${habilidade3.totalDan}<br>4 ${habilidade4.nome} : ${habilidade4.des} danototal: ${habilidade4.totalDan} <br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+            dialogo.innerHTML = `<p>Fenrir-<span>${fenrir.hp}</span><br><br>1 ${habilidade1.nome} : ${habilidade1.des} danototal: ${habilidade1.totalDan}<br>2 ${habilidade2.nome} : ${habilidade2.des} danototal: ${habilidade2.totalDan}<br>3 ${habilidade3.nome} : ${habilidade3.des} danototal: ${habilidade3.totalDan}<br>4 ${habilidade4.nome} : ${habilidade4.des} danototal: ${habilidade4.totalDan} restam: ${quantidade} <br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
 
-            if (fenrir.hp < 1) {
+            if (fenrir.dano < 1 ) {
                 tela.innerHTML = `<img src="imagens/fenrirDead.png" alt="">`
-                fenrir.dead()
                 btn.addEventListener('click', parte6)
                 submit.style.visibility = 'hidden'
                 input.style.visibility = 'hidden'
@@ -1665,6 +1760,7 @@ function parte5() {
                 submit.addEventListener('click', escolherSkill2)
             }
             if (guerreiro.hp < 1) {
+                guerreiro.hp = 0
                 btn.addEventListener('click', preparo)
                 prepr = 0
                 submit.removeEventListener('click', atacarFenrir)
@@ -1703,6 +1799,10 @@ function parte5() {
                 lobo8.hp = 300
                 lobo8.defesa = 0
             }
+            if (fenrir.defesa < 1) {
+                fenrir.defesa = 0
+            }
+           
 
 
             break

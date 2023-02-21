@@ -7,11 +7,10 @@
 body {
     background-color: #000000;
     font-family: sans-serif;
-    visibility: visi;
 }
 
 #game {
-    height: 97vh;
+    height: 100%;
     width: 90vw;
     position: absolute;
     top: 50%;
@@ -32,7 +31,7 @@ body {
 #tela img {
     width: 450px;
     border-radius: 20px;
-    height: 420px;
+    height: 400px;
 }
 
 #dialogo {
@@ -42,7 +41,7 @@ body {
     font-size: 16px;
     font-weight: 500;
     line-height: 25px;
-    height: 260px;
+    height: 300px;
     width: 100%;
 }
 
@@ -66,10 +65,17 @@ body {
     font-size: 20px;
 }
 
+
 p span {
     color: #008000;
 }
 
+.morto{
+    color: #ff0000 !important;
+}
+.dano{
+    color: #ffa500 !important;
+}
 audio{
     visibility: hidden;
 }

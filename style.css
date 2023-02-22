@@ -40,7 +40,7 @@ body {
     color: #ffff;
     font-size: 16px;
     font-weight: 500;
-    line-height: 25px;
+    line-height: 16px;
     height: 300px;
     width: 100%;
 }
@@ -57,7 +57,7 @@ body {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 5px 3px;
+    padding: 7px 3px;
 }
 
 #inputs input {
@@ -65,142 +65,226 @@ body {
     font-size: 20px;
 }
 
-.info{
+.info {
     display: flex;
-    
+    flex-direction: column;
+    font-size: 20px;
+    row-gap: 20px;
+
 }
-.info .a1{
-    row-gap: 5px;
-    width: 30%;
+
+.skills {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    line-height: 20px;
+    row-gap: 20px;
 }
-.info .a2{
-     font-size: 17px;
-    width: 70%;
-    padding: 0 10px 0 10px;
+
+.iteração{
+    height: 40px;
 }
+
 p span {
     color: #008000;
 }
 
-.morto{
+.morto {
     color: #ff0000 !important;
 }
-.vivo{
-    color:  #008000 !important;
+
+.vivo {
+    color: #008000 !important;
 }
-.dano{
+
+.dano {
     color: #ffa500 !important;
 }
-.def{
-    color: blue !important;
+
+.def {
+    color: #0000ff !important;
 }
-audio{
+
+.arma {
+    font-size: 20px;
+    color: #ffff;
+}
+
+.className {
+    font-size: 20px;
+    color: #ffff;
+}
+
+.name {
+    font-size: 20px;
+    color: #ffff;
+
+}
+
+audio {
     visibility: hidden;
 }
 
 
 
-.botoes button{
+.botoes button {
     height: 100%;
-   margin: 0px 2px 0px 2px ;
-   width: 56px;
+    margin: 0px 2px 0px 2px;
+    width: 56px;
+}
+#submit{
+    height: 100%;
+    margin: 0px 2px 0px 2px;
+    width: 56px;
+}
+.dialogoComum {
+    line-height: 22px;
+    font-size: 19px;
+    display: flex;
 }
 
+.dialogoBatalha {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
 
-@media  (max-width: 987px){
-    
-    .info{
-        display: flex;
-        flex-direction: column;
-        row-gap: 10px;
-        padding: 5px;
-        
-    }
-    .info .a1{
-        width: 100%;
-    }
-    .info .a2{
-         font-size: 15px !important;
-        width: 100%;
-        padding: 0px ;
-    }
+.enemysName {
+    padding-bottom: 20px;
+}
+
+.dialogoBatalhaBoss {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.bossName {
+    padding-bottom: 20px;
+    font-size: 20px;
+}
+
+.statisticas {
+    padding-top: 15px;
+    font-size: 18px;
+}
+
+.ataque {
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 100px;
+    font-size: 19px;
+
+
+}
+
+.dialogoComum {
+    display: flex;
+    flex-direction: column;
+    row-gap: 100px;
+}
+
+@media (max-width: 1023px) {
+
+
 
     #dialogo {
-        height: 500px;
+        height: 370px;
     }
-    
+
 }
-@media (max-width: 600px){
+
+@media (max-width: 768px) {
     #game {
         height: 100%;
         width: 100%;
         padding: 0px 5px;
         row-gap: 10px;
     }
-    #dialogo p {
-        font-size: 15px;
-         height: 100%;
+
+
+    #tela {
+        width: 100%;
+        display: flex;
+        border-radius: 20px;
+        justify-content: center;
+        align-items: center;
     }
-    #dialogo {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20px;
-    height: 650px;
-    width: 100%;
 
-}
-  
-#tela {
-    width: 100%;
-    height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    #tela img {
+        height: 100%;
+        max-width: 400px;
+        min-width: 320px;
+        border-radius: 0px;
+
+    }
 }
 
-#tela img {
-    width: 100%;
-    border-radius: 0px;
-    height: 400px;
-}
-}
-@media  (max-width: 495px){
-    .botoes{
+@media (max-width: 480px) {
+    .statisticas {
+
+        font-size: 16px;
+    }
+
+    .botoes {
         height: 40px;
     }
-  .botoes button{
+
+    .botoes button {
         height: 100%;
-       margin: 0px 2px 0px 2px ;
-       width: 56px;
+        margin: 0px 2px 0px 2px;
+        width: 56px;
     }
+
     #inputs {
-    display: flex;
-    flex-direction: column;
-    justify-content: baseline;
-    align-items: center;
-    width: 100%;
-    row-gap: 15px;
-    padding: 5px 3px;
-}
-
-#inputs input {
-    padding: 6px;
-    font-size: 20px;
-}
-}
-@media screen and (max-width: 365px){
-    #iteraçao{
         display: flex;
-        flex-direction: column;
-    }
-    #dialogo {
-        font-size: 13px;
-        line-height: 20px;
-        height: 450px;
-    }
-    #game {
 
-        padding: 0px 0px;
-     
+        justify-content: baseline;
+        align-items: center;
+        width: 100%;
+        row-gap: 15px;
+        padding: 5px 3px;
     }
+
+    #inputs input {
+        padding: 6px;
+        font-size: 20px;
+    }
+
+    #dialogo {
+        height: 440px;
+    }
+
+    #input {
+        width: 100px;
+       
+    }
+    #submit{
+        width: 70px;
+        font-size: 16px;
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 365px) {
+    .dialogoBatalha {
+        font-size: 15px;
+        row-gap: 10px;
+
+    }
+
+    .info {
+
+        font-size: 16px;
+
+
+    }
+
+    .skills {
+
+        font-size: 16px;
+
+    }
+
 }

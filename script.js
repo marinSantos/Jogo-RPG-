@@ -79,12 +79,12 @@ document.addEventListener('keydown', function (ev) {
 advance.addEventListener('click', parte1)
 function setName() {
     if (input.value.length > 0) {
-        playerName = `<span class="name>input.value</span>"`
+        playerName = `<span class="name">${input.value}</span>`
         advance.addEventListener('click', parte1)
         advance.style.visibility = 'visible'
-        dialogo.innerHTML = ` <p class="dialogoComum">Você:<br><br>Meu nome é ${playerName}!</p>`
+        dialogo.innerHTML = ` <p class="dialogoComum"><a>Você:<br><br>Meu nome é ${playerName}!</a></p>`
     } else {
-        dialogo.innerHTML = ' <p class="dialogoComum">Guarda:<br><br>Você precisa colocar um nome...</p>'
+        dialogo.innerHTML = ' <p class="dialogoComum"><a>Guarda:<br><br>Você precisa colocar um nome...</a></p>'
 
     }
 }
@@ -293,9 +293,14 @@ function setSubClass() {
                         let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
                         lb.dano -= 5
-                        player.defesa += 5
+                       
+                        if(lb == fenrir){
+                            player.defesa += 5
+                        }else if(lb == lobo1){
+                            player.defesa += 0.5
+                        }
 
-                    }, area: true, des: 'Conjura um enorme monte de gelo de baixo dos inimigos, diminuindo 5 de dano dos adversários, aumentando 5 a própria defesa e causando <span class="dano">+50%</span> de dano.', posSkill: function () {
+                    }, area: true, des: 'Conjura um enorme monte de gelo de baixo dos inimigos, diminuindo 4 de dano dos adversários, aumentando 5 da própria defesa e causando <span class="dano">+50%</span> de dano.', posSkill: function () {
                         return `${playerName} usou a ultimate ${this.nome} !`
                     }
                 }
@@ -460,7 +465,7 @@ function parte1() {
         case 6:
             submit.removeEventListener('click', setName)
             input.value = ''
-            dialogo.innerHTML = `<p class="dialogoComum">Guarda:<br> <br>...<br>'${playerName}'.....<br>Este nome não me é estranho .......</p>`
+            dialogo.innerHTML = `<p class="dialogoComum"><a>Guarda:<br> <br>...<br>'${playerName}'.....<br>Este nome não me é estranho .......</a></p>`
             submit.style.visibility = 'hidden'
             input.style.visibility = 'hidden'
             advance.style.visibility = 'visible'
@@ -641,7 +646,7 @@ function parte2() {
             break
         case 2:
             tela.innerHTML = '<img src="imagens/plateia.png">'
-            dialogo.innerHTML = '<p class="dialogoComum"><br><br>Ao entrar no Torneio, ' + playerName + ' se depara com uma grande multidão, bradando em alta voz pelo o espetáculo que estava prestes a acontecer...</p>'
+            dialogo.innerHTML = `<p class="dialogoComum"><a><br><br>Ao entrar no Torneio,${playerName} se depara com uma grande multidão, bradando em alta voz pelo o espetáculo que estava prestes a acontecer...</a></p>`
             break
         case 3:
             tela.innerHTML = '<img src="imagens/portas.png">'

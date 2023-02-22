@@ -4,13 +4,14 @@ const dialogo = document.getElementById('dialogo')
 const input = document.getElementById('input')
 const submit = document.getElementById('submit')
 const btn = document.getElementById('btn')
+const voltar = document.getElementById('voltar')
 
 const audio1 = document.getElementById('audio1')
 const audio2 = document.getElementById('audio2')
 const audio3 = document.getElementById('audio3')
 const audio4 = document.getElementById('audio4')
 const separador2 = document.getElementById('separador2')
-
+let batalha = 0
 let part1 = 0
 let prepr = 0
 let part2 = 0
@@ -35,7 +36,7 @@ let keys = []
 
 if (part1 == 0) {
     dialogo.innerHTML = '<p><br><br>Esta é uma história de um  guerreiro, que buscava libertar sua esposa e seus filhos presos em um reino rival, após uma invasão do mesmo em sua terra natal, para isso ele teria que participar de um torneio na qual o vencedor teria direito de libertar alguns prisioneiros, qual será o desenrolar desta história?...............</p>'
-
+    voltar.style.visibility = 'hidden'
     submit.style.visibility = 'hidden'
     input.style.visibility = 'hidden'
     btn.style.visibility = 'visible'
@@ -89,7 +90,7 @@ function subClasseName() {
     subClasse = input.value
     switch (classe) {
         case '1':
-          
+
             if (subClasse == '1') {
                 btn.addEventListener('click', parte1)
                 btn.style.visibility = 'visible'
@@ -97,13 +98,13 @@ function subClasseName() {
 
                 baseDamage = 150
                 baseHp = 450
-                baseDefense = 10
+                baseDefense = 7
                 guerreiro = { class: 'Cavaleiro dizimador', arma: 'LongSword', dano: 150, hp: 450, defesa: 10 }
                 quantidade = 4
                 baseQuantity = 4
                 habilidade1 = {
                     nome: 'Corte transversal', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 35) / 100), dano: function (lb) {
-                        let total = this.totalDan - lb.defesa
+                        let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
 
                     }, area: false, des: `Corta o inimigo com sua espada causando <span class="dano">+35%</span> de dano.`,
@@ -114,7 +115,7 @@ function subClasseName() {
                 }
                 habilidade2 = {
                     nome: 'Ataque esgrima', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 25) / 100), dano: function (lb) {
-                        let total = this.totalDan - lb.defesa
+                        let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
                         lb.defesa -= 5
                     }, area: false, des: `Perfura o inimigo com a ponta de sua espada, diminuindo 5 de defesa e causando <span class="dano">+25%</span> de dano.`,
@@ -124,7 +125,7 @@ function subClasseName() {
                 }
                 habilidade3 = {
                     nome: 'Meia lua', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 20) / 100), dano: function (lb) {
-                        let total = this.totalDan - lb.defesa
+                        let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
                     }, area: true, des: `Lança vários projéteis com formato de meia Lua em multiplos inimigos, causando <span class="dano">+20%</span> de dano.`,
                     posSkill: function () {
@@ -134,7 +135,7 @@ function subClasseName() {
                 habilidade4 = {
 
                     nome: 'Mega meia lua', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 50) / 100), dano: function (lb) {
-                        let total = this.totalDan - lb.defesa
+                        let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
                     }, area: true, des: `Lança de sua espada um grande projétil com formato de meia-lua, causando <span class="dano">+50%</span> de dano.`,
                     posSkill: function () {
@@ -147,13 +148,13 @@ function subClasseName() {
                 dialogo.innerHTML = `<p>Guarda:<br><br> Certo, então pegue esta arma...<br><br>Você Recebeu uma SwordShild !</p>`
                 baseDamage = 120
                 baseHp = 650
-                baseDefense = 30
+                baseDefense = 10
                 guerreiro = { class: 'Cavaleiro Templário', arma: 'SwordShild ', dano: 120, hp: 650, defesa: 30 }
                 quantidade = 4
                 baseQuantity = 4
                 habilidade1 = {
                     nome: 'Corte lateral', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 18) / 100), dano: function (lb) {
-                        let total = this.totalDan - lb.defesa
+                        let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
                     }, area: false, des: 'Corta o inimigo com sua espada, causando <span class="dano">+18%</span> de dano.',
                     posSkill: function () {
@@ -162,17 +163,17 @@ function subClasseName() {
                 }
                 habilidade2 = {
                     nome: 'Ataque de escudo', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 13) / 100), dano: function (lb) {
-                        let total = this.totalDan - lb.defesa
+                        let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
-                        guerreiro.defesa += 5
-                    }, area: false, des: 'Golpeia o inimigo com seu escudo, aumentando também 5 de defesa e causando <span class="dano">+13%</span> de dano.',
+                        guerreiro.defesa += 1
+                    }, area: false, des: 'Golpeia o inimigo com seu escudo, aumentando também 1 de defesa e causando <span class="dano">+13%</span> de dano.',
                     posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
                 habilidade3 = {
                     nome: 'Fissura', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 10) / 100), dano: function (lb) {
-                        let total = this.totalDan - lb.defesa
+                        let total = ((this.totalDan - lb.defesa))
                         lb.hp -= total
                         lb.dano -= 1
                     }, area: true, des: 'Golpeia o solo com sua espada, assim abrindo buracos no solo, destabilizando os inimigos, os fazendo perder 1 de ataque e causando <span class="dano">+10%</span> de dano.',
@@ -183,11 +184,11 @@ function subClasseName() {
                 habilidade4 = {
 
                     nome: 'Take Jeruzalém!', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 30) / 100), dano: function (lb) {
-                        let total = this.totalDan - lb.defesa
+                        let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
-                        guerreiro.defesa += 20
+                        guerreiro.defesa += 10
 
-                    }, area: true, des: 'Se fortalece com um grito de guerra, atropela os inimigos a sua frente, aumentando 20 pontos de defesa e causando <span class="dano">+30%</span> de dano.',
+                    }, area: true, des: 'Se fortalece com um grito de guerra, atropela os inimigos a sua frente, aumentando 10 pontos de defesa e causando <span class="dano">+30%</span> de dano.',
                     posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
@@ -195,7 +196,7 @@ function subClasseName() {
             }
             break
         case '2':
-           
+
             if (subClasse == '1') {
                 btn.addEventListener('click', parte1)
                 btn.style.visibility = 'visible'
@@ -208,7 +209,7 @@ function subClasseName() {
                 baseQuantity = 4
                 habilidade1 = {
                     nome: 'Lanças de raios', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 40) / 100), dano: function (lb) {
-                        let total = this.totalDan - lb.defesa
+                        let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
                     }, area: true, des: `Cria um conjunto de lanças construidas por raios, assim empalando e eletrocutando os inimigos, causando <span class="dano">+40%</span> de dano.`,
                     posSkill: function () {
@@ -217,7 +218,7 @@ function subClasseName() {
                 }
                 habilidade2 = {
                     nome: 'Bola de fogo comprimida', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 40) / 100), dano: function (lb) {
-                        let total = this.totalDan - lb.defesa
+                        let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
                     }, area: true, des: `Comprime magia de fogo no seu limite e depois a solta nos inmigos, causando uma explossão flamejante queimando os mesmos e causando <span class="dano">+40%</span> de dano.`,
                     posSkill: function () {
@@ -226,7 +227,7 @@ function subClasseName() {
                 }
                 habilidade3 = {
                     nome: 'Tornado cortante', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 40) / 100), dano: function (lb) {
-                        let total = this.totalDan - lb.defesa
+                        let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
                     }, area: true, des: `Conjura um tornado que vai varrendo os inimigos seja onde por onde passar, causando <span class="dano">+40%</span> de dano..`,
                     posSkill: function () {
@@ -236,7 +237,7 @@ function subClasseName() {
                 habilidade4 = {
 
                     nome: 'Chuva de meteoros', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 70) / 100), dano: function (lb) {
-                        let total = this.totalDan - lb.defesa
+                        let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
                     }, area: true, des: `Invoca uma série de meteoros mágicos, atingindo qualquer inimigo abaixo do céu, causando <span class="dano">+70%</span> de dano.`,
                     posSkill: function () {
@@ -255,21 +256,21 @@ function subClasseName() {
                 baseQuantity = 4
                 habilidade1 = {
                     nome: 'Congelar', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 25) / 100), dano: function (lb) {
-                        let total = (this.totalDan - lb.defesa)
+                        let total = ((this.totalDan - lb.defesa))
                         lb.hp -= total
-                        if(lb.dano > 3){
+                        if (lb.dano > 3) {
                             lb.dano -= 1
-                        }else if(lb.dano <= 3){
+                        } else if (lb.dano <= 3) {
                             lb.dano -= 0
                         }
-                       
+
                     }, area: 'true', des: `Muda o clima do ambiente para o 0 absoluto,congela todos os inimigos em campo, E assim fazendo cada um perder 1 de ataque e causando <span class="dano">+25%</span> de dano.`, posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
                 habilidade2 = {
                     nome: 'Maré', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 25) / 100), dano: function (lb) {
-                        let total = this.totalDan - lb.defesa
+                        let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
                         lb.defesa -= 2
                     }, area: false, des: 'Provoca uma maré com fortes correntes de água, causando dano e fazendo os inimigos perderem 2 de defesa e causando <span class="dano">+25%</span> de dano.', posSkill: function () {
@@ -278,7 +279,7 @@ function subClasseName() {
                 }
                 habilidade3 = {
                     nome: 'Terremoto', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 35) / 100), dano: function (lb) {
-                        let total = this.totalDan - lb.defesa
+                        let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
                     }, area: true, des: 'Manipula as placas tectonicas, fazendo as mesmas provocarem um terremoto e causando <span class="dano">+33%</span> de dano.', posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
@@ -287,7 +288,7 @@ function subClasseName() {
                 habilidade4 = {
 
                     nome: 'Monte do gelo mágico', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 50) / 100), dano: function (lb) {
-                        let total = this.totalDan - lb.defesa
+                        let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
                         lb.dano -= 5
                         guerreiro.defesa += 5
@@ -299,7 +300,7 @@ function subClasseName() {
             }
             break
         case '3':
-      
+
             if (subClasse == '1') {
                 btn.addEventListener('click', parte1)
                 btn.style.visibility = 'visible'
@@ -313,7 +314,7 @@ function subClasseName() {
                 baseQuantity = 4
                 habilidade1 = {
                     nome: 'konoha senpuu', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 50) / 100), dano: function (lb) {
-                        lb.hp -= (this.totalDan - lb.defesa)
+                        lb.hp -= ((this.totalDan - lb.defesa))
                     }, area: false, des: `Golpea o inimigo com aquela clássica voadora do Rock Lee, causando <span class="dano">+50%</span> de dano.`, posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
@@ -322,7 +323,7 @@ function subClasseName() {
 
                 habilidade2 = {
                     nome: 'Corte das sombras', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 60) / 100), dano: function (lb) {
-                        lb.hp -= (this.totalDan - lb.defesa)
+                        lb.hp -= ((this.totalDan - lb.defesa))
                     }, area: false, des: `Usa um jutsu para cegar o inimigo temporariamente, depois executa um corte rápido e preciso onde ele menos espera, causando <span class="dano">+60%</span> de dano.`, posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
@@ -331,7 +332,7 @@ function subClasseName() {
 
                 habilidade3 = {
                     nome: 'Shurikens', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 40) / 100), dano: function (lb) {
-                        lb.hp -= (this.totalDan - lb.defesa)
+                        lb.hp -= ((this.totalDan - lb.defesa))
                     }, area: true, des: `Lança shurikens nos inimigos, causando <span class="dano">+40%</span> de dano.`, posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
@@ -341,7 +342,7 @@ function subClasseName() {
                 habilidade4 = {
 
                     nome: 'Assasinato silencioso', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 150) / 100), dano: function (lb) {
-                        lb.hp -= (this.totalDan - lb.defesa)
+                        lb.hp -= ((this.totalDan - lb.defesa))
 
                     }, area: false, des: 'Cria uma área em que o tempo passa mais devagar para inimigo, além do mesmo não poder ouvir ou enchergar nada, e assim acertando todos os pontos vitais do inimigo, causando <span class="dano">+150%</span> de dano.', posSkill: function () {
                         return `${playerName} usou a ultimate ${this.nome} !`
@@ -360,7 +361,7 @@ function subClasseName() {
                 baseQuantity = 4
                 habilidade1 = {
                     nome: 'Rasteira', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 25) / 100), dano: function (lb) {
-                        let total = this.totalDan - lb.defesa
+                        let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
                         lb.dano -= 1
                     }, area: false, des: `Da uma rasteira no inimigo o destabilizando, fazendo-o perder 1 de dano e  causando <span class="dano">+25%</span> de dano.`, posSkill: function () {
@@ -369,15 +370,15 @@ function subClasseName() {
                 }
                 habilidade2 = {
                     nome: 'Golpe sujo', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 35) / 100), dano: function (lb) {
-                        let total = this.totalDan - lb.defesa
+                        let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
                     }, area: false, des: `Cria ilusões para distrair o inmigo, assim o atacando pelas costas com suas adagas, causando <span class="dano">+35%</span> de dano. .`, posSkill: function () {
                         return `${playerName} usou ${this.nome} !`
                     }
                 }
                 habilidade3 = {
-                    nome: 'Furto de vitalidade', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 25) / 100), dano: function (lb) {                     
-                        let total = this.totalDan - lb1.defesa
+                    nome: 'Furto de vitalidade', totalDan: Math.round(guerreiro.dano + (guerreiro.dano * 25) / 100), dano: function (lb) {
+                        let total = (this.totalDan - lb1.defesa)
                         lb.hp -= total
                         guerreiro.hp += Math.round(((baseHp * 5) / 100) + ((total * 2) / 100))
                     }, area: true, des: `Golpeia os inimigos com suas adagas vampíricas, causando <span class="dano">+25%</span> de dano e drenando 5% da sua vida máxima + 2% do dano total causado a cada inimigo.  `, posSkill: function () {
@@ -391,7 +392,7 @@ function subClasseName() {
                         if (lb.dano == 0) {
                             total = 0
                         } else if (lb.dano > 1) {
-                            total = this.totalDan - lb.defesa
+                            total = (this.totalDan - lb.defesa)
                         }
 
                         lb.hp -= total
@@ -409,17 +410,17 @@ function subClasseName() {
 function classeName() {
     classe = input.value
     if (classe == '1') {
-          btn.addEventListener('click', parte1)
+        btn.addEventListener('click', parte1)
         dialogo.innerHTML = `<p>Guarda:<br><br>Entendi, então você é um Cavaleiro !</p>`
         btn.style.visibility = 'visible'
 
     } else if (classe == '2') {
-          btn.addEventListener('click', parte1)
+        btn.addEventListener('click', parte1)
         dialogo.innerHTML = `<p>Guarda do coliseu:<br><br>Entendi, então você é um Mago !</p>`
         btn.style.visibility = 'visible'
 
     } else if (classe == '3') {
-          btn.addEventListener('click', parte1)
+        btn.addEventListener('click', parte1)
 
         dialogo.innerHTML = `<p>Guarda do coliseu:<br><br>Entendi, então você é um Assasino !</p>`
         btn.style.visibility = 'visible'
@@ -431,6 +432,7 @@ function parte1() {
 
     switch (part1) {
         case 1:
+
             dialogo.innerHTML = ' <p>Instruções:<br><br>Enter- Avançar<br>Space- Confirmar <br><br>Obss: Você pode digitar a opção escolhida sem precisar clicar no input.</p>'
             audio1.play()
             break
@@ -552,7 +554,7 @@ function choseOption() {
     if (opçao == '1') {
         btn.addEventListener('click', preparo)
         prepr = 0
-        dialogo.innerHTML = '<p>Nome: ' + playerName + '<br>Classe/Subclasse: ' + guerreiro.class + '<br>Arma: ' + guerreiro.arma + '<br>Dano: ' + guerreiro.dano + '<br>Hp: ' + guerreiro.hp + '<br>Defesa: ' + guerreiro.defesa + '</p>'
+        dialogo.innerHTML = `<p class="info" ><a class="a1">Nome:${playerName}<br>Classe/Subclasse:${guerreiro.class}<br> Arma:${guerreiro.arma}<br>Hp:<span class="vivo">${guerreiro.hp}</span><br>Dano:<span class="dano">${guerreiro.dano}</span><br>Defesa:<span class="def">${guerreiro.defesa}</span></a> <a class="a2"><a>1 ${habilidade1.nome} : ${habilidade1.des}danototal: ${habilidade1.totalDan}</a> <a>2 ${habilidade2.nome} : ${habilidade2.des} danototal: ${habilidade2.totalDan}</a><a>3 ${habilidade3.nome} : ${habilidade3.des} danototal: ${habilidade3.totalDan}</a><a>4 ${habilidade4.nome} : ${habilidade4.des} danototal: ${habilidade4.totalDan} quantidade: ${quantidade}</a></a></p>`
         submit.style.visibility = 'hidden'
         input.style.visibility = 'hidden'
         btn.style.visibility = 'visible'
@@ -579,11 +581,6 @@ function choseOption() {
             prepr = 0
 
         }
-    } else if (opçao == '4') {
-        dialogo.innerHTML = '<p>Saindo do jogo...</p>'
-        submit.removeEventListener('click', choseOption)
-        btn.removeEventListener('click', preparo)
-
     }
 }
 
@@ -609,7 +606,7 @@ function preparo() {
             btn.style.visibility = 'hidden'
 
             tela.innerHTML = '<img src="imagens/fogueira.png" alt="">'
-            dialogo.innerHTML = ' <p>Você está na fogueira do descanso !<br> Sente-se relaxe um pouco<br> E quando preparado, escolha sua próxima ação...<br><br>1- Ver informações do personagem<br>2- Descansar<br>3- Ir para a batalha<br>4- Sair do jogo</p>'
+            dialogo.innerHTML = ' <p>Você está na fogueira do descanso !<br> Sente-se relaxe um pouco<br> E quando preparado, escolha sua próxima ação...<br><br>1- Ver informações do personagem<br>2- Descansar<br>3- Ir para a batalha</p>'
             submit.addEventListener('click', choseOption)
 
             break
@@ -651,54 +648,53 @@ function parte2() {
 
 
 let lobo1 = {
-    dano: 5, hp: 400, defesa: 0, dead1: function () {
+    dano: 7, hp: 350, defesa: 0, dead1: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo2 = {
-    dano: 5, hp: 400, defesa: 0, dead2: function () {
+    dano: 7, hp: 350, defesa: 0, dead2: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo3 = {
-    dano: 5, hp: 400, defesa: 0, dead3: function () {
+    dano: 7, hp: 350, defesa: 0, dead3: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo4 = {
-    dano: 5, hp: 400, defesa: 0, dead4: function () {
+    dano: 7, hp: 350, defesa: 0, dead4: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo5 = {
-    dano: 5, hp: 400, defesa: 0, dead5: function () {
+    dano: 7, hp: 350, defesa: 0, dead5: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo6 = {
-    dano: 5, hp: 400, defesa: 0, dead6: function () {
+    dano: 7, hp: 350, defesa: 0, dead6: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo7 = {
-    dano: 5, hp: 400, defesa: 0, dead7: function () {
+    dano: 7, hp: 350, defesa: 0, dead7: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo8 = {
-    dano: 5, hp: 400, defesa: 0, dead8: function () {
+    dano: 7, hp: 350, defesa: 0, dead8: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
     }
 }
-
 
 
 
@@ -1068,7 +1064,7 @@ function atacarLobo() {
                 } else if (skillEscolhida == "3") {
                     habilidade3.dano(lobo1)
                     habilidade3.dano(lobo2)
-                    
+
                     dialogo.innerHTML = `<p>${habilidade3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
                     guerreiro.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - guerreiro.defesa
                     submit.style.visibility = 'hidden'
@@ -1337,6 +1333,9 @@ function atacarLobo() {
 function escolherSkill() {
     skillEscolhida = input.value
     input.value = ''
+    voltar.style.visibility = 'visible'
+    voltar.addEventListener('click', parte3)
+    part3 = 0
     switch (classe) {
         case '1':
 
@@ -1406,7 +1405,6 @@ function escolherSkill() {
                     skillEscolhida = ''
                     submit.removeEventListener('click', escolherSkill)
                     submit.removeEventListener('click', atacarLobo)
-                    btn.addEventListener('click', parte3)
                     part3 = 0
                 } else if (quantidade >= 1) {
                     quantidade -= 1
@@ -1465,11 +1463,11 @@ function escolherSkill() {
 }
 function parte3() {
     part3++
-
     input.value = ''
 
     switch (part3) {
         case 1:
+            voltar.style.visibility = 'hidden'
             if (quantidade <= 0) {
                 quantidade = 0
             }
@@ -1526,19 +1524,24 @@ function parte3() {
 
             skillEscolhida = ''
             loboAtacado = ''
+            voltar.removeEventListener('click', parte3)
             submit.addEventListener('click', escolherSkill)
             submit.removeEventListener('click', atacarLobo)
             btn.removeEventListener('click', parte3)
+            batalha = 0
             submit.style.visibility = 'visible'
             input.style.visibility = 'visible'
             btn.style.visibility = 'hidden'
+            voltar.style.visibility = 'hidden'
             keys = ['1', '2', '3', '4']
-            dialogo.innerHTML = `<p>Lobo1-<span>${lobo1.hp}</span> | Lobo2-<span>${lobo2.hp}</span> | Lobo3-<span>${lobo3.hp}</span> | Lobo4-<span>${lobo4.hp}</span> | Lobo5-<span>${lobo5.hp}</span> | Lobo6-<span>${lobo6.hp}</span>  Lobo7-<span>${lobo7.hp}</span> | Lobo8-<span>${lobo8.hp}</span><br><br>1 ${habilidade1.nome} : ${habilidade1.des} danototal: ${habilidade1.totalDan}<br>2 ${habilidade2.nome} : ${habilidade2.des} danototal: ${habilidade2.totalDan}<br>3 ${habilidade3.nome} : ${habilidade3.des} danototal: ${habilidade3.totalDan}<br>4 ${habilidade4.nome} : ${habilidade4.des} danototal: ${habilidade4.totalDan} restam: ${quantidade} <br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+            dialogo.innerHTML = `<p>Lobo1-<span>${lobo1.hp}</span> | Lobo2-<span>${lobo2.hp}</span> | Lobo3-<span>${lobo3.hp}</span> | Lobo4-<span>${lobo4.hp}</span> | Lobo5-<span>${lobo5.hp}</span> | Lobo6-<span>${lobo6.hp}</span>  Lobo7-<span>${lobo7.hp}</span> | Lobo8-<span>${lobo8.hp}</span><br><br>1 ${habilidade1.nome} : ${habilidade1.des} danototal: ${habilidade1.totalDan}<br>2 ${habilidade2.nome} : ${habilidade2.des} danototal: ${habilidade2.totalDan}<br>3 ${habilidade3.nome} : ${habilidade3.des} danototal: ${habilidade3.totalDan}<br>4 ${habilidade4.nome} : ${habilidade4.des} danototal: ${habilidade4.totalDan} restam: ${quantidade} <br>${playerName} HP: <span>${guerreiro.hp}</span> Def:<span><span class="def">${guerreiro.defesa}</span></span> Atk:<span><span class="dano">${guerreiro.dano}</span></span></p>`
 
             if (lobo1.dano == 0 && lobo2.dano == 0 && lobo3.dano == 0 && lobo4.dano == 0 && lobo5.dano == 0 && lobo6.dano == 0 && lobo7.dano == 0 && lobo8.dano == 0) {
                 submit.removeEventListener('click', escolherSkill)
                 submit.removeEventListener('click', atacarLobo)
                 btn.addEventListener('click', parte4)
+                voltar.removeEventListener('click', parte3)
+                batalha = 0
                 submit.style.visibility = 'hidden'
                 input.style.visibility = 'hidden'
                 btn.style.visibility = 'visible'
@@ -1557,32 +1560,33 @@ function parte3() {
                 keys = []
                 submit.removeEventListener('click', atacarLobo)
                 dialogo.innerHTML = '<p><br><br>Você perdeu...<br>Volte para o acampamento, se recupere e tente novamente!<p/>'
+                voltar.removeEventListener('click', parte3)
                 fenrir.dano = 30
-                fenrir.hp = 2000
+                fenrir.hp = 1500
                 fenrir.defesa = 20
-                lobo1.dano = 10
-                lobo1.hp = 300
+                lobo1.dano = 7
+                lobo1.hp = 350
                 lobo1.defesa = 0
-                lobo2.dano = 10
-                lobo2.hp = 300
+                lobo2.dano = 7
+                lobo2.hp = 350
                 lobo2.defesa = 0
-                lobo3.dano = 10
-                lobo3.hp = 300
+                lobo3.dano = 7
+                lobo3.hp = 350
                 lobo3.defesa = 0
-                lobo4.dano = 10
-                lobo4.hp = 300
+                lobo4.dano = 7
+                lobo4.hp = 350
                 lobo4.defesa = 0
-                lobo5.dano = 10
-                lobo5.hp = 300
+                lobo5.dano = 7
+                lobo5.hp = 350
                 lobo5.defesa = 0
-                lobo6.dano = 10
-                lobo6.hp = 300
+                lobo6.dano = 7
+                lobo6.hp = 350
                 lobo6.defesa = 0
-                lobo7.dano = 10
-                lobo7.hp = 300
+                lobo7.dano = 7
+                lobo7.hp = 350
                 lobo7.defesa = 0
-                lobo8.dano = 10
-                lobo8.hp = 300
+                lobo8.dano = 7
+                lobo8.hp = 350
                 lobo8.defesa = 0
             }
             break
@@ -1618,7 +1622,7 @@ function parte4() {
 
 
 let fenrir = {
-    dano: 20, hp: 1500, defesa: 20, dead:function () {
+    dano: 30, hp: 1500, defesa: 20, dead: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
         this.defesa = 0
@@ -1746,9 +1750,9 @@ function parte5() {
             btn.style.visibility = 'hidden'
 
             keys = ['1', '2', '3', '4']
-            dialogo.innerHTML = `<p>Fenrir-<span>${fenrir.hp}</span><br><br>1 ${habilidade1.nome} : ${habilidade1.des} danototal: ${habilidade1.totalDan}<br>2 ${habilidade2.nome} : ${habilidade2.des} danototal: ${habilidade2.totalDan}<br>3 ${habilidade3.nome} : ${habilidade3.des} danototal: ${habilidade3.totalDan}<br>4 ${habilidade4.nome} : ${habilidade4.des} danototal: ${habilidade4.totalDan} restam: ${quantidade} <br>${playerName} HP: <span>${guerreiro.hp}</span></p>`
+            dialogo.innerHTML = `<p>Fenrir-<span>${fenrir.hp}</span><br><br>1 ${habilidade1.nome} : ${habilidade1.des} danototal: ${habilidade1.totalDan}<br>2 ${habilidade2.nome} : ${habilidade2.des} danototal: ${habilidade2.totalDan}<br>3 ${habilidade3.nome} : ${habilidade3.des} danototal: ${habilidade3.totalDan}<br>4 ${habilidade4.nome} : ${habilidade4.des} danototal: ${habilidade4.totalDan} restam: ${quantidade} <br>${playerName} HP: <span>${guerreiro.hp}</span> Def:<span><span class="def">${guerreiro.defesa}</span></span> Atk:<span><span class="dano">${guerreiro.dano}</span></span></p>`
 
-            if (fenrir.dano < 1 ) {
+            if (fenrir.dano < 1) {
                 tela.innerHTML = `<img src="imagens/fenrirDead.png" alt="">`
                 btn.addEventListener('click', parte6)
                 submit.style.visibility = 'hidden'
@@ -1772,37 +1776,37 @@ function parte5() {
                 submit.removeEventListener('click', atacarFenrir)
                 dialogo.innerHTML = '<p><br><br>Você perdeu...<br>Volte para o acampamento, se recupere e tente novamente!<p/>'
                 fenrir.dano = 30
-                fenrir.hp = 2000
+                fenrir.hp = 1500
                 fenrir.defesa = 20
-                lobo1.dano = 10
-                lobo1.hp = 300
+                lobo1.dano = 7
+                lobo1.hp = 350
                 lobo1.defesa = 0
-                lobo2.dano = 10
-                lobo2.hp = 300
+                lobo2.dano = 7
+                lobo2.hp = 350
                 lobo2.defesa = 0
-                lobo3.dano = 10
-                lobo3.hp = 300
+                lobo3.dano = 7
+                lobo3.hp = 350
                 lobo3.defesa = 0
-                lobo4.dano = 10
-                lobo4.hp = 300
+                lobo4.dano = 7
+                lobo4.hp = 350
                 lobo4.defesa = 0
-                lobo5.dano = 10
-                lobo5.hp = 300
+                lobo5.dano = 7
+                lobo5.hp = 350
                 lobo5.defesa = 0
-                lobo6.dano = 10
-                lobo6.hp = 300
+                lobo6.dano = 7
+                lobo6.hp = 350
                 lobo6.defesa = 0
-                lobo7.dano = 10
-                lobo7.hp = 300
+                lobo7.dano = 7
+                lobo7.hp = 350
                 lobo7.defesa = 0
-                lobo8.dano = 10
-                lobo8.hp = 300
+                lobo8.dano = 7
+                lobo8.hp = 350
                 lobo8.defesa = 0
             }
             if (fenrir.defesa < 1) {
                 fenrir.defesa = 0
             }
-           
+
 
 
             break

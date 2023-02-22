@@ -22,7 +22,7 @@ body {
 
 #tela {
     width: 100%;
-    height: 440px;
+    height: 410px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,7 +65,19 @@ body {
     font-size: 20px;
 }
 
-
+.info{
+    display: flex;
+    
+}
+.info .a1{
+    row-gap: 5px;
+    width: 30%;
+}
+.info .a2{
+     font-size: 17px;
+    width: 70%;
+    padding: 0 10px 0 10px;
+}
 p span {
     color: #008000;
 }
@@ -73,11 +85,122 @@ p span {
 .morto{
     color: #ff0000 !important;
 }
+.vivo{
+    color:  #008000 !important;
+}
 .dano{
     color: #ffa500 !important;
+}
+.def{
+    color: blue !important;
 }
 audio{
     visibility: hidden;
 }
 
 
+
+.botoes button{
+    height: 100%;
+   margin: 0px 2px 0px 2px ;
+   width: 56px;
+}
+
+
+@media  (max-width: 987px){
+    
+    .info{
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        padding: 5px;
+        
+    }
+    .info .a1{
+        width: 100%;
+    }
+    .info .a2{
+         font-size: 15px !important;
+        width: 100%;
+        padding: 0px ;
+    }
+
+    #dialogo {
+        height: 500px;
+    }
+    
+}
+@media (max-width: 600px){
+    #game {
+        height: 100%;
+        width: 100%;
+        padding: 0px 5px;
+        row-gap: 10px;
+    }
+    #dialogo p {
+        font-size: 15px;
+         height: 100%;
+    }
+    #dialogo {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    height: 650px;
+    width: 100%;
+
+}
+  
+#tela {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#tela img {
+    width: 100%;
+    border-radius: 0px;
+    height: 400px;
+}
+}
+@media  (max-width: 495px){
+    .botoes{
+        height: 40px;
+    }
+  .botoes button{
+        height: 100%;
+       margin: 0px 2px 0px 2px ;
+       width: 56px;
+    }
+    #inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: center;
+    width: 100%;
+    row-gap: 15px;
+    padding: 5px 3px;
+}
+
+#inputs input {
+    padding: 6px;
+    font-size: 20px;
+}
+}
+@media screen and (max-width: 365px){
+    #iteraçao{
+        display: flex;
+        flex-direction: column;
+    }
+    #dialogo {
+        font-size: 13px;
+        line-height: 20px;
+        height: 450px;
+    }
+    #game {
+
+        padding: 0px 0px;
+     
+    }
+}

@@ -132,7 +132,7 @@ audio {
     margin: 0px 2px 0px 2px;
     width: 56px;
 }
-#submit{
+#enviar{
     height: 100%;
     margin: 0px 2px 0px 2px;
     width: 56px;
@@ -260,7 +260,7 @@ audio {
         width: 100px;
        
     }
-    #submit{
+    #enviar{
         width: 70px;
         font-size: 16px;
         height: 40px;

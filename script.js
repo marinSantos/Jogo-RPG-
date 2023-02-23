@@ -98,7 +98,7 @@ function setSubClass() {
                 advance.style.visibility = 'visible'
                 dialogo.innerHTML = `<p class="dialogoComum">Guarda:<br><br> Certo, então pegue esta arma...<br><br>Você Recebeu uma LongSword !</p>`
 
-                baseDamage = 150
+                baseDamage = 200
                 baseHp = 450
                 baseDefense = 7
                 player = { class: `<span class="className">Cavaleiro dizimador</span>`, arma: `<span class="arma">LongSword</span>`, dano: 150, hp: 450, defesa: 10 }
@@ -148,7 +148,7 @@ function setSubClass() {
                 advance.addEventListener('click', parte1)
                 advance.style.visibility = 'visible'
                 dialogo.innerHTML = `<p class="dialogoComum">Guarda:<br><br> Certo, então pegue esta arma...<br><br>Você Recebeu uma SwordShild !</p>`
-                baseDamage = 120
+                baseDamage = 150
                 baseHp = 650
                 baseDefense = 10
                 player = { class: `<span class="className">Cavaleiro templário</span>`, arma: `<span class="arma">SwordShild</span>`, dano: 120, hp: 650, defesa: 30 }
@@ -1576,10 +1576,10 @@ function parte3() {
                 advance.style.visibility = 'visible'
                 keys = []
                 submit.removeEventListener('click', turnDamage)
-                dialogo.innerHTML = '<p><br><br>Você perdeu...<br>Volte para o acampamento, se recupere e tente novamente!<p/>'
+                dialogo.innerHTML = '<p><br><br>Você perdeu...<br>Volte para o acampamento, se recupere e tente novamente!</p>'
                 goBack.removeEventListener('click', parte3)
                 fenrir.dano = 30
-                fenrir.hp = 1500
+                fenrir.hp = 1000
                 fenrir.defesa = 20
                 lobo1.dano = 7
                 lobo1.hp = 350
@@ -1641,7 +1641,7 @@ function parte4() {
 
 
 let fenrir = {
-    dano: 30, hp: 1500, defesa: 20, dead: function () {
+    dano: 30, hp: 1000, defesa: 20, dead: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
         this.defesa = 0
@@ -1800,9 +1800,9 @@ function parte5() {
                 advance.style.visibility = 'visible'
                 keys = []
                 submit.removeEventListener('click', turnDamageFenrir)
-                dialogo.innerHTML = '<pclass="dialogoComum">Você perdeu...<br>Volte para o acampamento, se recupere e tente novamente!<p/>'
+                dialogo.innerHTML = '<p class="dialogoComum">Você perdeu...<br>Volte para o acampamento, se recupere e tente novamente!</p>'
                 fenrir.dano = 30
-                fenrir.hp = 1500
+                fenrir.hp = 1000
                 fenrir.defesa = 20
                 lobo1.dano = 7
                 lobo1.hp = 350

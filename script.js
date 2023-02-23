@@ -1775,7 +1775,7 @@ function parte5() {
             advance.style.visibility = 'hidden'
 
             keys = ['1', '2', '3', '4']
-            dialogo.innerHTML = `<p class="dialogoBatalhaBoss"><a class="bossName">Fenrir-<span>${fenrir.hp}</span></a><a>1 ${skill1.nome} : ${skill1.des} danototal: ${skill1.totalDan}</a><a>2 ${skill2.nome} : ${skill2.des} danototal: ${skill2.totalDan}</a><a>3 ${skill3.nome} : ${skill3.des} danototal: ${skill3.totalDan}</a><a>4 ${skill4.nome} : ${skill4.des} danototal: ${skill4.totalDan}restam: ${skill4Amount}</a><a class="statisticas">${playerName} HP: <span>${player.hp}</span> Def:<span><span class="def">${player.defesa}</span></span> Atk:<span><span class="dano">${player.dano}</span></span></a></p>`
+            dialogo.innerHTML = `<p class="dialogoBatalhaBoss"><a class="bossName">Fenrir-<span>${fenrir.hp}</span></a><a>1 ${skill1.nome} : ${skill1.des} danototal: ${skill1.totalDan}</a><a>2 ${skill2.nome} : ${skill2.des} danototal: ${skill2.totalDan}</a><a>3 ${skill3.nome} : ${skill3.des} danototal: ${skill3.totalDan}</a><a>4 ${skill4.nome} : ${skill4.des} danototal: ${skill4.totalDan} restam: ${skill4Amount}</a><a class="statisticas">${playerName} HP: <span>${player.hp}</span> Def:<span><span class="def">${player.defesa}</span></span> Atk:<span><span class="dano">${player.dano}</span></span></a></p>`
 
             if (fenrir.dano < 1) {
                 tela.innerHTML = `<img src="imagens/fenrirDead.png" alt="">`

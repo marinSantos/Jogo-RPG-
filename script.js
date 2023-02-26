@@ -101,7 +101,7 @@ function setSubClass() {
                 baseDamage = 200
                 baseHp = 450
                 baseDefense = 7
-                player = { class: `<span class="className">Cavaleiro dizimador</span>`, arma: `<span class="arma">LongSword</span>`, dano: 150, hp: 450, defesa: 10 }
+                player = { class: `<span class="className">Cavaleiro dizimador</span>`, arma: `<span class="arma">LongSword</span>`, dano: 200, hp: 450, defesa: 10 }
                 skill4Amount = 4
                 baseSkillAmount = 4
                 skill1 = {

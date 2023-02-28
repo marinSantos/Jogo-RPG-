@@ -362,7 +362,7 @@ function setSubClass() {
                 baseDamage = 150
                 baseHp = 350
                 baseDefense = 5
-                player = { class: `<span class="className">Assasino vampiro</span>`, arma: `<span class="arma">Adagas vampíricas</span>`, dano: 150, hp: 350, defesa: 5 }
+                player = { class: `<span class="className">Assasino ladrão</span>`, arma: `<span class="arma">Adagas vampíricas</span>`, dano: 150, hp: 350, defesa: 5 }
 
                 skill4Amount = 2
                 baseSkillAmount = 2
@@ -448,7 +448,7 @@ function parte1() {
                 break
             case 2:
 
-                dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Certa vez este mesmo guerreiro, caminhava rumo ao seu objetivo, estava muito frio por estar em época de inverno, mas seu coração determinado o aquecia.</p>'
+                dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Certa vez este mesmo guerreiro, caminhava rumo ao seu objetivo, o tempo estava frio por se tratar de uma época de inverno, mas o guerreiro não sentia frio por conta de seu coração determinado, que o aquecia.</p>'
 
 
                 break
@@ -1832,7 +1832,7 @@ function parte5() {
                 input.style.visibility = 'hidden'
                 avançar.style.visibility = 'visible'
                 keys = []
-                dialogo.innerHTML = `<p class="dialogoComum">Parabéns você derrotou a lendária fera Fenrir!${playerName} ganhou 1000xp</p>`
+                dialogo.innerHTML = `<p class="dialogoComum"><a>Parabéns você derrotou a lendária fera Fenrir!${playerName} ganhou 1000xp</a></p>`
                 enviar.removeEventListener('click', turnDamageFenrir)
                 enviar.removeEventListener('click', atacarFenrir)
             }

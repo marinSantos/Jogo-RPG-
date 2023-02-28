@@ -1808,11 +1808,11 @@ function parte5() {
             if (skill4Amount <= 0) {
                 skill4Amount = 0
             }
-            if (fenrir.hp < 1) {
+            if (fenrir.hp < 1 || fenrir.dano < 1) {
                 fenrir.dead()
             }
             voltar.style.visibility = 'hidden'
-            voltar.removeEventListener('click', parte3)
+            voltar.removeEventListener('click', parte5)
             skillEscolhida = ''
             inimigoAtacado = ''
             enviar.addEventListener('click', atacarFenrir)
@@ -1825,7 +1825,7 @@ function parte5() {
             keys = ['1', '2', '3', '4']
             dialogo.innerHTML = `<p class="dialogoBatalhaBoss"><a class="bossName">Fenrir-<span>${fenrir.hp}</span></a><a>1 ${skill1.nome} : ${skill1.des} danototal: ${skill1.totalDan}</a><a>2 ${skill2.nome} : ${skill2.des} danototal: ${skill2.totalDan}</a><a>3 ${skill3.nome} : ${skill3.des} danototal: ${skill3.totalDan}</a><a>4 ${skill4.nome} : ${skill4.des} danototal: ${skill4.totalDan} restam: ${skill4Amount}</a><a class="statisticas">${playerName} HP: <span>${player.hp}</span> Def:<span><span class="def">${player.defesa}</span></span> Atk:<span><span class="dano">${player.dano}</span></span></a></p>`
 
-            if (fenrir.dano < 1) {
+            if (fenrir.dano < 1 || fenrir.hp == `<span class="morto">0</span>`) {
                 tela.innerHTML = `<img src="imagens/fenrirDead.png" alt="">`
                 avançar.addEventListener('click', parte6)
                 enviar.style.visibility = 'hidden'
@@ -1834,7 +1834,7 @@ function parte5() {
                 keys = []
                 dialogo.innerHTML = `<p class="dialogoComum">Parabéns você derrotou a lendária fera Fenrir!${playerName} ganhou 1000xp</p>`
                 enviar.removeEventListener('click', turnDamageFenrir)
-                enviar.addEventListener('click', atacarFenrir)
+                enviar.removeEventListener('click', atacarFenrir)
             }
             if (player.hp < 1) {
                 voltar.removeEventListener('click', parte3)

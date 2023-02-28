@@ -454,17 +454,10 @@ function parte1() {
                 break
             case 3:
 
-                dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Era um fim de tarde, com isso o crepúsculo se formava nos céus..<br>Com o sol lembrando um guarda encerrando seu turno para enfim repousar, após a chegada do seu tão aguardado fim de expediente...</p>'
+                dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Era um fim de tarde, com isso o crepúsculo se formava nos céus..<br>Com o sol lembrando um guarda encerrando seu turno para enfim repousar, após a chegada do seu tão aguardado fim de expediente<br><br>Falando em guardas...<br>Um se encontra logo a frente, guardando as portas do nosso destino....</p>'
 
                 break
             case 4:
-
-
-                dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Falando em guardas...<br>Um se encontra logo a frente, guardando as portas do nosso destino.<br></p>'
-
-
-                break
-            case 5:
 
                 avançar.style.visibility = 'hidden'
 
@@ -475,7 +468,7 @@ function parte1() {
 
 
                 break
-            case 6:
+            case 5:
 
                 dialogo.innerHTML = '<p class="dialogoComum">Guarda:<br><br> Saudações guerreiro! Por favor, informe seu nome para poder passar, sem ele você não poderá participar do torneio.</p>'
                 keys = ['q', 'Q', 'w', 'W', 'e', 'E', 'r', 'R', 't', 'T', 'u', 'U', 'i', 'I', 'o', 'O', 'p', 'P', '´', 'a', 'A', 's', 'S', 'd', 'D', 'f', 'F', 'g', 'G', 'h', 'H', 'j', 'J', 'k', 'K', 'l', 'L', 'ç', 'Ç', 'z', 'Z', 'x', 'X', 'c', 'C', 'v', 'V', 'b', 'B', 'n', 'N', 'm', 'M', ',', '.', ';', '?', '/', '`', '"', '}', '{', '[', ']', '(', ')', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '+', '-', '*', '_', '!', '#', '$', '%', '¨', '&', '|']
@@ -488,7 +481,7 @@ function parte1() {
                 avançar.removeEventListener('click', parte1)
                 enviar.addEventListener('click', setName)
                 break
-            case 7:
+            case 6:
 
                 dialogo.innerHTML = `<p class="dialogoComum"><a>Guarda:<br> <br>...<br>'${playerName}'.....<br>Este nome não me é estranho .......</a></p>`
                 input.value = ''
@@ -501,19 +494,19 @@ function parte1() {
 
 
                 break
-            case 8:
+            case 7:
 
                 dialogo.innerHTML = `<p class="dialogoComum">Guarda:<br><br>Ouvi falar de uma história que.....</p>`
 
 
                 break
-            case 9:
+            case 8:
 
 
                 dialogo.innerHTML = `<p class="dialogoComum">Guarda: <br><br>Enfim, deve ser algo da minha cabeça...</p>`
 
                 break
-            case 10:
+            case 9:
 
 
                 dialogo.innerHTML = '<p class="dialogoComum">Guarda: <br><br>Agora me responda, qual destas 3 armas você sabe usar:<br><br>1-Espada "Para Cavaleiros"<br>2-Livro mágico "Para Magos"<br>3-Adagas "Para Assasinos"</p>'
@@ -528,7 +521,7 @@ function parte1() {
                 avançar.removeEventListener('click', parte1)
                 enviar.addEventListener('click', setClass)
                 break
-            case 11:
+            case 10:
 
 
                 if (classe == '1') {
@@ -552,7 +545,7 @@ function parte1() {
 
 
                 break
-            case 12:
+            case 11:
 
                 dialogo.innerHTML = '<p class="dialogoComum"> Guarda:<br><br>Pronto, agora você tem o suficiente</p>'
                 enviar.style.visibility = 'hidden'
@@ -563,7 +556,7 @@ function parte1() {
 
 
                 break
-            case 13:
+            case 12:
 
 
                 dialogo.innerHTML = '<p class="dialogoComum"> Guarda:<br><br>Vá até aquela fogueira e repouse guerreiro, para amanhã estar pronto para sua primeira batalha...</p>'
@@ -779,634 +772,634 @@ function turnDamage() {
     input.value = ''
     part3 = 0
     voltar.style.visibility = 'hidden'
-    setTimeout(() =>{
-if (classe == '1') {
-        switch (inimigoAtacado) {
-            case '1':
-                if (skillEscolhida == "1") {
-                    skill1.dano(lobo1)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
+    setTimeout(() => {
+        if (classe == '1') {
+            switch (inimigoAtacado) {
+                case '1':
+                    if (skillEscolhida == "1") {
+                        skill1.dano(lobo1)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
 
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "2") {
-                    skill2.dano(lobo1)
-                    dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "3") {
-                    skill3.dano(lobo1)
-                    skill3.dano(lobo2)
-                    dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "4") {
-                    skill4.dano(lobo1)
-                    skill4.dano(lobo2)
-                    skill4.dano(lobo3)
-                    skill4.dano(lobo4)
-                    dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                }
-                break
-            case '2':
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "2") {
+                        skill2.dano(lobo1)
+                        dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "3") {
+                        skill3.dano(lobo1)
+                        skill3.dano(lobo2)
+                        dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "4") {
+                        skill4.dano(lobo1)
+                        skill4.dano(lobo2)
+                        skill4.dano(lobo3)
+                        skill4.dano(lobo4)
+                        dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    }
+                    break
+                case '2':
 
-                if (skillEscolhida == "1") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill1.dano(lobo2)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "2") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill2.dano(lobo2)
-                    dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "3") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill3.dano(lobo3)
-                    skill3.dano(lobo4)
-                    dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "4") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill4.dano(lobo5)
-                    skill4.dano(lobo6)
-                    skill4.dano(lobo7)
-                    skill4.dano(lobo8)
-                    dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                }
-                break
-            case '3':
+                    if (skillEscolhida == "1") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill1.dano(lobo2)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "2") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill2.dano(lobo2)
+                        dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "3") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill3.dano(lobo3)
+                        skill3.dano(lobo4)
+                        dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "4") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill4.dano(lobo5)
+                        skill4.dano(lobo6)
+                        skill4.dano(lobo7)
+                        skill4.dano(lobo8)
+                        dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    }
+                    break
+                case '3':
 
-                if (skillEscolhida == "1") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill1.dano(lobo3)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "2") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill2.dano(lobo3)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "3") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill3.dano(lobo5)
-                    skill3.dano(lobo6)
-                    dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                }
-                break
-            case '4':
+                    if (skillEscolhida == "1") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill1.dano(lobo3)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "2") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill2.dano(lobo3)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "3") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill3.dano(lobo5)
+                        skill3.dano(lobo6)
+                        dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    }
+                    break
+                case '4':
 
-                if (skillEscolhida == "1") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill1.dano(lobo4)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "2") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill2.dano(lobo4)
-                    dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "3") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill3.dano(lobo7)
-                    skill3.dano(lobo8)
-                    dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                }
-                break
-            case '5':
+                    if (skillEscolhida == "1") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill1.dano(lobo4)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "2") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill2.dano(lobo4)
+                        dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "3") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill3.dano(lobo7)
+                        skill3.dano(lobo8)
+                        dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    }
+                    break
+                case '5':
 
-                if (skillEscolhida == "1") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill1.dano(lobo5)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "2") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill2.dano(lobo6)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                }
-                break
-            case '6':
+                    if (skillEscolhida == "1") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill1.dano(lobo5)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "2") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill2.dano(lobo6)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    }
+                    break
+                case '6':
 
-                if (skillEscolhida == "1") {
-                    skill1.dano(lobo6)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "2") {
-                    skill2.dano(lobo6)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                }
-                break
-            case '7':
+                    if (skillEscolhida == "1") {
+                        skill1.dano(lobo6)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "2") {
+                        skill2.dano(lobo6)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    }
+                    break
+                case '7':
 
-                if (skillEscolhida == "1") {
-                    skill1.dano(lobo7)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "2") {
-                    skill2.dano(lobo7)
-                    dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                }
-                break
-            case '8':
+                    if (skillEscolhida == "1") {
+                        skill1.dano(lobo7)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "2") {
+                        skill2.dano(lobo7)
+                        dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    }
+                    break
+                case '8':
 
 
-                if (skillEscolhida == "1") {
-                    skill1.dano(lobo8)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
+                    if (skillEscolhida == "1") {
+                        skill1.dano(lobo8)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
 
-                } else if (skillEscolhida == "2") {
+                    } else if (skillEscolhida == "2") {
 
-                    skill2.dano(lobo8)
-                    dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
+                        skill2.dano(lobo8)
+                        dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
 
-                }
-                break
+                    }
+                    break
+            }
+        } else if (classe == '2') {
+            switch (inimigoAtacado) {
+                case '1':
+                    if (skillEscolhida == "1") {
+                        skill1.dano(lobo1)
+                        skill1.dano(lobo2)
+                        skill1.dano(lobo3)
+                        skill1.dano(lobo4)
+                        enviar.removeEventListener('click', turnDamage)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "2") {
+                        skill2.dano(lobo1)
+                        skill2.dano(lobo2)
+                        skill2.dano(lobo3)
+                        skill2.dano(lobo4)
+                        lobo1.hp -= (player.dano + skill2.dano)
+                        dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "3") {
+                        skill3.dano(lobo1)
+                        skill3.dano(lobo2)
+                        skill3.dano(lobo3)
+                        skill3.dano(lobo4)
+                        enviar.removeEventListener('click', turnDamage)
+
+                        dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "4") {
+                        skill4.dano(lobo1)
+                        skill4.dano(lobo2)
+                        skill4.dano(lobo3)
+                        skill4.dano(lobo4)
+                        skill4.dano(lobo5)
+                        skill4.dano(lobo6)
+                        skill4.dano(lobo7)
+                        skill4.dano(lobo8)
+                        enviar.removeEventListener('click', turnDamage)
+                        dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    }
+                    break
+                case '2':
+
+                    if (skillEscolhida == "1") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill1.dano(lobo5)
+                        skill2.dano(lobo6)
+                        skill3.dano(lobo7)
+                        skill4.dano(lobo8)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "2") {
+                        skill2.dano(lobo5)
+                        skill2.dano(lobo6)
+                        skill2.dano(lobo7)
+                        skill2.dano(lobo8)
+                        enviar.removeEventListener('click', turnDamage)
+                        lobo2.hp -= (player.dano + skill2.dano)
+                        dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "3") {
+                        skill3.dano(lobo5)
+                        skill3.dano(lobo6)
+                        skill3.dano(lobo7)
+                        skill3.dano(lobo8)
+                        enviar.removeEventListener('click', turnDamage)
+
+                        dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    }
+                    break
+            }
+        } else if (classe == '3') {
+            switch (inimigoAtacado) {
+                case '1':
+
+                    if (skillEscolhida == "1") {
+                        skill1.dano(lobo1)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "2") {
+                        skill2.dano(lobo1)
+                        dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "3") {
+                        skill3.dano(lobo1)
+                        skill3.dano(lobo2)
+
+                        dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "4") {
+                        skill4.dano(lobo1)
+                        dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    }
+                    break
+                case '2':
+
+                    if (skillEscolhida == "1") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill1.dano(lobo2)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "2") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill2.dano(lobo2)
+                        dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "3") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill3.dano(lobo3)
+                        skill3.dano(lobo4)
+                        dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "4") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill4.dano(lobo2)
+                        dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    }
+                    break
+                case '3':
+
+                    if (skillEscolhida == "1") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill1.dano(lobo3)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "2") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill2.dano(lobo3)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "3") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill3.dano(lobo5)
+                        skill3.dano(lobo6)
+                        dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "4") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill4.dano(lobo3)
+                        dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    }
+                    break
+                case '4':
+
+                    if (skillEscolhida == "1") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill1.dano(lobo4)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "2") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill2.dano(lobo4)
+                        dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "3") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill3.dano(lobo7)
+                        skill3.dano(lobo8)
+                        dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "4") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill4.dano(lobo4)
+                        dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    }
+                    break
+                case '5':
+
+                    if (skillEscolhida == "1") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill1.dano(lobo5)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "2") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill2.dano(lobo6)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "4") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill4.dano(lobo5)
+                        dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    }
+                    break
+                case '6':
+
+                    if (skillEscolhida == "1") {
+                        skill1.dano(lobo6)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "2") {
+                        skill2.dano(lobo6)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "4") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill4.dano(lobo6)
+                        dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    }
+                    break
+                case '7':
+
+                    if (skillEscolhida == "1") {
+                        skill1.dano(lobo7)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "2") {
+                        skill2.dano(lobo7)
+                        dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    } else if (skillEscolhida == "4") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill4.dano(lobo7)
+                        dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    }
+                    break
+                case '8':
+
+
+                    if (skillEscolhida == "1") {
+                        skill1.dano(lobo8)
+                        dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+
+                    } else if (skillEscolhida == "2") {
+
+                        skill2.dano(lobo8)
+                        dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+
+                    } else if (skillEscolhida == "4") {
+                        enviar.removeEventListener('click', turnDamage)
+                        skill4.dano(lobo8)
+                        dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
+                        player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
+                        enviar.style.visibility = 'hidden'
+                        input.style.visibility = 'hidden'
+                        avançar.style.visibility = 'visible'
+                        avançar.addEventListener('click', parte3)
+                    }
+                    break
+            }
         }
-    } else if (classe == '2') {
-        switch (inimigoAtacado) {
-            case '1':
-                if (skillEscolhida == "1") {
-                    skill1.dano(lobo1)
-                    skill1.dano(lobo2)
-                    skill1.dano(lobo3)
-                    skill1.dano(lobo4)
-                    enviar.removeEventListener('click', turnDamage)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "2") {
-                    skill2.dano(lobo1)
-                    skill2.dano(lobo2)
-                    skill2.dano(lobo3)
-                    skill2.dano(lobo4)
-                    lobo1.hp -= (player.dano + skill2.dano)
-                    dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "3") {
-                    skill3.dano(lobo1)
-                    skill3.dano(lobo2)
-                    skill3.dano(lobo3)
-                    skill3.dano(lobo4)
-                    enviar.removeEventListener('click', turnDamage)
+    }, 500)
 
-                    dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "4") {
-                    skill4.dano(lobo1)
-                    skill4.dano(lobo2)
-                    skill4.dano(lobo3)
-                    skill4.dano(lobo4)
-                    skill4.dano(lobo5)
-                    skill4.dano(lobo6)
-                    skill4.dano(lobo7)
-                    skill4.dano(lobo8)
-                    enviar.removeEventListener('click', turnDamage)
-                    dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                }
-                break
-            case '2':
-
-                if (skillEscolhida == "1") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill1.dano(lobo5)
-                    skill2.dano(lobo6)
-                    skill3.dano(lobo7)
-                    skill4.dano(lobo8)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "2") {
-                    skill2.dano(lobo5)
-                    skill2.dano(lobo6)
-                    skill2.dano(lobo7)
-                    skill2.dano(lobo8)
-                    enviar.removeEventListener('click', turnDamage)
-                    lobo2.hp -= (player.dano + skill2.dano)
-                    dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "3") {
-                    skill3.dano(lobo5)
-                    skill3.dano(lobo6)
-                    skill3.dano(lobo7)
-                    skill3.dano(lobo8)
-                    enviar.removeEventListener('click', turnDamage)
-
-                    dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                }
-                break
-        }
-    } else if (classe == '3') {
-        switch (inimigoAtacado) {
-            case '1':
-
-                if (skillEscolhida == "1") {
-                    skill1.dano(lobo1)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "2") {
-                    skill2.dano(lobo1)
-                    dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "3") {
-                    skill3.dano(lobo1)
-                    skill3.dano(lobo2)
-
-                    dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "4") {
-                    skill4.dano(lobo1)
-                    dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                }
-                break
-            case '2':
-
-                if (skillEscolhida == "1") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill1.dano(lobo2)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "2") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill2.dano(lobo2)
-                    dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "3") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill3.dano(lobo3)
-                    skill3.dano(lobo4)
-                    dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "4") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill4.dano(lobo2)
-                    dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                }
-                break
-            case '3':
-
-                if (skillEscolhida == "1") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill1.dano(lobo3)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "2") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill2.dano(lobo3)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "3") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill3.dano(lobo5)
-                    skill3.dano(lobo6)
-                    dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "4") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill4.dano(lobo3)
-                    dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                }
-                break
-            case '4':
-
-                if (skillEscolhida == "1") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill1.dano(lobo4)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "2") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill2.dano(lobo4)
-                    dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "3") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill3.dano(lobo7)
-                    skill3.dano(lobo8)
-                    dialogo.innerHTML = `<p>${skill3.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "4") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill4.dano(lobo4)
-                    dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                }
-                break
-            case '5':
-
-                if (skillEscolhida == "1") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill1.dano(lobo5)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "2") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill2.dano(lobo6)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "4") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill4.dano(lobo5)
-                    dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                }
-                break
-            case '6':
-
-                if (skillEscolhida == "1") {
-                    skill1.dano(lobo6)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "2") {
-                    skill2.dano(lobo6)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "4") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill4.dano(lobo6)
-                    dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                }
-                break
-            case '7':
-
-                if (skillEscolhida == "1") {
-                    skill1.dano(lobo7)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "2") {
-                    skill2.dano(lobo7)
-                    dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                } else if (skillEscolhida == "4") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill4.dano(lobo7)
-                    dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                }
-                break
-            case '8':
-
-
-                if (skillEscolhida == "1") {
-                    skill1.dano(lobo8)
-                    dialogo.innerHTML = `<p>${skill1.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-
-                } else if (skillEscolhida == "2") {
-
-                    skill2.dano(lobo8)
-                    dialogo.innerHTML = `<p>${skill2.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-
-                } else if (skillEscolhida == "4") {
-                    enviar.removeEventListener('click', turnDamage)
-                    skill4.dano(lobo8)
-                    dialogo.innerHTML = `<p>${skill4.posSkill()} <br><br><br>Os lobos revidaram causando: ${(lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano)} de Dano !</p>`
-                    player.hp -= (lobo1.dano + lobo2.dano + lobo3.dano + lobo4.dano + lobo5.dano + lobo6.dano + lobo7.dano + lobo8.dano) - player.defesa
-                    enviar.style.visibility = 'hidden'
-                    input.style.visibility = 'hidden'
-                    avançar.style.visibility = 'visible'
-                    avançar.addEventListener('click', parte3)
-                }
-                break
-        }
-    }
-    },500)
-    
 
 }
 function atacarLobo() {
@@ -1540,22 +1533,22 @@ function atacarLobo() {
     }
 
 }
+
+function inimigosMortos(enemy) {
+
+    if (enemy.hp < 1 || enemy.dano < 1) {
+        enemy.dead()
+    }
+}
+function inimigosSemDefesa(enemy) {
+    if (enemy.defesa < 1) {
+        enemy.defesa = 0
+    }
+
+}
 function parte3() {
     part3++
     input.value = ''
-
-    function inimigosMortos(enemy) {
-
-        if (enemy.hp < 1 || enemy.dano < 1) {
-            enemy.dead()
-        }
-    }
-    function inimigosSemDefesa(enemy) {
-        if (enemy.defesa < 1) {
-            enemy.defesa = 0
-        }
-
-    }
 
     switch (part3) {
         case 1:
@@ -1648,7 +1641,51 @@ function parte3() {
                 lobo8.hp = 350
                 lobo8.defesa = 0
             }
+            if (lobo1.dano == 0 && lobo2.dano == 0 && lobo3.dano == 0 && lobo4.dano == 0 && lobo5.dano == 0 && lobo6.dano == 0 && lobo7.dano == 0 && lobo8.dano == 0 && player.hp < 1) {
+            
+                dialogo.innerHTML = `<p class="dialogoComum">Empate!, retorne ao acampamento, descanse e tente novamente.</p>`
+                player.hp = 0
+                voltar.removeEventListener('click', parte3)
+                avançar.addEventListener('click', preparo)
+                enviar.removeEventListener('click', turnDamage)
+                enviar.removeEventListener('click', atacarLobo)
+                prepr = 0
+                enviar.style.visibility = 'hidden'
+                input.style.visibility = 'hidden'
+                avançar.style.visibility = 'visible'
+                keys = []
+                enviar.removeEventListener('click', turnDamage)
+                voltar.removeEventListener('click', parte3)
+                fenrir.dano = 30
+                fenrir.hp = 1100
+                fenrir.defesa = 20
+                lobo1.dano = 7
+                lobo1.hp = 350
+                lobo1.defesa = 0
+                lobo2.dano = 7
+                lobo2.hp = 350
+                lobo2.defesa = 0
+                lobo3.dano = 7
+                lobo3.hp = 350
+                lobo3.defesa = 0
+                lobo4.dano = 7
+                lobo4.hp = 350
+                lobo4.defesa = 0
+                lobo5.dano = 7
+                lobo5.hp = 350
+                lobo5.defesa = 0
+                lobo6.dano = 7
+                lobo6.hp = 350
+                lobo6.defesa = 0
+                lobo7.dano = 7
+                lobo7.hp = 350
+                lobo7.defesa = 0
+                lobo8.dano = 7
+                lobo8.hp = 350
+                lobo8.defesa = 0
+            }
             break
+
     }
 }
 
@@ -1686,7 +1723,7 @@ function parte4() {
 
 
 let fenrir = {
-    dano: 30, hp: 1200, defesa: 20, dead: function () {
+    dano: 30, hp: 1100, defesa: 20, dead: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
         this.defesa = 0
@@ -1699,58 +1736,58 @@ function turnDamageFenrir() {
     inimigoAtacado = input.value
     input.value = ''
     part5 = 0
-    setTimeout(() =>{
-  switch (inimigoAtacado) {
-        case '1':
-            if (skillEscolhida == '1') {
-                skill1.dano(fenrir)
-                dialogo.innerHTML = `<p class="dialogoComum"><a>${skill1.posSkill()}</a><a>Fenrir revidou causando: <span class="dano">${fenrir.dano}</span> de Dano !</a></p>`
-                player.hp -= (fenrir.dano)
-                enviar.style.visibility = 'hidden'
-                input.style.visibility = 'hidden'
-                avançar.style.visibility = 'visible'
-                voltar.style.visibility = 'hidden'
-                keys = []
-                avançar.addEventListener('click', parte5)
-                enviar.removeEventListener('click', turnDamageFenrir)
-            } else if (skillEscolhida == '2') {
-                skill2.dano(fenrir)
-                dialogo.innerHTML = `<p class="dialogoComum"><a>${skill2.posSkill()}</a><a><span class="dano">${fenrir.dano}</span> de Dano !</a></p>`
-                player.hp -= (fenrir.dano)
-                enviar.style.visibility = 'hidden'
-                input.style.visibility = 'hidden'
-                avançar.style.visibility = 'visible'
-                voltar.style.visibility = 'hidden'
-                keys = []
-                avançar.addEventListener('click', parte5)
-                enviar.removeEventListener('click', turnDamageFenrir)
-            } else if (skillEscolhida == '3') {
-                fenrir.hp -= skill3.totalDan
-                dialogo.innerHTML = `<p class="dialogoComum"><a>${skill3.posSkill()}</a><a><span class="dano">${fenrir.dano}</span> de Dano !</a></p>`
-                player.hp -= (fenrir.dano)
-                enviar.style.visibility = 'hidden'
-                input.style.visibility = 'hidden'
-                avançar.style.visibility = 'visible'
-                voltar.style.visibility = 'hidden'
-                keys = []
-                avançar.addEventListener('click', parte5)
-                enviar.removeEventListener('click', turnDamageFenrir)
-            } else if (skillEscolhida == '4') {
-                skill4.dano(fenrir)
-                dialogo.innerHTML = `<p class="dialogoComum"><a>${skill4.posSkill()}</a><a><span class="dano">${fenrir.dano}</span> de Dano !</a></p>`
-                player.hp -= (fenrir.dano)
-                enviar.style.visibility = 'hidden'
-                input.style.visibility = 'hidden'
-                avançar.style.visibility = 'visible'
-                voltar.style.visibility = 'hidden'
-                keys = []
-                avançar.addEventListener('click', parte5)
-                enviar.removeEventListener('click', turnDamageFenrir)
-            }
-            break
-    }
-    },500)
-  
+    setTimeout(() => {
+        switch (inimigoAtacado) {
+            case '1':
+                if (skillEscolhida == '1') {
+                    skill1.dano(fenrir)
+                    dialogo.innerHTML = `<p class="dialogoComum"><a>${skill1.posSkill()}</a><a>Fenrir revidou causando: <span class="dano">${fenrir.dano}</span> de Dano !</a></p>`
+                    player.hp -= (fenrir.dano)
+                    enviar.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    avançar.style.visibility = 'visible'
+                    voltar.style.visibility = 'hidden'
+                    keys = []
+                    avançar.addEventListener('click', parte5)
+                    enviar.removeEventListener('click', turnDamageFenrir)
+                } else if (skillEscolhida == '2') {
+                    skill2.dano(fenrir)
+                    dialogo.innerHTML = `<p class="dialogoComum"><a>${skill2.posSkill()}</a><a><span class="dano">${fenrir.dano}</span> de Dano !</a></p>`
+                    player.hp -= (fenrir.dano)
+                    enviar.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    avançar.style.visibility = 'visible'
+                    voltar.style.visibility = 'hidden'
+                    keys = []
+                    avançar.addEventListener('click', parte5)
+                    enviar.removeEventListener('click', turnDamageFenrir)
+                } else if (skillEscolhida == '3') {
+                    fenrir.hp -= skill3.totalDan
+                    dialogo.innerHTML = `<p class="dialogoComum"><a>${skill3.posSkill()}</a><a><span class="dano">${fenrir.dano}</span> de Dano !</a></p>`
+                    player.hp -= (fenrir.dano)
+                    enviar.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    avançar.style.visibility = 'visible'
+                    voltar.style.visibility = 'hidden'
+                    keys = []
+                    avançar.addEventListener('click', parte5)
+                    enviar.removeEventListener('click', turnDamageFenrir)
+                } else if (skillEscolhida == '4') {
+                    skill4.dano(fenrir)
+                    dialogo.innerHTML = `<p class="dialogoComum"><a>${skill4.posSkill()}</a><a><span class="dano">${fenrir.dano}</span> de Dano !</a></p>`
+                    player.hp -= (fenrir.dano)
+                    enviar.style.visibility = 'hidden'
+                    input.style.visibility = 'hidden'
+                    avançar.style.visibility = 'visible'
+                    voltar.style.visibility = 'hidden'
+                    keys = []
+                    avançar.addEventListener('click', parte5)
+                    enviar.removeEventListener('click', turnDamageFenrir)
+                }
+                break
+        }
+    }, 500)
+
 
 
 }
@@ -1837,7 +1874,7 @@ function parte5() {
                 enviar.removeEventListener('click', atacarFenrir)
             }
             if (player.hp < 1) {
-                voltar.removeEventListener('click', parte3)
+                voltar.removeEventListener('click', parte5)
                 player.hp = 0
                 avançar.addEventListener('click', preparo)
                 prepr = 0
@@ -1850,7 +1887,7 @@ function parte5() {
                 enviar.removeEventListener('click', turnDamageFenrir)
                 dialogo.innerHTML = '<p class="dialogoComum">Você perdeu...<br>Volte para o acampamento, se recupere e tente novamente!</p>'
                 fenrir.dano = 30
-                fenrir.hp = 1000
+                fenrir.hp = 1100
                 fenrir.defesa = 20
                 lobo1.dano = 7
                 lobo1.hp = 350
@@ -1879,6 +1916,53 @@ function parte5() {
             }
             if (fenrir.defesa < 1) {
                 fenrir.defesa = 0
+            }
+
+            if (fenrir.dano < 1 && player.hp < 1) {
+                tela.innerHTML = ``
+
+                keys = []
+                dialogo.innerHTML = `<p class="dialogoComum">Empate!, retorne ao acampamento, descanse e tente novamente.</p>`
+                voltar.removeEventListener('click', parte5)
+                player.hp = 0
+                avançar.addEventListener('click', preparo)
+                prepr = 0
+                enviar.removeEventListener('click', turnDamageFenrir)
+                enviar.removeEventListener('click', atacarFenrir)
+                enviar.style.visibility = 'hidden'
+                input.style.visibility = 'hidden'
+                avançar.style.visibility = 'visible'
+                keys = []
+                enviar.removeEventListener('click', turnDamageFenrir)
+
+                fenrir.dano = 30
+                fenrir.hp = 1100
+                fenrir.defesa = 20
+                lobo1.dano = 7
+                lobo1.hp = 350
+                lobo1.defesa = 0
+                lobo2.dano = 7
+                lobo2.hp = 350
+                lobo2.defesa = 0
+                lobo3.dano = 7
+                lobo3.hp = 350
+                lobo3.defesa = 0
+                lobo4.dano = 7
+                lobo4.hp = 350
+                lobo4.defesa = 0
+                lobo5.dano = 7
+                lobo5.hp = 350
+                lobo5.defesa = 0
+                lobo6.dano = 7
+                lobo6.hp = 350
+                lobo6.defesa = 0
+                lobo7.dano = 7
+                lobo7.hp = 350
+                lobo7.defesa = 0
+                lobo8.dano = 7
+                lobo8.hp = 350
+                lobo8.defesa = 0
+
             }
 
 

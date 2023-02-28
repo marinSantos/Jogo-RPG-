@@ -33,7 +33,7 @@ let baseSkillAmount
 let keys = []
 
 if (part1 == 0) {
-    dialogo.innerHTML = '<p class="dialogoComum"><br><br>Esta é uma história de um  guerreiro, que buscava libertar sua esposa e seus filhos presos em um reino rival, após uma invasão do mesmo em sua terra natal, para isso ele teria que participar de um torneio na qual o vencedor teria direito de libertar alguns prisioneiros, qual será o desenrolar desta história?...............</p>'
+    dialogo.innerHTML = ' <p class="dialogoComum">Instruções:<br><br>Enter- Confirmar <br>Space- Avançar<br>ArrowLeft- Trocar de skill<br><br>Obss: Você pode digitar a opção escolhida sem precisar clicar no input.</p>'
     voltar.style.visibility = 'hidden'
     enviar.style.visibility = 'hidden'
     input.style.visibility = 'hidden'
@@ -55,7 +55,7 @@ document.addEventListener('keydown', function (ev) {
     if (ev.code === "Enter") {
         enviar.click()
     }
-    if (ev.key === "ArrowRight") {
+    if (ev.code === "Space") {
 
         avançar.click()
     }
@@ -102,8 +102,8 @@ function setSubClass() {
                 baseHp = 450
                 baseDefense = 7
                 player = { class: `<span class="className">Cavaleiro dizimador</span>`, arma: `<span class="arma">LongSword</span>`, dano: 200, hp: 450, defesa: 10 }
-                skill4Amount = 4
-                baseSkillAmount = 4
+                skill4Amount = 3
+                baseSkillAmount = 3
                 skill1 = {
                     nome: 'Corte transversal', totalDan: Math.round(player.dano + (player.dano * 35) / 100), dano: function (lb) {
                         let total = (this.totalDan - lb.defesa)
@@ -136,10 +136,10 @@ function setSubClass() {
                 }
                 skill4 = {
 
-                    nome: 'Mega meia lua', totalDan: Math.round(player.dano + (player.dano * 50) / 100), dano: function (lb) {
+                    nome: 'Mega meia lua', totalDan: Math.round(player.dano + (player.dano * 60) / 100), dano: function (lb) {
                         let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
-                    }, area: true, des: `Lança de sua espada um grande projétil com formato de meia-lua, causando <span class="dano">+50%</span> de dano.`,
+                    }, area: true, des: `Lança de sua espada um grande projétil com formato de meia-lua, causando <span class="dano">+60%</span> de dano.`,
                     posSkill: function () {
                         return `${playerName} usou a ultimate ${this.nome} !`
                     }
@@ -148,7 +148,7 @@ function setSubClass() {
                 avançar.addEventListener('click', parte1)
                 avançar.style.visibility = 'visible'
                 dialogo.innerHTML = `<p class="dialogoComum">Guarda:<br><br> Certo, então pegue esta arma...<br><br>Você Recebeu uma SwordShild !</p>`
-                baseDamage = 150
+                baseDamage = 120
                 baseHp = 650
                 baseDefense = 10
                 player = { class: `<span class="className">Cavaleiro templário</span>`, arma: `<span class="arma">SwordShild</span>`, dano: 120, hp: 650, defesa: 30 }
@@ -204,11 +204,11 @@ function setSubClass() {
                 avançar.style.visibility = 'visible'
                 dialogo.innerHTML = `<p class="dialogoComum">Guarda:<br><br> Certo, então pegue esta arma...<br><br>Você Recebeu um Livro mágico da destruição !</p>`
                 baseDamage = 250
-                baseHp = 250
+                baseHp = 260
                 baseDefense = 0
-                player = { class: `<span class="className">Mago destruidor</span>`, arma: `<span class="arma">Livro mágico da destruição</span>`, dano: 200, hp: 250, defesa: 1 }
-                skill4Amount = 4
-                baseSkillAmount = 4
+                player = { class: `<span class="className">Mago destruidor</span>`, arma: `<span class="arma">Livro mágico da destruição</span>`, dano: 200, hp: 260, defesa: 1 }
+                skill4Amount = 2
+                baseSkillAmount = 2
                 skill1 = {
                     nome: 'Lanças de raios', totalDan: Math.round(player.dano + (player.dano * 40) / 100), dano: function (lb) {
                         let total = (this.totalDan - lb.defesa)
@@ -251,11 +251,11 @@ function setSubClass() {
                 avançar.style.visibility = 'visible'
                 dialogo.innerHTML = `<p class="dialogoComum">Guarda:<br><br> Certo, então pegue esta arma...<br><br>Você Recebeu um Livro mágico do controle !</p>`
                 baseDamage = 150
-                baseHp = 250
+                baseHp = 260
                 baseDefense = 0
-                player = { class: `<span class="className">Mago de controle</span>`, arma: `<span class="arma">Livro mágico do controle</span>`, dano: 150, hp: 250, defesa: 1 }
+                player = { class: `<span class="className">Mago de controle</span>`, arma: `<span class="arma">Livro mágico do controle</span>`, dano: 150, hp: 260, defesa: 1 }
                 skill4Amount = 2
-                baseSkillAmount = 4
+                baseSkillAmount = 2
                 skill1 = {
                     nome: 'Congelar', totalDan: Math.round(player.dano + (player.dano * 25) / 100), dano: function (lb) {
                         let total = ((this.totalDan - lb.defesa))
@@ -293,10 +293,10 @@ function setSubClass() {
                         let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
                         lb.dano -= 5
-                       
-                        if(lb == fenrir){
+
+                        if (lb == fenrir) {
                             player.defesa += 5
-                        }else if(lb == lobo1){
+                        } else if (lb == lobo1) {
                             player.defesa += 0.5
                         }
 
@@ -315,7 +315,7 @@ function setSubClass() {
                 baseDamage = 200
                 baseHp = 350
                 baseDefense = 5
-                player = {  class: `<span class="className">Assasino ninja</span>` , arma: `<span class="arma">Katana Ninja</span>`, dano: 200, hp: 350, defesa: 5 }
+                player = { class: `<span class="className">Assasino ninja</span>`, arma: `<span class="arma">Katana Ninja</span>`, dano: 200, hp: 350, defesa: 5 }
 
                 skill4Amount = 4
                 baseSkillAmount = 4
@@ -435,109 +435,166 @@ function setClass() {
     }
 }
 function parte1() {
-    part1++
+    setTimeout(() => {
+        part1++
+        switch (part1) {
+            case 1:
 
-    switch (part1) {
-        case 1:
+                dialogo.innerHTML = '<p class="dialogoComum"><br><br>Esta é uma história de um  guerreiro, que buscava libertar sua família presa por reino nórdico, após a invasão do mesmo em sua terra natal, para isso ele teria que participar de um torneio na qual o vencedor teria direito de libertar os prisioneiros, qual será o desenrolar desta história?......</p>'
 
-            dialogo.innerHTML = ' <p class="dialogoComum">Instruções:<br><br>Enter- Confirmar <br>ArrowRight- Avançar<br>ArrowLeft- Trocar de skill<br><br>Obss: Você pode digitar a opção escolhida sem precisar clicar no input.</p>'
-            audio1.play()
-            break
-        case 2:
-            dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Em um fim de tarde, em época de inverno, o crepúsculo se forma nos céus..<br>Com o sol  Lembrando um guarda saindo de seu posto para enfim repousar, após a chegada do seu tão aguardado fim de expediente...</p>'
-            break
-        case 3:
-            dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Falando em guardas...<br>Um se encontra logo a frente, guardando as portas do nosso destino.<br></p>'
-            break
-        case 4:
-            tela.innerHTML = '<img src="imagens/guarda.webp" alt="">'
-            break
-        case 5:
 
-            dialogo.innerHTML = '<p class="dialogoComum">Guarda:<br><br> Saudações guerreiro! Por favor, informe seu nome para poder passar, sem ele você não poderá participar do torneio.</p>'
-            keys = ['q', 'Q', 'w', 'W', 'e', 'E', 'r', 'R', 't', 'T', 'u', 'U', 'i', 'I', 'o', 'O', 'p', 'P', '´', 'a', 'A', 's', 'S', 'd', 'D', 'f', 'F', 'g', 'G', 'h', 'H', 'j', 'J', 'k', 'K', 'l', 'L', 'ç', 'Ç', 'z', 'Z', 'x', 'X', 'c', 'C', 'v', 'V', 'b', 'B', 'n', 'N', 'm', 'M', ',', '.', ';', '?', '/', '`', '"', '}', '{', '[', ']', '(', ')', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '+', '-', '*', '_', '!', '#', '$', '%', '¨', '&', '|']
-            enviar.style.visibility = 'visible'
-            input.style.visibility = 'visible'
-            avançar.style.visibility = 'hidden'
-            avançar.removeEventListener('click', parte1)
-            enviar.addEventListener('click', setName)
-            break
-        case 6:
-            enviar.removeEventListener('click', setName)
-            input.value = ''
-            dialogo.innerHTML = `<p class="dialogoComum"><a>Guarda:<br> <br>...<br>'${playerName}'.....<br>Este nome não me é estranho .......</a></p>`
-            enviar.style.visibility = 'hidden'
-            input.style.visibility = 'hidden'
-            avançar.style.visibility = 'visible'
 
-            break
-        case 7:
-            dialogo.innerHTML = `<p class="dialogoComum">Guarda:<br><br>Ouvi falar de uma história que.....</p>`
-            break
-        case 8:
-            dialogo.innerHTML = `<p class="dialogoComum">Guarda: <br><br>Enfim, deve ser algo da minha cabeça...</p>`
-            break
-        case 9:
-            keys = ['1', '2', '3']
-            input.value = ''
-            dialogo.innerHTML = '<p class="dialogoComum">Guarda: <br><br>Agora me responda, qual destas 3 armas você sabe usar:<br><br>1-Espada "Para Cavaleiros"<br>2-Livro mágico "Para Magos"<br>3-Adagas "Para Assasinos"</p>'
-            enviar.style.visibility = 'visible'
-            input.style.visibility = 'visible'
-            avançar.style.visibility = 'hidden'
-            avançar.removeEventListener('click', parte1)
-            enviar.addEventListener('click', setClass)
-            break
-        case 10:
-            keys = ['1', '2']
-            if (classe == '1') {
-                dialogo.innerHTML = '<p class="dialogoComum">Guarda: <br><br>Que tipo de cavaleiro você é?<br><br>1- Cavaleiro dizimador<br>2- Cavaleiro templário</p>'
-            } else if (classe == '2') {
-                dialogo.innerHTML = '<p class="dialogoComum">Guarda: <br><br>Que tipo de mago você é?<br><br>1- Mago da destruição<br>2- Mago de controle</p>'
-            } else if (classe == '3') {
-                dialogo.innerHTML = '<p class="dialogoComum">Guarda: <br><br>Que tipo de assasino você é?<br><br>1- Assasino ninja<br>2- Assasino ladrão</p>'
-            }
-            input.value = ''
-            avançar.removeEventListener('click', parte1)
-            enviar.removeEventListener('click', setClass)
-            enviar.addEventListener('click', setSubClass)
+                audio1.play()
+                break
+            case 2:
 
-            enviar.style.visibility = 'visible'
-            input.style.visibility = 'visible'
-            avançar.style.visibility = 'hidden'
+                dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Certa vez este mesmo guerreiro, caminhava rumo ao seu objetivo, estava muito frio por estar em época de inverno, mas seu coração determinado o aquecia.</p>'
 
-            break
-        case 11:
-            enviar.removeEventListener('click', setSubClass)
-            dialogo.innerHTML = '<p class="dialogoComum"> Guarda:<br><br>Pronto, agora você tem o suficiente</p>'
-            enviar.style.visibility = 'hidden'
-            input.style.visibility = 'hidden'
-            avançar.style.visibility = 'visible'
-            break
-        case 12:
-            dialogo.innerHTML = '<p class="dialogoComum"> Guarda:<br><br>Vá até aquela fogueira e repouse guerreiro, para amanhã estar pronto para sua primeira batalha...</p>'
-            break
-        default:
 
-            tela.innerHTML = ''
-            dialogo.innerHTML = '<p>.................</p>'
-            avançar.removeEventListener('click', parte1)
-            avançar.addEventListener('click', preparo)
-            break
-    }
+                break
+            case 3:
+
+                dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Era um fim de tarde, com isso o crepúsculo se formava nos céus..<br>Com o sol lembrando um guarda encerrando seu turno para enfim repousar, após a chegada do seu tão aguardado fim de expediente...</p>'
+
+                break
+            case 4:
+
+
+                dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Falando em guardas...<br>Um se encontra logo a frente, guardando as portas do nosso destino.<br></p>'
+
+
+                break
+            case 5:
+
+                avançar.style.visibility = 'hidden'
+
+                dialogo.innerHTML = ' <p class="dialogoComum"><br><br>!!!</p>'
+                tela.innerHTML = '<img src="imagens/guarda.webp" alt="">'
+                avançar.style.visibility = 'visible'
+
+
+
+                break
+            case 6:
+
+                dialogo.innerHTML = '<p class="dialogoComum">Guarda:<br><br> Saudações guerreiro! Por favor, informe seu nome para poder passar, sem ele você não poderá participar do torneio.</p>'
+                keys = ['q', 'Q', 'w', 'W', 'e', 'E', 'r', 'R', 't', 'T', 'u', 'U', 'i', 'I', 'o', 'O', 'p', 'P', '´', 'a', 'A', 's', 'S', 'd', 'D', 'f', 'F', 'g', 'G', 'h', 'H', 'j', 'J', 'k', 'K', 'l', 'L', 'ç', 'Ç', 'z', 'Z', 'x', 'X', 'c', 'C', 'v', 'V', 'b', 'B', 'n', 'N', 'm', 'M', ',', '.', ';', '?', '/', '`', '"', '}', '{', '[', ']', '(', ')', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '+', '-', '*', '_', '!', '#', '$', '%', '¨', '&', '|']
+                enviar.style.visibility = 'visible'
+                input.style.visibility = 'visible'
+                avançar.style.visibility = 'hidden'
+
+
+
+                avançar.removeEventListener('click', parte1)
+                enviar.addEventListener('click', setName)
+                break
+            case 7:
+
+                dialogo.innerHTML = `<p class="dialogoComum"><a>Guarda:<br> <br>...<br>'${playerName}'.....<br>Este nome não me é estranho .......</a></p>`
+                input.value = ''
+
+                enviar.style.visibility = 'hidden'
+                input.style.visibility = 'hidden'
+                avançar.style.visibility = 'visible'
+
+                enviar.removeEventListener('click', setName)
+
+
+                break
+            case 8:
+
+                dialogo.innerHTML = `<p class="dialogoComum">Guarda:<br><br>Ouvi falar de uma história que.....</p>`
+
+
+                break
+            case 9:
+
+
+                dialogo.innerHTML = `<p class="dialogoComum">Guarda: <br><br>Enfim, deve ser algo da minha cabeça...</p>`
+
+                break
+            case 10:
+
+
+                dialogo.innerHTML = '<p class="dialogoComum">Guarda: <br><br>Agora me responda, qual destas 3 armas você sabe usar:<br><br>1-Espada "Para Cavaleiros"<br>2-Livro mágico "Para Magos"<br>3-Adagas "Para Assasinos"</p>'
+                enviar.style.visibility = 'visible'
+                input.style.visibility = 'visible'
+                avançar.style.visibility = 'hidden'
+                keys = ['1', '2', '3']
+                input.value = ''
+
+
+
+                avançar.removeEventListener('click', parte1)
+                enviar.addEventListener('click', setClass)
+                break
+            case 11:
+
+
+                if (classe == '1') {
+                    dialogo.innerHTML = '<p class="dialogoComum">Guarda: <br><br>Que tipo de cavaleiro você é?<br><br>1- Cavaleiro dizimador<br>2- Cavaleiro templário</p>'
+                } else if (classe == '2') {
+                    dialogo.innerHTML = '<p class="dialogoComum">Guarda: <br><br>Que tipo de mago você é?<br><br>1- Mago da destruição<br>2- Mago de controle</p>'
+                } else if (classe == '3') {
+                    dialogo.innerHTML = '<p class="dialogoComum">Guarda: <br><br>Que tipo de assasino você é?<br><br>1- Assasino ninja<br>2- Assasino ladrão</p>'
+                }
+                enviar.style.visibility = 'visible'
+                input.style.visibility = 'visible'
+                avançar.style.visibility = 'hidden'
+                keys = ['1', '2']
+                input.value = ''
+
+
+                avançar.removeEventListener('click', parte1)
+                enviar.removeEventListener('click', setClass)
+                enviar.addEventListener('click', setSubClass)
+
+
+
+                break
+            case 12:
+
+                dialogo.innerHTML = '<p class="dialogoComum"> Guarda:<br><br>Pronto, agora você tem o suficiente</p>'
+                enviar.style.visibility = 'hidden'
+                input.style.visibility = 'hidden'
+                avançar.style.visibility = 'visible'
+
+                enviar.removeEventListener('click', setSubClass)
+
+
+                break
+            case 13:
+
+
+                dialogo.innerHTML = '<p class="dialogoComum"> Guarda:<br><br>Vá até aquela fogueira e repouse guerreiro, para amanhã estar pronto para sua primeira batalha...</p>'
+
+                break
+            default:
+
+                tela.innerHTML = ''
+                dialogo.innerHTML = '<p>.................</p>'
+                avançar.removeEventListener('click', parte1)
+                avançar.addEventListener('click', preparo)
+                break
+        }
+    }, 700)
+
+
+
+
 }
 
 let opçao
-let sleepcicle = 0
+
 
 function sleep() {
-    sleepcicle++
-    if (sleepcicle == 1) {
+    setTimeout(() => {
         dialogo.innerHTML = '<p>' + playerName + ':' + '<br><br>Zzzzzzzzzzzzzzzzzzzz.....</p>'
-    }
-    if (sleepcicle == 2) {
+    })
+    setTimeout(() => {
         dialogo.innerHTML = '<p>' + playerName + ':' + '"Acorda ........."<br><br>' + '"Bocejo ........."</p>'
-    }
-    if (sleepcicle == 3) {
+    }, 1200)
+    setTimeout(() => {
         dialogo.innerHTML = '<p>Energias restauradas !</p>'
         enviar.style.visibility = 'hidden'
         input.style.visibility = 'hidden'
@@ -551,10 +608,7 @@ function sleep() {
         skill4Amount = baseSkillAmount
         part2 = 0
         part5 = 0
-    }
-
-
-
+    }, 2200)
 }
 
 function choseOption() {
@@ -570,17 +624,16 @@ function choseOption() {
     } else if (opçao == '2') {
         avançar.addEventListener('click', preparo)
         prepr = 0
-        dialogo.innerHTML =`<p class="skills"><a>1 ${skill1.nome} : ${skill1.des}danototal: ${skill1.totalDan}</a> <a>2 ${skill2.nome} : ${skill2.des} danototal: ${skill2.totalDan}</a><a>3 ${skill3.nome} : ${skill3.des} danototal: ${skill3.totalDan}</a><a>4 ${skill4.nome} : ${skill4.des} danototal: ${skill4.totalDan} skill4Amount: ${skill4Amount}</a></p>`
+        dialogo.innerHTML = `<p class="skills"><a>1 ${skill1.nome} : ${skill1.des}danototal: ${skill1.totalDan}</a> <a>2 ${skill2.nome} : ${skill2.des} danototal: ${skill2.totalDan}</a><a>3 ${skill3.nome} : ${skill3.des} danototal: ${skill3.totalDan}</a><a>4 ${skill4.nome} : ${skill4.des} danototal: ${skill4.totalDan} quantidade: ${skill4Amount}</a></p>`
         enviar.style.visibility = 'hidden'
         input.style.visibility = 'hidden'
         avançar.style.visibility = 'visible'
 
     } else if (opçao == '3') {
-        setInterval(sleep, 1200)
+        setTimeout(sleep, 1000)
         enviar.removeEventListener('click', choseOption)
         avançar.addEventListener('click', preparo)
         input.value = ''
-        sleepcicle = 0
     } else if (opçao == '4') {
         enviar.style.visibility = 'hidden'
         input.style.visibility = 'hidden'
@@ -600,112 +653,119 @@ function choseOption() {
 }
 
 function preparo() {
-    prepr++
-
     input.value = ''
-    switch (prepr) {
-        case 1:
-            keys = ['1', '2', '3', '4']
-            audio1.pause()
-            audio3.pause()
-            audio1.currentTime = 0
-            audio3.currentTime = 0
-            audio2.play()
-            part2 = 0
-            part3 = 0
-            part4 = 0
-            part5 = 0
-            avançar.removeEventListener('click', preparo)
-            enviar.style.visibility = 'visible'
-            input.style.visibility = 'visible'
-            avançar.style.visibility = 'hidden'
+    setTimeout(() => {
+        prepr++
 
-            tela.innerHTML = '<img src="imagens/fogueira.png" alt="">'
-            dialogo.innerHTML = ' <p>Você está na fogueira do descanso !<br> Sente-se relaxe um pouco<br> E quando preparado, escolha sua próxima ação...<br><br><br>1- Detalhes do personagem<br><br>2- Detalhes das skills<br><br>3- Descançar<br><br>4- Ir para o campo de batalha</p>'
-            enviar.addEventListener('click', choseOption)
 
-            break
+        switch (prepr) {
+            case 1:
+                keys = ['1', '2', '3', '4']
+                audio1.pause()
+                audio3.pause()
+                audio1.currentTime = 0
+                audio3.currentTime = 0
+                audio2.play()
+                part2 = 0
+                part3 = 0
+                part4 = 0
+                part5 = 0
+                avançar.removeEventListener('click', preparo)
+                enviar.style.visibility = 'visible'
+                input.style.visibility = 'visible'
+                avançar.style.visibility = 'hidden'
 
-    }
+                tela.innerHTML = '<img src="imagens/fogueira.png" alt="">'
+                dialogo.innerHTML = ' <p>Você está na fogueira do descanso !<br> Sente-se relaxe um pouco<br> E quando preparado, escolha sua próxima ação...<br><br><br>1- Detalhes do personagem<br><br>2- Detalhes das skills<br><br>3- Descançar<br><br>4- Ir para o campo de batalha</p>'
+                enviar.addEventListener('click', choseOption)
+
+                break
+
+        }
+    }, 700)
+
 }
 
 let skillEscolhida
 let inimigoAtacado
 
 function parte2() {
-    part2++
-    switch (part2) {
-        case 1:
-            audio3.play()
-            audio2.currentTime = 0
-            audio2.pause()
-            audio1.pause()
-            input.value = ''
-            tela.innerHTML = ''
-            dialogo.innerHTML = '<p>..............</p>'
-            break
-        case 2:
-            tela.innerHTML = '<img src="imagens/plateia.png">'
-            dialogo.innerHTML = `<p class="dialogoComum"><a><br><br>Ao entrar no Torneio,${playerName} se depara com uma grande multidão, bradando em alta voz pelo o espetáculo que estava prestes a acontecer...</a></p>`
-            break
-        case 3:
-            tela.innerHTML = '<img src="imagens/portas.png">'
-            dialogo.innerHTML = '<p class="dialogoComum"><br><br>Até que....Do outro lado do Torneio, foram abertos 3 grandes portões...<br><br>Dos portões saiam em torno de 8 lobos<br><br> Mas não eram lobos comuns, eram lobos gigantes com garras de ferro !</p>'
-            break
-        default:
-            tela.innerHTML = '<img src="imagens/lobos.png">'
-            dialogo.innerHTML = '<p class="dialogoComum"><br><br>Eles te atacam !<br><br> Que comecem os jogos !</p>'
-            avançar.removeEventListener('click', parte2)
-            avançar.addEventListener('click', parte3)
-            break
-    }
+    setTimeout(() => {
+        part2++
+        switch (part2) {
+            case 1:
+                audio3.play()
+                audio2.currentTime = 0
+                audio2.pause()
+                audio1.pause()
+                input.value = ''
+                tela.innerHTML = ''
+                dialogo.innerHTML = '<p>..............</p>'
+                break
+            case 2:
+                tela.innerHTML = '<img src="imagens/plateia.png">'
+                dialogo.innerHTML = `<p class="dialogoComum"><a><br><br>Ao entrar no Torneio,${playerName} se depara com uma grande multidão, bradando em alta voz pelo o espetáculo que estava prestes a acontecer...</a></p>`
+                break
+            case 3:
+                tela.innerHTML = '<img src="imagens/portas.png">'
+                dialogo.innerHTML = '<p class="dialogoComum"><br><br>Até que....Do outro lado do Torneio, foram abertos 3 grandes portões...<br><br>Dos portões saiam em torno de 8 lobos<br><br> Mas não eram lobos comuns, eram lobos gigantes com garras de ferro !</p>'
+                break
+            default:
+                tela.innerHTML = '<img src="imagens/lobos.png">'
+                dialogo.innerHTML = '<p class="dialogoComum"><br><br>Eles te atacam !<br><br> Que comecem os jogos !</p>'
+                avançar.removeEventListener('click', parte2)
+                avançar.addEventListener('click', parte3)
+                break
+        }
+    }, 700)
+
 }
 
 
 let lobo1 = {
-    dano: 7, hp: 350, defesa: 0, dead1: function () {
+    dano: 7, hp: 350, defesa: 0, dead: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo2 = {
-    dano: 7, hp: 350, defesa: 0, dead2: function () {
+    dano: 7, hp: 350, defesa: 0, dead: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo3 = {
-    dano: 7, hp: 350, defesa: 0, dead3: function () {
+    dano: 7, hp: 350, defesa: 0, dead: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo4 = {
-    dano: 7, hp: 350, defesa: 0, dead4: function () {
+    dano: 7, hp: 350, defesa: 0, dead: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo5 = {
-    dano: 7, hp: 350, defesa: 0, dead5: function () {
+    dano: 7, hp: 350, defesa: 0, dead: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo6 = {
-    dano: 7, hp: 350, defesa: 0, dead6: function () {
+    dano: 7, hp: 350, defesa: 0, dead: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo7 = {
-    dano: 7, hp: 350, defesa: 0, dead7: function () {
+    dano: 7, hp: 350, defesa: 0, dead: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
     }
 }
 let lobo8 = {
-    dano: 7, hp: 350, defesa: 0, dead8: function () {
+    dano: 7, hp: 350, defesa: 0, dead: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
     }
@@ -719,7 +779,8 @@ function turnDamage() {
     input.value = ''
     part3 = 0
     voltar.style.visibility = 'hidden'
-    if (classe == '1') {
+    setTimeout(() =>{
+if (classe == '1') {
         switch (inimigoAtacado) {
             case '1':
                 if (skillEscolhida == "1") {
@@ -1344,6 +1405,8 @@ function turnDamage() {
                 break
         }
     }
+    },500)
+    
 
 }
 function atacarLobo() {
@@ -1481,63 +1544,42 @@ function parte3() {
     part3++
     input.value = ''
 
+    function inimigosMortos(enemy) {
+
+        if (enemy.hp < 1 || enemy.dano < 1) {
+            enemy.dead()
+        }
+    }
+    function inimigosSemDefesa(enemy) {
+        if (enemy.defesa < 1) {
+            enemy.defesa = 0
+        }
+
+    }
+
     switch (part3) {
         case 1:
-            voltar.style.visibility = 'hidden'
+
             if (skill4Amount <= 0) {
                 skill4Amount = 0
             }
-            if (lobo1.hp < 1 || lobo1.dano < 1) {
-                lobo1.dead1()
-            }
-            if (lobo2.hp < 1 || lobo2.dano < 1) {
-                lobo2.dead2()
-            }
-            if (lobo3.hp < 1 || lobo3.dano < 1) {
-                lobo3.dead3()
-            }
-            if (lobo4.hp < 1 || lobo4.dano < 1) {
-                lobo4.dead4()
-            }
-            if (lobo5.hp < 1 || lobo5.dano < 1) {
-                lobo5.dead5()
-            }
-            if (lobo6.hp < 1 || lobo6.dano < 1) {
-                lobo6.dead6()
-            }
-            if (lobo7.hp < 1 || lobo7.dano < 1) {
-                lobo7.dead7()
-            }
-            if (lobo8.hp < 1 || lobo8.dano < 1) {
-                lobo8.dead8()
-            }
-
-            if (lobo1.defesa < 1) {
-                lobo1.defesa = 0
-            }
-            if (lobo2.defesa < 1) {
-                lobo2.defesa = 0
-            }
-            if (lobo3.defesa < 1) {
-                lobo3.defesa = 0
-            }
-            if (lobo4.defesa < 1) {
-                lobo4.defesa = 0
-            }
-            if (lobo5.defesa < 1) {
-                lobo5.defesa = 0
-            }
-            if (lobo6.defesa < 1) {
-                lobo6.defesa = 0
-            }
-            if (lobo7.defesa < 1) {
-                lobo7.defesa = 0
-            }
-            if (lobo8.defesa < 1) {
-                lobo8.defesa = 0
-            }
-
-
+            inimigosMortos(lobo1)
+            inimigosMortos(lobo2)
+            inimigosMortos(lobo3)
+            inimigosMortos(lobo4)
+            inimigosMortos(lobo5)
+            inimigosMortos(lobo6)
+            inimigosMortos(lobo7)
+            inimigosMortos(lobo8)
+            inimigosSemDefesa(lobo1)
+            inimigosSemDefesa(lobo2)
+            inimigosSemDefesa(lobo3)
+            inimigosSemDefesa(lobo4)
+            inimigosSemDefesa(lobo5)
+            inimigosSemDefesa(lobo6)
+            inimigosSemDefesa(lobo7)
+            inimigosSemDefesa(lobo8)
+            voltar.style.visibility = 'hidden'
             skillEscolhida = ''
             inimigoAtacado = ''
             voltar.removeEventListener('click', parte3)
@@ -1550,7 +1592,7 @@ function parte3() {
             avançar.style.visibility = 'hidden'
             voltar.style.visibility = 'hidden'
             keys = ['1', '2', '3', '4']
-            dialogo.innerHTML = `<p class="dialogoBatalha"><a class="enemysName">Lobo1-<span>${lobo1.hp}</span> | Lobo2-<span>${lobo2.hp}</span> | Lobo3-<span>${lobo3.hp}</span> | Lobo4-<span>${lobo4.hp}</span> | Lobo5-<span>${lobo5.hp}</span> | Lobo6-<span>${lobo6.hp}</span> | Lobo7-<span>${lobo7.hp}</span> | Lobo8-<span>${lobo8.hp}</span></a><a>1 ${skill1.nome} : ${skill1.des} danototal: ${skill1.totalDan}</a><a>2 ${skill2.nome} : ${skill2.des} danototal: ${skill2.totalDan}</a><a>3 ${skill3.nome} : ${skill3.des} danototal: ${skill3.totalDan}</a><a>4 ${skill4.nome} : ${skill4.des} danototal: ${skill4.totalDan}restam: ${skill4Amount}</a><a class="statisticas">${playerName} HP: <span>${player.hp}</span> Def:<span><span class="def">${player.defesa}</span></span> Atk:<span><span class="dano">${player.dano}</span></span></a></p>`
+            dialogo.innerHTML = `<p class="dialogoBatalha"><a class="enemysName">Lobo1-<span>${lobo1.hp}</span> | Lobo2-<span>${lobo2.hp}</span> | Lobo3-<span>${lobo3.hp}</span> | Lobo4-<span>${lobo4.hp}</span> | Lobo5-<span>${lobo5.hp}</span> | Lobo6-<span>${lobo6.hp}</span> | Lobo7-<span>${lobo7.hp}</span> | Lobo8-<span>${lobo8.hp}</span></a><a>1 ${skill1.nome} : ${skill1.des} danototal: ${skill1.totalDan}</a><a>2 ${skill2.nome} : ${skill2.des} danototal: ${skill2.totalDan}</a><a>3 ${skill3.nome} : ${skill3.des} danototal: ${skill3.totalDan}</a><a>4 ${skill4.nome} : ${skill4.des} danototal: ${skill4.totalDan} restam: ${skill4Amount}</a><a class="statisticas">${playerName} HP: <span>${player.hp}</span> Def:<span><span class="def">${player.defesa}</span></span> Atk:<span><span class="dano">${player.dano}</span></span></a></p>`
 
             if (lobo1.dano == 0 && lobo2.dano == 0 && lobo3.dano == 0 && lobo4.dano == 0 && lobo5.dano == 0 && lobo6.dano == 0 && lobo7.dano == 0 && lobo8.dano == 0) {
                 enviar.removeEventListener('click', atacarLobo)
@@ -1614,34 +1656,37 @@ function parte3() {
 
 
 function parte4() {
-    part4++
     input.value = ''
-    switch (part4) {
+    setTimeout(() => {
+        part4++
+        switch (part4) {
 
-        case 1:
-            tela.innerHTML = `<img src="imagens/portas.png" alt="">`
-            dialogo.innerHTML = `<p class="dialogoComum"><br><br>Após a derrota dos lobos, de um dos grandes portões</p>`
-            break
-        case 2:
-            dialogo.innerHTML = `<p class="dialogoComum"><br><br>Surge uma criatura com grandes olhos vermelhos e garras 3 vezes maiores do que a dos lobos que você enfrentou...</p>`
-            break
-        case 3:
-            tela.innerHTML = `<img src="imagens/fenrir.png" alt="">`
-            dialogo.innerHTML = `<p class="dialogoComum">A criatura se revela !<br><br>O nome dela é Fenrir, o grande lobo da mitologia nórdica !</p>`
-            break
-        case 4:
-            dialogo.innerHTML = `<p class="dialogoComum">'Fenrir te ataca ! <br><br>Que comece a batalha !</p>`
-            avançar.removeEventListener('click', parte4)
-            avançar.addEventListener('click', parte5)
-            inimigoAtacado = ''
-            skillEscolhida = ''
-            break
-    }
+
+            case 1:
+                tela.innerHTML = `<img src="imagens/portas.png" alt="">`
+                dialogo.innerHTML = `<p class="dialogoComum"><br><br>Após a derrota dos lobos, de um dos grandes portões</p>`
+                break
+            case 2:
+                dialogo.innerHTML = `<p class="dialogoComum"><br><br>Surge uma criatura com grandes olhos vermelhos e garras 3 vezes maiores do que a dos lobos que você enfrentou...</p>`
+                break
+            case 3:
+                tela.innerHTML = `<img src="imagens/fenrir.png" alt="">`
+                dialogo.innerHTML = `<p class="dialogoComum">A criatura se revela !<br><br>O nome dela é Fenrir, o grande lobo da mitologia nórdica !</p>`
+                break
+            case 4:
+                dialogo.innerHTML = `<p class="dialogoComum">'Fenrir te ataca ! <br><br>Que comece a batalha !</p>`
+                avançar.removeEventListener('click', parte4)
+                avançar.addEventListener('click', parte5)
+                inimigoAtacado = ''
+                skillEscolhida = ''
+                break
+        }
+    }, 700)
 }
 
 
 let fenrir = {
-    dano: 30, hp: 1000, defesa: 20, dead: function () {
+    dano: 30, hp: 1200, defesa: 20, dead: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
         this.defesa = 0
@@ -1654,7 +1699,8 @@ function turnDamageFenrir() {
     inimigoAtacado = input.value
     input.value = ''
     part5 = 0
-    switch (inimigoAtacado) {
+    setTimeout(() =>{
+  switch (inimigoAtacado) {
         case '1':
             if (skillEscolhida == '1') {
                 skill1.dano(fenrir)
@@ -1703,6 +1749,8 @@ function turnDamageFenrir() {
             }
             break
     }
+    },500)
+  
 
 
 }
@@ -1775,7 +1823,7 @@ function parte5() {
             avançar.style.visibility = 'hidden'
 
             keys = ['1', '2', '3', '4']
-            dialogo.innerHTML = `<p class="dialogoBatalhaBoss"><a class="bossName">Fenrir-<span>${fenrir.hp}</span></a><a>1 ${skill1.nome} : ${skill1.des} danototal: ${skill1.totalDan}</a><a>2 ${skill2.nome} : ${skill2.des} danototal: ${skill2.totalDan}</a><a>3 ${skill3.nome} : ${skill3.des} danototal: ${skill3.totalDan}</a><a>4 ${skill4.nome} : ${skill4.des} danototal: ${skill4.totalDan}restam: ${skill4Amount}</a><a class="statisticas">${playerName} HP: <span>${player.hp}</span> Def:<span><span class="def">${player.defesa}</span></span> Atk:<span><span class="dano">${player.dano}</span></span></a></p>`
+            dialogo.innerHTML = `<p class="dialogoBatalhaBoss"><a class="bossName">Fenrir-<span>${fenrir.hp}</span></a><a>1 ${skill1.nome} : ${skill1.des} danototal: ${skill1.totalDan}</a><a>2 ${skill2.nome} : ${skill2.des} danototal: ${skill2.totalDan}</a><a>3 ${skill3.nome} : ${skill3.des} danototal: ${skill3.totalDan}</a><a>4 ${skill4.nome} : ${skill4.des} danototal: ${skill4.totalDan} restam: ${skill4Amount}</a><a class="statisticas">${playerName} HP: <span>${player.hp}</span> Def:<span><span class="def">${player.defesa}</span></span> Atk:<span><span class="dano">${player.dano}</span></span></a></p>`
 
             if (fenrir.dano < 1) {
                 tela.innerHTML = `<img src="imagens/fenrirDead.png" alt="">`
@@ -1843,4 +1891,5 @@ function parte5() {
 function parte6() {
     tela.innerHTML = ``
     dialogo.innerHTML = `<p>Aguarde a parte 2!</p>`
+    avançar.removeEventListener('click', parte5)
 }

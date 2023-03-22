@@ -33,7 +33,7 @@ let baseSkillAmount
 let keys = []
 
 if (part1 == 0) {
-    dialogo.innerHTML = ' <p class="dialogoComum">Instruções:<br><br>Enter- Confirmar <br>Space- Avançar<br>ArrowLeft- Trocar de skill<br><br>Obss: Você pode digitar a opção escolhida sem precisar clicar no input.</p>'
+    dialogo.innerHTML = ' <p class="dialogoComum">Instruções:<br><br>Enter- Confirmar <br>Space- Avançar<br>ArrowLeft- Trocar de skill<br><br>Obss: Você pode digitar a opção escolhida sem precisar clicar no formulário.</p>'
     voltar.style.visibility = 'hidden'
     enviar.style.visibility = 'hidden'
     input.style.visibility = 'hidden'

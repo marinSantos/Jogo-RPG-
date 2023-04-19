@@ -238,10 +238,10 @@ function setSubClass() {
                 }
                 skill4 = {
 
-                    nome: 'Chuva de meteoros', totalDan: Math.round(player.dano + (player.dano * 70) / 100), dano: function (lb) {
+                    nome: 'Chuva de meteoros', totalDan: Math.round(player.dano + (player.dano * 85) / 100), dano: function (lb) {
                         let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
-                    }, area: true, des: `Invoca uma série de meteoros mágicos, atingindo qualquer inimigo abaixo do céu, causando <span class="dano">+70%</span> de dano.`,
+                    }, area: true, des: `Invoca uma série de meteoros mágicos, atingindo qualquer inimigo abaixo do céu, causando <span class="dano">+85%</span> de dano.`,
                     posSkill: function () {
                         return `${playerName} usou a ultimate ${this.nome} !`
                     }
@@ -1918,7 +1918,7 @@ function parte5() {
                 fenrir.defesa = 0
             }
 
-            if (fenrir.dano < 1 && player.hp < 1) {
+            if (fenrir.dano < 1 && player.hp < 1 && player.hp > 1 ) {
                 tela.innerHTML = ``
 
                 keys = []

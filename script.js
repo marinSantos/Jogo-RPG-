@@ -440,7 +440,7 @@ function parte1() {
         switch (part1) {
             case 1:
 
-                dialogo.innerHTML = '<p class="dialogoComum"><br><br>Esta é uma história de um  guerreiro, que buscava libertar sua família presa por reino nórdico, após a invasão do mesmo em sua terra natal, para isso ele teria que participar de um torneio na qual o vencedor teria direito de libertar os prisioneiros, qual será o desenrolar desta história?......</p>'
+                dialogo.innerHTML = '<p class="dialogoComum"><br><br>Esta é uma história de um guerreiro, que buscava libertar sua família capturada por um exército nórdico, após a invasão do mesmo em sua terra natal, para isso ele teria que participar de um torneio na qual o vencedor ganharia o direito de libertar os prisioneiros......</p>'
 
 
 
@@ -448,8 +448,7 @@ function parte1() {
                 break
             case 2:
 
-                dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Certa vez este mesmo guerreiro, caminhava rumo ao seu objetivo, o tempo estava frio por se tratar de uma época de inverno, mas o guerreiro não sentia frio por conta de seu coração determinado, que o aquecia.</p>'
-
+                dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Certa vez este mesmo guerreiro, caminhava rumo ao seu objetivo, o tempo era de extremo frio por se tratar do inverno nórdico,após mas o guerreiro não sentia frio por conta de seu coração determinado, que o aquecia!</p>'
 
                 break
             case 3:
@@ -496,7 +495,7 @@ function parte1() {
                 break
             case 7:
 
-                dialogo.innerHTML = `<p class="dialogoComum">Guarda:<br><br>Ouvi falar de uma história que.....</p>`
+                dialogo.innerHTML = `<p class="dialogoComum">Guarda:<br><br>Ouvi falar de uma profecia que.....</p>`
 
 
                 break
@@ -701,7 +700,7 @@ function parte2() {
                 break
             case 3:
                 tela.innerHTML = '<img src="imagens/portas.png">'
-                dialogo.innerHTML = '<p class="dialogoComum"><br><br>Até que....Do outro lado do Torneio, foram abertos 3 grandes portões...<br><br>Dos portões saiam em torno de 8 lobos<br><br> Mas não eram lobos comuns, eram lobos gigantes com garras de ferro !</p>'
+                dialogo.innerHTML = '<p class="dialogoComum"><br><br>Até que....Do outro lado do coliseu, foram abertos 3 grandes portões...<br><br>Dos portões saiam em torno de 8 lobos<br><br> Mas não eram lobos comuns, eram lobos gigantes com garras de ferro !</p>'
                 break
             default:
                 tela.innerHTML = '<img src="imagens/lobos.png">'

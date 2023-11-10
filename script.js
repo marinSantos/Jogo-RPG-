@@ -440,7 +440,7 @@ function parte1() {
         switch (part1) {
             case 1:
 
-                dialogo.innerHTML = '<p class="dialogoComum"><br><br>Esta é uma história de um guerreiro, que buscava libertar sua família capturada por um exército nórdico após a invasão do mesmo em sua terra natal, para isso ele teria que participar de um torneio na qual o vencedor ganharia o direito de libertar os prisioneiros......</p>'
+                dialogo.innerHTML = '<p class="dialogoComum"><br><br>Esta é a história de um guerreiro, que buscava libertar sua família capturada por um exército nórdico após a invasão do mesmo em sua terra natal, para isso ele teria que participar de um torneio na qual o vencedor ganharia o direito de libertar os prisioneiros......</p>'
 
 
 

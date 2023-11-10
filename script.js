@@ -453,7 +453,7 @@ function parte1() {
                 break
             case 3:
 
-                dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Por fim, havia chegado o fim da tarde e o crepúsculo se formava rente aos céus..<br>E o sol se assemelhava a um guarda encerrando seu turno, para enfim repousar após a chegada de seu tão aguardado fim de expediente<br><br>Falando em guardas...<br>Um se encontra logo a frente, guardando as portas do nosso destino....</p>'
+                dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Chegado o fim de tarde o crepúsculo se formava rente aos céus..<br>E o sol se assemelha a um guarda em seu fim de turno, rumo a seu repouso, após a chegada do seu tão aguardado fim de expediente.<br><br>Falando em guardas...<br>Um se encontra logo a frente, guardando as portas do nosso destino....</p>'
 
                 break
             case 4:

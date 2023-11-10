@@ -448,12 +448,12 @@ function parte1() {
                 break
             case 2:
 
-                dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Este mesmo guerreiro caminhava rumo ao seu objetivo, enfrentando o clima de extremo frio por se tratar de um inverno nórdico, frio este que o guerreiro que não o afetava, pois seu coração determinado que o aquecia!</p>'
+                dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Este mesmo guerreiro caminhava rumo ao seu objetivo, era o inverno nódico e estava frio, frio este que não afetava nosso guerreiro, pois seu coração determinado o aquecia!</p>'
 
                 break
             case 3:
 
-                dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Por fim chega o fim do dia, o crepúsculo se formava nos céus..<br>E o sol lembrava um guarda encerrando seu turno para enfim repousar, após a chegada do seu fim de expediente<br><br>Falando em guardas...<br>Um se encontra logo a frente, guardando as portas do nosso destino....</p>'
+                dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Na chegada o fim de tarde, o crepúsculo se forma rente aos céus..<br>E o sol se assemelhando a um guarda encerrando seu turno, para enfim repousar após a chegada de seu tão aguardado fim de expediente<br><br>Falando em guardas...<br>Um se encontra logo a frente, guardando as portas do nosso destino....</p>'
 
                 break
             case 4:

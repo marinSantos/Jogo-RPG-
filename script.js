@@ -440,7 +440,7 @@ function parte1() {
         switch (part1) {
             case 1:
 
-                dialogo.innerHTML = '<p class="dialogoComum"><br><br>Esta é uma história de um guerreiro, que buscava libertar sua família capturada por um exército nórdico, após a invasão do mesmo em sua terra natal, para isso ele teria que participar de um torneio na qual o vencedor ganharia o direito de libertar os prisioneiros......</p>'
+                dialogo.innerHTML = '<p class="dialogoComum"><br><br>Esta é uma história de um guerreiro, que buscava libertar sua família capturada por um exército nórdico após a invasão do mesmo em sua terra natal, para isso ele teria que participar de um torneio na qual o vencedor ganharia o direito de libertar os prisioneiros......</p>'
 
 
 
@@ -448,7 +448,7 @@ function parte1() {
                 break
             case 2:
 
-                dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Este caminhava rumo ao seu objetivo, estava frio por se tratar de um inverno nórdico, frio este que não afetava nosso guerreiro, pois seu coração determinado o aquecia!</p>'
+                dialogo.innerHTML = ' <p class="dialogoComum"><br><br>Este caminhava rumo ao seu objetivo, o frio era alarmante por se tratar do um inverno nórdico, frio este que não afetava nosso guerreiro, pois seu coração determinado o aquecia!</p>'
 
                 break
             case 3:

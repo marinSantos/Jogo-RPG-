@@ -188,7 +188,7 @@ function setSubClass() {
                     nome: 'Take Jeruzalém!', totalDan: Math.round(player.dano + (player.dano * 30) / 100), dano: function (lb) {
                         let total = (this.totalDan - lb.defesa)
                         lb.hp -= total
-                        player.defesa += 10
+                        player.defesa += 5
 
                     }, area: true, des: 'Se fortalece com um grito de guerra, atropela os inimigos a sua frente, aumentando 10 pontos de defesa e causando <span class="dano">+30%</span> de dano.',
                     posSkill: function () {

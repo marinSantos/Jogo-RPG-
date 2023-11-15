@@ -1614,7 +1614,7 @@ function parte3() {
                 voltar.removeEventListener('click', parte3)
                 fenrir.dano = 30
                 fenrir.hp = 1000
-                fenrir.defesa = 20
+                fenrir.defesa = 10
                 lobo1.dano = 7
                 lobo1.hp = 350
                 lobo1.defesa = 0
@@ -1656,8 +1656,8 @@ function parte3() {
                 enviar.removeEventListener('click', turnDamage)
                 voltar.removeEventListener('click', parte3)
                 fenrir.dano = 30
-                fenrir.hp = 1100
-                fenrir.defesa = 20
+                fenrir.hp = 1000
+                fenrir.defesa = 10
                 lobo1.dano = 7
                 lobo1.hp = 350
                 lobo1.defesa = 0
@@ -1722,7 +1722,7 @@ function parte4() {
 
 
 let fenrir = {
-    dano: 30, hp: 1100, defesa: 20, dead: function () {
+    dano: 30, hp: 1000, defesa: 10, dead: function () {
         this.dano = 0
         this.hp = `<span class="morto">0</span>`
         this.defesa = 0
@@ -1886,8 +1886,8 @@ function parte5() {
                 enviar.removeEventListener('click', turnDamageFenrir)
                 dialogo.innerHTML = '<p class="dialogoComum">Você perdeu...<br>Volte para o acampamento, se recupere e tente novamente!</p>'
                 fenrir.dano = 30
-                fenrir.hp = 1100
-                fenrir.defesa = 20
+                fenrir.hp = 1000
+                fenrir.defesa = 10
                 lobo1.dano = 7
                 lobo1.hp = 350
                 lobo1.defesa = 0
@@ -1935,8 +1935,8 @@ function parte5() {
                 enviar.removeEventListener('click', turnDamageFenrir)
 
                 fenrir.dano = 30
-                fenrir.hp = 1100
-                fenrir.defesa = 20
+                fenrir.hp = 1000
+                fenrir.defesa = 10
                 lobo1.dano = 7
                 lobo1.hp = 350
                 lobo1.defesa = 0
